@@ -719,7 +719,7 @@ width: 340px;
             <div class="cctab">
 
                 <button class="cctablinks active" onclick="openCity(event, 'CCForm1')">General Information</button>
-                <button class="cctablinks" onclick="openCity(event, 'CCForm2')">Activity Log</button>
+                {{-- <button class="cctablinks" onclick="openCity(event, 'CCForm2')">Activity Log</button> --}}
             </div>
 
 
@@ -740,11 +740,11 @@ width: 340px;
                                     <div class="group-input">
                                         <label for="RLS Record Number"><b>Record Number</b></label>
                                         <input disabled type="text" name="record_number"
-                                            value="{{ Helpers::getDivisionName(session()->get('division')) }}/RCA/{{ date('Y') }}/{{ $record_number }}">
+                                            value="{{ Helpers::getDivisionName(session('division')) }}/{{ Auth::user()->name }}/{{ now()->format('d-M-Y') }}/{{ str_pad($record_number, 6, '0', STR_PAD_LEFT) }}"
+">
 
                                     </div>
                                 </div>
-
                                 <div class="col-lg-6">
                                     <div class="group-input">
                                         <label for="originator">Initiator</label>
@@ -760,8 +760,20 @@ width: 340px;
                                         <input type="hidden" value="{{ date('d-m-Y') }}" name="intiation_date">
                                     </div>
                                 </div>
+                                <div class="col-lg-6">
+                                    <div class="group-input">
+                                        <label for="Division Code"><b>Division Code</b></label>
+                                        @if(!empty($parent_id))
+                                        <input readonly type="text" name="division_code" value="{{ Helpers::getDivisionName($parent_division_id) }}">
+                                        <input type="hidden" name="division_id" value="{{ $parent_division_id }}">
+                                    @else
+                                        <input readonly type="text" name="division_code" value="{{ Helpers::getDivisionName(session()->get('division')) }}">
+                                        <input type="hidden" name="division_id" value="{{ session()->get('division') }}">
+                                    @endif
+                                    </div>
+                                </div>
 
-                                <div class="col-12">
+                                {{-- <div class="col-12">
                                     <div class="group-input">
                                         <label for="Short Description">Short Description<span
                                                 class="text-danger">*</span></label><span id="rchars">255</span>
@@ -772,7 +784,7 @@ width: 340px;
                                         @component('frontend.forms.language-model')
                                         @endcomponent
                                     </div>
-                                </div>
+                                </div> --}}
 
                                 <!-- =========================================================== -->
                                 <div class="col-12 mb-4">
@@ -788,10 +800,16 @@ width: 340px;
                                                     <tr style="text-align: center; vertical-align: middle; padding: 20px;">
                                                         <th>Row #</th>
                                                         <th>Repo Name / Instance Name</th>
-                                                        <th>Module / Process</th>
-                                                        <th>Activity / Task</th>
+                                                        <th>Developer Name</th>
+                                                        <th>Customer Name</th>
+                                                        <th>Activities</th>
+                                                        <th> Start Date</th>
+                                                        <th>TCD task Completion Date</th>
                                                         <th>Time Required</th>
-                                                        <th>Status</th>
+                                                        {{-- <th>TCD task Completion Date</th> --}}
+                                                        {{-- <th>Time Required</th> --}}
+                                                        {{-- <th>TCD task Completion Date</th> --}}
+                                                        {{-- <th>Status</th> --}}
                                                         <th>Work in Progress Details</th>
                                                         <th>Remaining Activity / Task</th>
                                                         <th>Time Required for Remaining Activity / Task</th>
@@ -802,14 +820,15 @@ width: 340px;
                                                         <th>Validation Team Name</th>
                                                         <th>Validation Team Remark</th>
                                                         <th>Configuration update as per Validation Team</th>
-                                                        <th>Developer Name</th>
-                                                        <th>Task Date/Time</th>
-                                                        <th>Revalidation Remark</th>
+                                                        {{-- <th>Developer Name</th> --}}
+                                                        {{-- <th> Start Date</th> --}}
                                                         <th>Revalidation Team Name</th>
-                                                        <th>Testing Completed by Developer on</th>
+                                                        <th>Revalidation Remark</th>
+                                                        {{-- <th>Revalidation Team Name</th> --}}
+                                                        {{-- <th>TCD</th> --}}
                                                         <th>Final Status</th>
-                                                        <th>Activity Configured Final date</th>
-                                                        <th>Senior Management Remark</th>
+                                                        <th>Completion Date</th>
+                                                        <th>Reviewer Remarks</th>
                                                         <th>Action</th>
                                                     </tr>
                                                 </thead>
@@ -842,34 +861,58 @@ width: 340px;
                                                                     name="TaskManagementData[{{ $loop->index }}][activity_task]"
                                                                     value="{{ $taskGrid['activity_task'] ?? '' }}">
                                                             </td>
+
+                                                            <td>
+                                                                <input type="text"
+                                                                    {{ isset($data->stage) && ($data->stage == 0 || $data->stage == 8) ? 'disabled' : '' }}
+                                                                    name="TaskManagementData[{{ $loop->index }}][activity1_task]"
+                                                                    value="{{ $taskGrid['activity1_task'] ?? '' }}">
+                                                            </td>
+
+                                                            <td>
+                                                                <input type="datetime-local"
+                                                                     name="TaskManagementData[{{ $loop->index }}][testing_completed_by_developer_on]" 
+                                                                     value="{{ $taskGrid['testing_completed_by_developer_on'] ?? '' }}" class="datetimepicker">
+                                                            </td>
+
+                                                            <td>
+                                                                <input type="datetime-local"
+                                                                     name="TaskManagementData[{{ $loop->index }}][task_date_time]" 
+                                                                     value="{{ $taskGrid['task_date_time'] ?? '' }}" class="datetimepicker">
+                                                            </td>
                                                             <td>
                                                                 <div class="time-required">
-                                                                    <input type="number" 
-                                                                        {{ isset($data->stage) && ($data->stage == 0 || $data->stage == 8) ? 'disabled' : '' }}
-                                                                        name="TaskManagementData[{{ $loop->index }}][minutes]" 
-                                                                        value="{{ $taskGrid['minutes'] ?? '' }}" 
-                                                                        placeholder="Enter Minutes" style="border: 1px solid #000; padding: 5px; border-radius: 5px;">Minutes
-                                                                    <input type="number" 
-                                                                        {{ isset($data->stage) && ($data->stage == 0 || $data->stage == 8) ? 'disabled' : '' }}
-                                                                        name="TaskManagementData[{{ $loop->index }}][hours]" 
-                                                                        value="{{ $taskGrid['hours'] ?? '' }}" 
-                                                                        placeholder="Enter Hours" style="border: 1px solid #000; padding: 5px; border-radius: 5px;">Hours
+
                                                                     <input type="number" 
                                                                         {{ isset($data->stage) && ($data->stage == 0 || $data->stage == 8) ? 'disabled' : '' }}
                                                                         name="TaskManagementData[{{ $loop->index }}][days]" 
                                                                         value="{{ $taskGrid['days'] ?? '' }}" 
                                                                         placeholder="Enter Days" style="border: 1px solid #000; padding: 5px; border-radius: 5px;">Days
+
+                                                                    <input type="number" 
+                                                                        {{ isset($data->stage) && ($data->stage == 0 || $data->stage == 8) ? 'disabled' : '' }}
+                                                                        name="TaskManagementData[{{ $loop->index }}][hours]" 
+                                                                        value="{{ $taskGrid['hours'] ?? '' }}" 
+                                                                        placeholder="Enter Hours" style="border: 1px solid #000; padding: 5px; border-radius: 5px;">Hours
+
+
+                                                                        <input type="number" 
+                                                                        {{ isset($data->stage) && ($data->stage == 0 || $data->stage == 8) ? 'disabled' : '' }}
+                                                                        name="TaskManagementData[{{ $loop->index }}][minutes]" 
+                                                                        value="{{ $taskGrid['minutes'] ?? '' }}" 
+                                                                        placeholder="Enter Minutes" style="border: 1px solid #000; padding: 5px; border-radius: 5px;">Minutes
+                                                                    
                                                                 </div>
                                                             </td>
 
-                                                            <td>
+                                                            {{-- <td>
                                                                 <select name="TaskManagementData[{{ $loop->index }}][status]">
                                                                     <option value="" {{ empty($taskGrid['status']) ? 'selected' : '' }}>-- Select --</option>
                                                                     <option value="Yes" {{ ($taskGrid['status'] ?? '') == 'Yes' ? 'selected' : '' }}>Yes</option>
                                                                     <option value="No" {{ ($taskGrid['status'] ?? '') == 'No' ? 'selected' : '' }}>No</option>
                                                                     <option value="Work in Progress" {{ ($taskGrid['status'] ?? '') == 'Work in Progress' ? 'selected' : '' }}>Work in Progress</option>
                                                                 </select>
-                                                            </td>
+                                                            </td> --}}
                                                         
 
                                                             <td>
@@ -885,18 +928,36 @@ width: 340px;
                                                                     value="{{ $taskGrid['Remaining_task'] ?? '' }}">
                                                             </td>
                                                             <td>
-                                                                <input type="text"
-                                                                    {{ isset($data->stage) && ($data->stage == 0 || $data->stage == 8) ? 'disabled' : '' }}
-                                                                    name="TaskManagementData[{{ $loop->index }}][time_req_for_remaining_task]"
-                                                                    value="{{ $taskGrid['time_req_for_remaining_task'] ?? '' }}">
+                                                                <div class="time-required">
+
+                                                                    <input type="number" 
+                                                                        {{ isset($data->stage) && ($data->stage == 0 || $data->stage == 8) ? 'disabled' : '' }}
+                                                                        name="TaskManagementData[{{ $loop->index }}][days]" 
+                                                                        value="{{ $taskGrid['days'] ?? '' }}" 
+                                                                        placeholder="Enter Days" style="border: 1px solid #000; padding: 5px; border-radius: 5px;">Days
+
+                                                                    <input type="number" 
+                                                                        {{ isset($data->stage) && ($data->stage == 0 || $data->stage == 8) ? 'disabled' : '' }}
+                                                                        name="TaskManagementData[{{ $loop->index }}][hours]" 
+                                                                        value="{{ $taskGrid['hours'] ?? '' }}" 
+                                                                        placeholder="Enter Hours" style="border: 1px solid #000; padding: 5px; border-radius: 5px;">Hours
+
+
+                                                                        <input type="number" 
+                                                                        {{ isset($data->stage) && ($data->stage == 0 || $data->stage == 8) ? 'disabled' : '' }}
+                                                                        name="TaskManagementData[{{ $loop->index }}][minutes]" 
+                                                                        value="{{ $taskGrid['minutes'] ?? '' }}" 
+                                                                        placeholder="Enter Minutes" style="border: 1px solid #000; padding: 5px; border-radius: 5px;">Minutes
+                                                                   
+                                                                </div>
                                                             </td>
-                                                            <td>
+                                                            {{-- <td>
                                                                 <select name="TaskManagementData[{{ $loop->index }}][testing_completed_by_developer]">
                                                                     <option value="" {{ empty($taskGrid['testing_completed_by_developer']) ? 'selected' : '' }}>-- Select --</option>
                                                                     <option value="Yes" {{ ($taskGrid['testing_completed_by_developer'] ?? '') === 'Yes' ? 'selected' : '' }}>Yes</option>
                                                                     <option value="No" {{ ($taskGrid['testing_completed_by_developer'] ?? '') === 'No' ? 'selected' : '' }}>No</option>
                                                                 </select>
-                                                            </td>
+                                                            </td> --}}
                                                             <td>
                                                                 <input type="text"
                                                                     {{ isset($data->stage) && ($data->stage == 0 || $data->stage == 8) ? 'disabled' : '' }}
@@ -917,13 +978,10 @@ width: 340px;
                                                             </td>
                                                             <td>
                                                                 <select name="TaskManagementData[{{ $loop->index }}][validation_team_name]">
-                                                                    <option value="">-- Select --</option>
-                                                                    @foreach ($users as $user)
-                                                                        <option value="{{ $user->id }}"
-                                                                            {{ ($taskGrid['validation_team_name'] ?? '') == $user->id ? 'selected' : '' }}>
-                                                                            {{ $user->name }}
-                                                                        </option>
-                                                                    @endforeach
+                                                                    <option value="" {{ empty($taskGrid['validation_team_name']) ? 'selected' : '' }}>-- Select --</option>
+                                                                    <option value="Configured" {{ ($taskGrid['validation_team_name'] ?? '') === 'Configured' ? 'selected' : '' }}>Work In Progress</option>
+                                                                    <option value="Not Completed" {{ ($taskGrid['validation_team_name'] ?? '') === 'Not Completed' ? 'selected' : '' }}>Not Completed</option>
+                                                                    <option value="Completed" {{ ($taskGrid['validation_team_name'] ?? '') === 'Completed' ? 'selected' : '' }}>Completed</option>
                                                                 </select>
                                                             </td>
                                                             <td>
@@ -941,11 +999,7 @@ width: 340px;
                                                                     name="TaskManagementData[{{ $loop->index }}][developer_name]"
                                                                     value="{{ $taskGrid['developer_name'] ?? '' }}">
                                                             </td>
-                                                            <td>
-                                                                <input type="datetime-local"
-                                                                     name="TaskManagementData[{{ $loop->index }}][task_date_time]" 
-                                                                     value="{{ $taskGrid['task_date_time'] ?? '' }}" class="datetimepicker">
-                                                            </td>
+                                                           
 
                                                             <td>
                                                                 <input type="text"
@@ -958,17 +1012,18 @@ width: 340px;
                                                                     value="{{ $taskGrid['revalidation_remark_team'] ?? '' }}">
                                                             </td>
 
-                                                            <td>
+                                                            {{-- <td>
                                                                 <input type="datetime-local"
                                                                      name="TaskManagementData[{{ $loop->index }}][testing_completed_by_developer_on]" 
                                                                      value="{{ $taskGrid['testing_completed_by_developer_on'] ?? '' }}" class="datetimepicker">
-                                                            </td>
+                                                            </td> --}}
 
                                                             <td>
                                                                 <select name="TaskManagementData[{{ $loop->index }}][final_status]">
                                                                     <option value="" {{ empty($taskGrid['final_status']) ? 'selected' : '' }}>-- Select --</option>
-                                                                    <option value="Configured" {{ ($taskGrid['final_status'] ?? '') === 'Configured' ? 'selected' : '' }}>Configured</option>
-                                                                    <option value="Configured and Not Testing" {{ ($taskGrid['final_status'] ?? '') === 'Configured and Not Testing' ? 'selected' : '' }}>Configured and Not Testing</option>
+                                                                    <option value="Configured" {{ ($taskGrid['final_status'] ?? '') === 'Configured' ? 'selected' : '' }}>Work In Progress</option>
+                                                                    <option value="Not Completed" {{ ($taskGrid['final_status'] ?? '') === 'Not Completed' ? 'selected' : '' }}>Not Completed</option>
+                                                                    <option value="Completed" {{ ($taskGrid['final_status'] ?? '') === 'Completed' ? 'selected' : '' }}>Completed</option>
                                                                 </select>
                                                             </td>
 
@@ -1030,78 +1085,96 @@ width: 340px;
                                                 var investdetails = $('#task_Management_Table tbody tr').length + 1;
                                                 var html = 
                                                         '<tr>' +
-                                                            '<td><input disabled type="text" style ="width:15px" value="' + serialNumber +
-                                                            '"></td>' +
-                                                            '<td><input type="text" name="TaskManagementData[' + investdetails + '][repo_name]" value=""></td>' +
-                                                            '<td><input type="text" name="TaskManagementData[' + investdetails + '][module_process]" value=""></td>' +
-                                                            '<td><input type="text" name="TaskManagementData[' + investdetails + '][activity_task]" value=""></td>' +
-                                                            '<td>' +
-                                                                '<div class="time-required">' +
-                                                                    '<input type="number" name="TaskManagementData[' + investdetails + '][minutes]" placeholder="Enter Minutes" value="0" style="border: 1px solid #000; padding: 5px; border-radius: 5px;">Minutes' +
-                                                                    '<input type="number" name="TaskManagementData[' + investdetails + '][hours]" placeholder="Enter Hours" value="0" style="border: 1px solid #000; padding: 5px; border-radius: 5px;">Hours' +
-                                                                    '<input type="number" name="TaskManagementData[' + investdetails + '][days]" placeholder="Enter Days" value="0" style="border: 1px solid #000; padding: 5px; border-radius: 5px;">Days' +
-                                                                '</div>' +
-                                                            '</td>' +
-                                                            '<td>' +
-                                                                '<select name="TaskManagementData[' + investdetails + '][status]">' +
-                                                                    '<option value="">-- Select --</option>' +
-                                                                    '<option value="Yes">Yes</option>' +
-                                                                    '<option value="No">No</option>' +
-                                                                    '<option value="Work in Progress">Work in Progress</option>' +
-                                                                '</select>' +
-                                                            '</td>' +
-                                                            '<td><input type="text" name="TaskManagementData[' + investdetails + '][work_in_progress_detail]" value=""></td>' +
-                                                            '<td><input type="text" name="TaskManagementData[' + investdetails + '][Remaining_task]" value=""></td>' +
-                                                            '<td><input type="text" name="TaskManagementData[' + investdetails + '][time_req_for_remaining_task]" value=""></td>' +
-                                                            '<td>' +
-                                                                '<select name="TaskManagementData[' + investdetails + '][testing_completed_by_developer]">' +
-                                                                    '<option value="">-- Select --</option>' +
-                                                                    '<option value="Yes">Yes</option>' +
-                                                                    '<option value="No">No</option>' +
-                                                                '</select>' +
-                                                            '</td>' +
-                                                            '<td><input type="text" name="TaskManagementData[' + investdetails + '][developer_testing_details]" value=""></td>' +
-                                                            '<td><input type="text" name="TaskManagementData[' + investdetails + '][remaining_work]" value=""></td>' +
-                                                            '<td><input type="text" name="TaskManagementData[' + investdetails + '][remaining_work_testing]" value=""></td>' +
-                                                            '<td>' +
-                                                                '<select name="TaskManagementData[' + investdetails + '][validation_team_name]">' +
-                                                                    userOptionHtml +
-                                                                '</select>' +
-                                                            '</td>' +
-                                                            '<td><input type="text" name="TaskManagementData[' + investdetails + '][validation_team_remark]" value=""></td>' +
-                                                            '<td><input type="text" name="TaskManagementData[' + investdetails + '][configuration_update_validation_team]" value=""></td>' +
-                                                            '<td><input type="text" name="TaskManagementData[' + investdetails + '][developer_name]" value=""></td>' +
-                                                            '<td><input type="datetime-local" name="TaskManagementData[' + investdetails + '][task_date_time]" value=""></td>' +
-                                                            '<td><input type="text" name="TaskManagementData[' + investdetails + '][revalidation_remark]" value=""></td>' +
-                                                            '<td><input type="text" name="TaskManagementData[' + investdetails + '][revalidation_remark_team]" value=""></td>' +
-                                                            '<td><input type="datetime-local" name="TaskManagementData[' + investdetails + '][testing_completed_by_developer_on]" value=""></td>' +
-                                                            '<td>' +
-                                                                '<select name="TaskManagementData[' + investdetails + '][final_status]">' +
-                                                                    '<option value="">-- Select --</option>' +
-                                                                    '<option value="Configured">Configured</option>' +
-                                                                    '<option value="Configured and Not Testing">Configured and Not Testing</option>' +
-                                                                '</select>' +
-                                                            '</td>' +
-                                                            '<td>' +
-                                                                '<div class="new-date-data-field">' +
-                                                                    '<div class="group-input input-date">' +
-                                                                        '<div class="calenderauditee">' +
-                                                                            '<input class="click_date" type="text" name="TaskManagementData[' + investdetails + '][activity_config_final_date]" placeholder="DD-MMM-YYYY" />' +
-                                                                            '<input type="date" name="TaskManagementData[' + investdetails + '][activity_config_final_date]" class="hide-input show_date" style="position: absolute; top: 0; left: 0; opacity: 0;" onchange="handleDateInput(this, ' + "'date_" + investdetails + "_activity_config_final_date'" + ')" />' +
-                                                                        '</div>' +
-                                                                    '</div>' +
-                                                                '</div>' +
-                                                            '</td>' +
-                                                            '<td><input type="text" name="TaskManagementData[' + investdetails + '][seniour_management_remark]" value=""></td>' +
+                                                            '<td><input disabled type="text" style ="width:15px" value="' + serialNumber +'"></td>' +
+                                                    '<td><input type="text" name="TaskManagementData[' + investdetails +'][repo_name]" value=""></td>' +
+                                                    '<td><input type="text" name="TaskManagementData[' + investdetails +'][module_process]" value=""></td>' +
+                                                    '<td><input type="text" name="TaskManagementData[' + investdetails +'][activity_task]" value=""></td>' +
+                                                    '<td><input type="text" name="TaskManagementData[' + investdetails +'][activity1_task]" value=""></td>' +
+                                                    '<td>' +
+                                                            '<input type="datetime-local" name="TaskManagementData[' + investdetails +'][testing_completed_by_developer_on]" class="datetimepicker">' +
+                                                    '</td>' +
+                                                    '<td><input type="date" name="TaskManagementData[' + investdetails +'][task_date_time]" value=""></td>' +
+                                                    
+                                                    '<td>' +
+                                                        '<div class="time-required">' +
+                                                            '<input type="number" id="days_' + investdetails + '" placeholder="Enter days" ' +
+                                                            'oninput="updateTime(this)" name="TaskManagementData[' + investdetails + '][days]" ' +
+                                                            'value="0" style="border: 1px solid #000; padding: 5px; border-radius: 5px;"> Days' +
 
-                                                            '<td><button class="removeRowBtn"  {{ $data->stage == 0 || $data->stage == 8 ? 'disabled' : '' }}>Remove</button>' +
+                                                            '<input type="number" id="hours_' + investdetails + '" placeholder="Enter hours" ' +
+                                                            'oninput="updateTime(this)" name="TaskManagementData[' + investdetails + '][hours]" ' +
+                                                            'value="0" style="border: 1px solid #000; padding: 5px; border-radius: 5px;"> Hours' +
 
-                                                            '</tr>';
+                                                            '<input type="number" id="minutes_' + investdetails + '" placeholder="Enter Minuts"' +
+                                                            'oninput="updateTime(this)" name="TaskManagementData[' + investdetails + '][minutes]" ' +
+                                                            'value="0" style="border: 1px solid #000; padding: 5px; border-radius: 5px;"> Minutes' +
 
-                                                        investdetails++; // Increment the row number
-                                                        return html;
+                                                        '</div>' +
+                                                    '</td>' +
 
+                                                    '<td><input type="text" name="TaskManagementData[' + investdetails +'][work_in_progress_detail]" value=""></td>' +
+                                                    '<td><input type="text" name="TaskManagementData[' + investdetails +'][Remaining_task]" value=""></td>' +
+                                                    '<td>' +
+                                                    '<div class="time-required">' +
+                                                            '<input type="number" id="minutes_' + investdetails + '" placeholder="Enter houe" ' +
+                                                            'oninput="updateTime(this)" name="TaskManagementData[' + investdetails + '][minutes]" ' +
+                                                            'value="0" style="border: 1px solid #000; padding: 5px; border-radius: 5px;"> Minutes' +
+
+                                                            '<input type="number" id="hours_' + investdetails + '" placeholder="Enter hours" ' +
+                                                            'oninput="updateTime(this)" name="TaskManagementData[' + investdetails + '][hours]" ' +
+                                                            'value="0" style="border: 1px solid #000; padding: 5px; border-radius: 5px;"> Hours' +
+
+                                                            '<input type="number" id="days_' + investdetails + '" placeholder="Enter days" ' +
+                                                            'oninput="updateTime(this)" name="TaskManagementData[' + investdetails + '][days]" ' +
+                                                            'value="0" style="border: 1px solid #000; padding: 5px; border-radius: 5px;"> Days' +
+                                                    '</div>' +
+                                                    '</td>' +
+                                                    
+                                                    '<td><input type="text" name="TaskManagementData[' + investdetails +'][developer_testing_details]" value=""></td>' +
+                                                    '<td><input type="text" name="TaskManagementData[' + investdetails +'][remaining_work]" value=""></td>' +
+                                                    '<td><input type="text" name="TaskManagementData[' + investdetails +'][remaining_work_testing]" value=""></td>' +
+
+                                                    '<td><select name="TaskManagementData[' + investdetails + '][validation_team_name]">' +
+                                                        '<option value="">-- Select --</option>' +
+                                                        '@foreach ($users as $data)' +
+                                                        '<option value="{{ $data->id }}">{{ $data->name }}</option> ' +
+                                                        '@endforeach' +
+                                                    '</select></td>' +
+                                                    
+
+                                                    '<td><input type="text" name="TaskManagementData[' + investdetails +'][validation_team_remark]" value=""></td>' +
+                                                    '<td><input type="text" name="TaskManagementData[' + investdetails +'][configuration_update_validation_team]" value=""></td>' +
+                                                    '<td><input type="text" name="TaskManagementData[' + investdetails +'][revalidation_remark]" value=""></td>' +
+                                                    '<td><input type="text" name="TaskManagementData[' + investdetails +'][revalidation_remark_team]" value=""></td>' +
+                                                    '<td><input type="text" name="TaskManagementData[' + investdetails +'][task_date_time]" class="datetimepicker"></td>' +
+                                                    
+
+                                                   
+
+                                                    '<td><select name="TaskManagementData[' + investdetails + '][final_status]">' +
+                                                        ' <option value="">-- Select --</option>'+
+                                                                '<option value="Configured  ">Work In Progress </option>'+
+                                                               '<option value="Not Completed">Not Completed</option>'+
+                                                                '<option value="Completed"> Completed</option>'+
+                                                    '</select></td>' +
+
+
+                                                    // '<td><input type="date" name="TaskManagementData[' + investdetails +
+                                                    // '][activity_config_final_date]" value=""></td>' +
+
+
+                                                    '<td><div class="new-date-data-field"><div class="group-input input-date"> <div class="calenderauditee"><input id="date_' + investdetails + '_activity_config_final_date" type="text" name="TaskManagementData[' + investdetails + '][activity_config_final_date]" placeholder="DD-MMM-YYYY" /> <input type="date" name="TaskManagementData[' + investdetails + '][activity_config_final_date]" min="{{ \Carbon\Carbon::now()->format("Y-m-d") }}" value="" id="date_' + investdetails + '_activity_config_final_date" class="hide-input show_date" style="position: absolute; top: 0; left: 0; opacity: 0;" oninput="handleDateInput(this, \'date_' + investdetails + '_activity_config_final_date\')" /> </div> </div></div></td>' +
+
+                                                    '<td><input type="text" name="TaskManagementData[' + investdetails +
+                                                    '][seniour_management_remark]" value=""></td>' +
+                                                    
+                                                    
+                                                    '<td><button class="removeRowBtn">Remove</button>' +
+                                                    '</tr>';
+                                                investdetails++; // Increment the row number here
+                                                return html;
                                             }
+
 
                                             var tableBody = $('#task_Management_Table tbody');
                                             var rowCount = tableBody.children('tr').length;
@@ -1160,6 +1233,39 @@ width: 340px;
                                 <!-- =========================================================== -->
 
                             </div>
+                            <div class="col-lg-12">
+                                <div class="group-input">
+                                    <label for="incident_involved_others_gi">Final Comments</label>
+                                    <textarea name="final_comments">{{ $Task->final_comments }}</textarea>
+                                </div>
+
+                            </div>
+
+                            {{-- <div class="group-input">
+                                <label for="qa-eval-comments">Final Comments</label>
+                                <div >
+                                    <textarea name="final_comments">{{$data->final_comments}}</textarea>
+                                    @component('frontend.forms.language-model')
+                                    @endcomponent
+                                </div> --}}
+                            <div class="col-lg-12">
+                                <div class="group-input">
+                                    <label for="others">Supporting document</label>
+                                    <div><small class="text-primary">Please Attach all relevant or supporting
+                                            documents</small></div>
+                                    <div class="file-attachment-field">
+                                        <div class="file-attachment-list" id="in_attachment"></div>
+                                        <div class="add-btn">
+                                            <div>Add</div>
+                                            <input type="file" id="myfile" name="in_attachment[]"
+                                                oninput="addMultipleFiles(this, 'in_attachment')" multiple>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
                             <div class="button-block">
                                 <button type="submit" id="ChangesaveButton" class="saveButton">Save</button>
                                 <button type="button" id="ChangeNextButton" class="nextButton">Next</button>
@@ -1170,7 +1276,7 @@ width: 340px;
                     </div>
                                 </div>
 
-                    <div id="CCForm2" class="inner-block cctabcontent">
+                    {{-- <div id="CCForm2" class="inner-block cctabcontent">
                         <div class="inner-block-content">
                             <div class="row">
                                 <div class="col-lg-4">
@@ -1387,15 +1493,15 @@ width: 340px;
                             </div>
                             <div class="button-block">
                                 {{-- <button type="submit" class="saveButton">Save</button> --}}
-                                <button type="button" class="backButton" onclick="previousStep()">Back</button>
+                                {{-- <button type="button" class="backButton" onclick="previousStep()">Back</button> --}}
                                 {{-- <button type="submit">Submit</button> --}}
-                                <button type="button"> <a href="{{ url('rcms/qms-dashboard') }}" class="text-white">
+                                {{-- <button type="button"> <a href="{{ url('rcms/qms-dashboard') }}" class="text-white">
                                         Exit </a> </button>
                             </div>
                         </div>
                     </div>
 
-                </div>
+                </div>  --}}
             </form>
 
         </div>

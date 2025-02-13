@@ -132,10 +132,13 @@ class FormDivisionController extends Controller
         }elseif ($request->process_name == 'Stability Management') {
             return redirect()->route('stability-management');
         }
+        elseif ($request->process_name == 'Task Management') {
+            return redirect('task-management');
+        }
         elseif ($request->process_name == 'Analyst Qualification') {
             return redirect('rcms/analytics_qualification');
         }
-        
+       
     }
 
     public function formDivisionRegulatory(Request $request)

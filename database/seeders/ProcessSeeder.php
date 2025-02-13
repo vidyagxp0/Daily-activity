@@ -94,6 +94,7 @@ class ProcessSeeder extends Seeder
             "Sample Management I",
             "Sample Management II",
             "Stability Management", 
+            "Task Management"
         ];
 
         // Loop through each process name

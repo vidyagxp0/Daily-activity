@@ -40,7 +40,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
-
+use App\Models\TaskManagement;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Auth;
@@ -107,6 +107,7 @@ class DashboardController extends Controller
         $datas5Query = Capa::query();
         $datas28Query = GlobalCapa::query();
         $equipmentQuery = EquipmentLifecycleManagement::query();
+        $taskManagment = TaskManagement::query();
         // $sstability = SampleStability::query();
 
         $EHSQuery = EHSEvent::query();      
@@ -190,6 +191,7 @@ class DashboardController extends Controller
             $failureInvestigationQuery->whereNotIn('status', ['Closed-Done']);
             $queryManagementQuery->whereNotIn('status', ['Closed-Done']);
             $calibrationQuery->whereNotIn('status', ['Closed-Done']);
+            $taskManagment->whereNotIn('status', ['Closed-Done']);
         }
        
         
@@ -233,6 +235,7 @@ class DashboardController extends Controller
                 $incidentQuery->whereBetween('created_at', [$startOfPreviousWeek, $endOfPreviousWeek]);
                 $queryManagementQuery->whereBetween('created_at', [$startOfPreviousWeek, $endOfPreviousWeek]);
                 $calibrationQuery->whereBetween('created_at', [$startOfPreviousWeek, $endOfPreviousWeek]);
+                $taskManagment->whereBetween('created_at', [$startOfPreviousWeek, $endOfPreviousWeek]);
                 break;
 
             case 'fortnight':
@@ -273,6 +276,7 @@ class DashboardController extends Controller
                 $incidentQuery->whereBetween('created_at', [$startOfPreviousfortnight, $endOfPreviousfortnight]);
                 $queryManagementQuery->whereBetween('created_at', [$startOfPreviousfortnight, $endOfPreviousfortnight]);
                 $calibrationQuery->whereBetween('created_at', [$startOfPreviousfortnight, $endOfPreviousfortnight]);
+                $taskManagment->whereBetween('created_at', [$startOfPreviousfortnight, $endOfPreviousfortnight]);
                 break;
     
             case 'quarterly':
@@ -313,6 +317,7 @@ class DashboardController extends Controller
                 $incidentQuery->whereBetween('created_at', [$startOfPreviousforquarterly, $endOfPreviousfortquarterly]);
                 $queryManagementQuery->whereBetween('created_at', [$startOfPreviousforquarterly, $endOfPreviousfortquarterly]);
                 $calibrationQuery->whereBetween('created_at', [$startOfPreviousforquarterly, $endOfPreviousfortquarterly]);
+                $taskManagment->whereBetween('created_at', [$startOfPreviousforquarterly, $endOfPreviousfortquarterly]);
                 break;
 
             case 'halfyearly':
@@ -353,6 +358,7 @@ class DashboardController extends Controller
                 $incidentQuery->whereBetween('created_at', [$startOfPrevioushalfyearly, $endOfPrevioushalfyearly]);
                 $queryManagementQuery->whereBetween('created_at', [$startOfPrevioushalfyearly, $endOfPrevioushalfyearly]);
                 $calibrationQuery->whereBetween('created_at', [$startOfPrevioushalfyearly, $endOfPrevioushalfyearly]);
+                $taskManagment->whereBetween('created_at', [$startOfPrevioushalfyearly, $endOfPrevioushalfyearly]);
                 break;
 
             case 'monthly':
@@ -393,6 +399,7 @@ class DashboardController extends Controller
                 $incidentQuery->whereBetween('created_at', [$startOfMonth, $endOfMonth]);
                 $queryManagementQuery->whereBetween('created_at', [$startOfMonth, $endOfMonth]);
                 $calibrationQuery->whereBetween('created_at', [$startOfMonth, $endOfMonth]);
+                $taskManagment->whereBetween('created_at', [$startOfMonth, $endOfMonth]);
                 break;
 
             case 'annually':
@@ -433,6 +440,7 @@ class DashboardController extends Controller
                 $incidentQuery->whereBetween('created_at', [$startOfYear, $endOfYear]);
                 $queryManagementQuery->whereBetween('created_at', [$startOfYear, $endOfYear]);
                 $calibrationQuery->whereBetween('created_at', [$startOfYear, $endOfYear]);
+                $taskManagment->whereBetween('created_at', [$startOfYear, $endOfYear]);
                 break;
 
             case 'custom':
@@ -474,6 +482,7 @@ class DashboardController extends Controller
                     $incidentQuery->whereBetween('created_at', [$start, $end]);
                     $queryManagementQuery->whereBetween('created_at', [$start, $end]);
                     $calibrationQuery->whereBetween('created_at', [$start, $end]);
+                    $taskManagment->whereBetween('created_at', [$start, $end]);
                 }
                 break;
 
@@ -517,6 +526,7 @@ class DashboardController extends Controller
         $incident = $incidentQuery->orderByDesc('id')->get();
         $queryManagement = $queryManagementQuery->orderByDesc('id')->get();
         $calibration =$calibrationQuery->orderByDesc('id')->get();
+        $taskManagment= $taskManagment->orderByDesc('id')->get();
         // $ssstability =$sstability->orderByDesc('id')->get();
         
         
@@ -1405,6 +1415,33 @@ class DashboardController extends Controller
             ]);
         }
 
+        foreach ($taskManagment as $data) {
+            $data->create = Carbon::parse($data->created_at)->format('d-M-Y h:i A');
+            array_push($table, [
+                "id" => $data->id,
+                "parent" => $data->task_management_id ? $data->task_management_id : "-",
+                "record" => $data->record_number,
+                "type" => "Task Management",
+                "parent_id" => $data->parent_id,
+                "parent_type" => $data->parent_type,
+                "division_id" => $data->division_id,
+                // "short_description" => $data->short_description ? $data->short_description : "-",
+                "initiator_id" => $data->initiator_id,
+                "initiated_through" => $data->initiated_through,
+                "intiation_date" => $data->intiation_date,
+                "stage" => $data->status,
+                "date_open" => $data->created_at,
+                "due_date" => $data->due_date,
+                "date_close" => $data->updated_at,
+
+                "division_name" => Helpers::getDivisionName($data->division_id),
+                "filter_date_opened" => Helpers::getdateFormat1($data->created_at),
+                "filter_originator" => Helpers::getInitiatorName($data->initiator_id),
+                "filter_due_date" => Helpers::getdateFormat($data->due_date),
+            ]);
+        }
+
+
         // foreach ($ssstability as $data) {
         //     $data->create = Carbon::parse($data->created_at)->format('d-M-Y h:i A');
         //     array_push($table, [
@@ -2098,6 +2135,14 @@ class DashboardController extends Controller
             $division_name = $division->name;
         }
 
+        elseif ($type == "Task Managment") {
+            $data = TaskManagement::find($id);
+            $single = "#" . $data->id;
+            $family = "#";
+            $audit = "#" . $data->id;
+            $division = QMSDivision::find($data->division_id);
+            $division_name = $division->name;
+        }
 
         $type = $type == 'Capa' ? 'CAPA' : $type;
 

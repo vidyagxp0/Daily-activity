@@ -17,14 +17,14 @@ class RoleGroupSeeder extends Seeder
     public function run()
     {
         $sites = [
-            'Analytical Research & Development',
-            'Reference Standard',
-            'Microbiology',
-            'Biologics',
-            'PvPI',
-            'Quality Assurance',
-            'MvPI',
-            'Others',
+            'IND',
+            'Asia',
+            'Africa',
+            'Antractica',
+            'Australia',
+            'North America',
+            'South America',
+            'Europe',
         ];
 
         $processes_roles = [
@@ -52,6 +52,7 @@ class RoleGroupSeeder extends Seeder
             'ERRATA' => ['Initiator', 'QA Reviewer', 'Initiator', 'Supervisor', 'HOD/Designee', 'QA Head/Designee', 'View Only', 'FP', 'Closed Record'],
             'New Document' => ['Initiator', 'Author', 'HOD/Designee', 'QA','Approver', 'Reviewer', 'View Only', 'FP', 'Trainer', 'Closed Record'],            
             'Audit Program' => ['Initiator', 'Audit Manager', 'View Only', 'FP', 'Closed Record'],
+            'Task Management' => ['Initiator', 'HOD/Designee', 'QA', 'CFT', 'QA', 'QA Head/Designee', 'External User', 'QA', 'View Only', 'FP', 'Closed Record'],
             
         ];
 

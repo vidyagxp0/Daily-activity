@@ -19,7 +19,7 @@ class TaskManagementController extends Controller
     public function task_management()
     {
         $record_number = ((RecordNumber::first()->value('counter')) + 1);
-        $record = str_pad($record_number, 4, '0', STR_PAD_LEFT);
+        $record = str_pad($record_number, 6, '0', STR_PAD_LEFT);
         $currentDate = Carbon::now();
         $formattedDate = $currentDate->addDays(30);
         $due_date = $formattedDate->format('Y-m-d');
@@ -38,6 +38,8 @@ class TaskManagementController extends Controller
         $taskmanagement->intiation_date = $request->intiation_date;
         $taskmanagement->record_number = $request->record_number;
         $taskmanagement->short_description = $request->short_description;
+        $taskmanagement->final_comments= $request->final_comments;
+        $taskmanagement->save();
 
         $taskmanagement->status = 'Opened';
         $taskmanagement->stage = 1;
@@ -137,6 +139,7 @@ class TaskManagementController extends Controller
         $taskmanagement = TaskManagement::find($id);
 
         $taskmanagement->short_description = $request->short_description;
+        $taskmanagement->final_comments= $request->final_comments;
 
         $taskmanagement->update();
 
@@ -158,7 +161,9 @@ class TaskManagementController extends Controller
 
     public function task_management_show($id)
     {
+        $Task = TaskManagement::find($id);
         $data = TaskManagement::find($id);
+        
         $TaskGrid = TaskManagementGrid::find($id);
 
         $TaskGridData = TaskManagementGrid::where(['task_management_id' => $id, 'identifier' => 'Task Management Data'])->first();
@@ -172,7 +177,7 @@ class TaskManagementController extends Controller
         $formattedDate = $currentDate->addDays(30);
         $due_date = $formattedDate->format('Y-m-d');
 
-        return view('frontend.task-management.task_management_view', compact('data', 'record_number', 'TaskGrid', 'TaskGridData'));
+        return view('frontend.task-management.task_management_view', compact('data', 'record_number','Task', 'TaskGrid', 'TaskGridData'));
     }
 
     public function AuditTrailTask($id)

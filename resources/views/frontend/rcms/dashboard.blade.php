@@ -844,6 +844,21 @@
                                                             </div>
                                                         </a>
                                                     @endif
+
+                                                    @elseif($datas->type == 'Task Management')
+                                                    <a href="{{ route('task_management_show', $datas->id) }}" style="color:  rgb(43, 43, 48)">
+                                                        {{ str_pad(($total_count - $loop->index), 4, '0', STR_PAD_LEFT) }}
+                                                    </a>
+                                                    @if (!empty($datas->parent_id))
+                                                        <a
+                                                            href="{{ url('rcms/qms-dashboard_new', $datas->id) }}/Task Management">
+                                                            <div class="icon" onclick="showChild()"
+                                                                data-bs-toggle="tooltip" title="Related Records">
+                                                                {{-- <img src="{{ asset('user/images/parent.png') }}"
+                                                                    alt="..." class="w-100 h-100"> --}}
+                                                            </div>
+                                                        </a>
+                                                    @endif
                                                 @endif
                                                
                                             </td>
@@ -880,7 +895,7 @@
                                             <td id="short_width" class="viewdetails" data-id="{{ $datas->id }}"
                                                 data-type="{{ $datas->type }}" data-bs-toggle="modal"
                                                 data-bs-target="#record-modal">
-                                                {{ $datas->short_description }}
+                                                {{-- {{ $datas->short_description }} --}}
                                             </td>
                                             @php
                                                 $date = new \DateTime($datas->date_open);

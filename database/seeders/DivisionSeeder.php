@@ -17,42 +17,42 @@ class DivisionSeeder extends Seeder
     public function run()
     {
         $division = new QMSDivision();
-        $division->name = "Analytical Research & Development";
+        $division->name = "IND ";
         $division->status = 1;
         $division->save();
 
         $division = new QMSDivision();
-        $division->name = "Reference Standard";
+        $division->name = "Asia";
         $division->status = 1;
         $division->save();
 
         $division = new QMSDivision();
-        $division->name = "Microbiology";
+        $division->name = "Africa";
         $division->status = 1;
         $division->save();
 
         $division = new QMSDivision();
-        $division->name = "Biologics";
+        $division->name = "Antractica";
         $division->status = 1;
         $division->save();
 
         $division = new QMSDivision();
-        $division->name = "PvPI";
+        $division->name = "Australia";
         $division->status = 1;
         $division->save();
 
         $division = new QMSDivision();
-        $division->name = "Quality Assurance";
+        $division->name = "North America";
         $division->status = 1;
         $division->save();
 
         $division = new QMSDivision();
-        $division->name = "MvPI";
+        $division->name = "South America";
         $division->status = 1;
         $division->save();
 
         $division = new QMSDivision();
-        $division->name = "Others";
+        $division->name = "Europe";
         $division->status = 1;
         $division->save();
     }
