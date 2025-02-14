@@ -39,6 +39,32 @@ class TaskManagementController extends Controller
         $taskmanagement->record_number = $request->record_number;
         $taskmanagement->short_description = $request->short_description;
         $taskmanagement->final_comments= $request->final_comments;
+        
+        // if (!empty($request->in_attachment)) {
+        //     $files = [];
+        //     if ($request->hasfile('in_attachment')) {
+        //         foreach ($request->file('in_attachment') as $file) {
+        //             $name = $request->name . 'in_attachment' . rand(1, 100) . '.' . $file->getClientOriginalExtension();
+        //             $file->move('upload/', $name);
+        //             $files[] = $name;
+        //         }
+        //     }
+        //     $taskmanagement->in_attachment = json_encode($files);
+        // }
+        
+        if (!empty($request->in_attachment)) {
+            $files = [];
+            if ($request->hasFile('in_attachment')) {
+                foreach ($request->file('in_attachment') as $file) {
+                    $name = $request->name . 'in_attachment' . uniqid() . '.' . $file->getClientOriginalExtension();
+                    $file->move(public_path('upload/'), $name);
+                    $files[] = $name;
+                }
+            }
+            $taskmanagement->in_attachment = json_encode($files);
+        }
+
+        // dd($request->in_attachment);
         $taskmanagement->save();
 
         $taskmanagement->status = 'Opened';
@@ -140,6 +166,17 @@ class TaskManagementController extends Controller
 
         $taskmanagement->short_description = $request->short_description;
         $taskmanagement->final_comments= $request->final_comments;
+        if (!empty($request->in_attachment)) {
+            $files = [];
+            if ($request->hasFile('in_attachment')) {
+                foreach ($request->file('in_attachment') as $file) {
+                    $name = $request->name . 'in_attachment' . uniqid() . '.' . $file->getClientOriginalExtension();
+                    $file->move(public_path('upload/'), $name);
+                    $files[] = $name;
+                }
+            }
+            $taskmanagement->in_attachment = json_encode($files);
+        }
 
         $taskmanagement->update();
 
@@ -162,6 +199,7 @@ class TaskManagementController extends Controller
     public function task_management_show($id)
     {
         $Task = TaskManagement::find($id);
+        $attachment = TaskManagement::find($id);
         $data = TaskManagement::find($id);
         
         $TaskGrid = TaskManagementGrid::find($id);
@@ -169,15 +207,15 @@ class TaskManagementController extends Controller
         $TaskGridData = TaskManagementGrid::where(['task_management_id' => $id, 'identifier' => 'Task Management Data'])->first();
 
         $record_number = ((RecordNumber::first()->value('counter')) + 1);
-        $record_number = str_pad($record_number, 4, '0', STR_PAD_LEFT);
-        $data->record = str_pad($data->record, 4, '0', STR_PAD_LEFT);
+        $record_number = str_pad($record_number, 6, '0', STR_PAD_LEFT);
+        $data->record = str_pad($data->record, 6, '0', STR_PAD_LEFT);
         $data->assign_to_name = User::where('id', $data->assign_id)->value('name');
         $data->initiator_name = User::where('id', $data->initiator_id)->value('name');
         $currentDate = Carbon::now();
         $formattedDate = $currentDate->addDays(30);
         $due_date = $formattedDate->format('Y-m-d');
 
-        return view('frontend.task-management.task_management_view', compact('data', 'record_number','Task', 'TaskGrid', 'TaskGridData'));
+        return view('frontend.task-management.task_management_view', compact('data', 'record_number','Task','attachment', 'TaskGrid', 'TaskGridData'));
     }
 
     public function AuditTrailTask($id)

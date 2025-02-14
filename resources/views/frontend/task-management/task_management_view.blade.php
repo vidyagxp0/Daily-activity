@@ -475,9 +475,9 @@ width: 340px;
                                 Audit Trail </a> </button>
 
                         @if ($data->stage == 1)
-                            <a href="#signature-modal"><button class="button_theme1" data-bs-toggle="modal" data-bs-target="#signature-modal">
+                            {{-- <a href="#signature-modal"><button class="button_theme1" data-bs-toggle="modal" data-bs-target="#signature-modal">
                                 Send For Review
-                            </button> </a>
+                            </button> </a> --}}
                             <a href="#cancel-modal"><button class="button_theme1" data-bs-toggle="modal" data-bs-target="#cancel-modal">
                                 Cancel
                             </button> </a>
@@ -510,7 +510,7 @@ width: 340px;
 
                 <div class="status">
                     <div class="head">Current Status</div>
-                    @if ($data->stage == 0)
+                    {{-- @if ($data->stage == 0)
                         <div class="progress-bars">
                             <div class="bg-danger">Closed-Cancelled</div>
                         </div>
@@ -539,7 +539,7 @@ width: 340px;
                             @endif
 
                         </div>
-                    @endif
+                    @endif --}}
                 </div>
 
 
@@ -559,7 +559,7 @@ width: 340px;
                         <div class="modal-header">
                             <h4 class="modal-titles ml-10">Action Item Workflow</h4>
                         </div>
-                        <div  style="" class="modal-body main-new-workflow">
+                        {{-- <div  style="" class="modal-body main-new-workflow">
                             <Div class="button-box">
                                 @if ($data->stage == 0)
                                     <div class="">
@@ -681,7 +681,7 @@ width: 340px;
                                     <div class="mini_buttons">Closed - Done </div>
                                 @endif
                                 @endif    
-                            </Div>
+                            </Div> --}}
                         </div>
                     </div>
                 </div>
@@ -932,21 +932,21 @@ width: 340px;
 
                                                                     <input type="number" 
                                                                         {{ isset($data->stage) && ($data->stage == 0 || $data->stage == 8) ? 'disabled' : '' }}
-                                                                        name="TaskManagementData[{{ $loop->index }}][days]" 
-                                                                        value="{{ $taskGrid['days'] ?? '' }}" 
+                                                                        name="TaskManagementData[{{ $loop->index }}][days_second]" 
+                                                                        value="{{ $taskGrid['days_second'] ?? '' }}" 
                                                                         placeholder="Enter Days" style="border: 1px solid #000; padding: 5px; border-radius: 5px;">Days
 
                                                                     <input type="number" 
                                                                         {{ isset($data->stage) && ($data->stage == 0 || $data->stage == 8) ? 'disabled' : '' }}
-                                                                        name="TaskManagementData[{{ $loop->index }}][hours]" 
-                                                                        value="{{ $taskGrid['hours'] ?? '' }}" 
+                                                                        name="TaskManagementData[{{ $loop->index }}][hours_second]" 
+                                                                        value="{{ $taskGrid['hours_second'] ?? '' }}" 
                                                                         placeholder="Enter Hours" style="border: 1px solid #000; padding: 5px; border-radius: 5px;">Hours
 
 
                                                                         <input type="number" 
                                                                         {{ isset($data->stage) && ($data->stage == 0 || $data->stage == 8) ? 'disabled' : '' }}
-                                                                        name="TaskManagementData[{{ $loop->index }}][minutes]" 
-                                                                        value="{{ $taskGrid['minutes'] ?? '' }}" 
+                                                                        name="TaskManagementData[{{ $loop->index }}][minutes_second]" 
+                                                                        value="{{ $taskGrid['minutes_second'] ?? '' }}" 
                                                                         placeholder="Enter Minutes" style="border: 1px solid #000; padding: 5px; border-radius: 5px;">Minutes
                                                                    
                                                                 </div>
@@ -1072,13 +1072,10 @@ width: 340px;
                                 <script>
                                     $(document).ready(function() {
 
-                                        // Generate the user options dynamically from server-side data
+                                        // Generate the user options dynamically from server-side data[task_date_time]
                                         let userOptionHtml = `
-                                            <option value="">-- Select --</option>
-                                            @foreach ($users as $user)
-                                                <option value="{{ $user->id }}">{{ $user->name }}</option>
-                                            @endforeach
-                                        `;
+                                        
+                                        // `;
 
                                         $('#task_manamegemnt_grid').click(function(e) {
                                             function generateTableRow(serialNumber) {
@@ -1093,7 +1090,9 @@ width: 340px;
                                                     '<td>' +
                                                             '<input type="datetime-local" name="TaskManagementData[' + investdetails +'][testing_completed_by_developer_on]" class="datetimepicker">' +
                                                     '</td>' +
-                                                    '<td><input type="date" name="TaskManagementData[' + investdetails +'][task_date_time]" value=""></td>' +
+                                                    '<td>' +
+                                                            '<input type="datetime-local" name="TaskManagementData[' + investdetails +'][task_date_time]" class="datetimepicker">' +
+                                                    '</td>' +
                                                     
                                                     '<td>' +
                                                         '<div class="time-required">' +
@@ -1115,18 +1114,18 @@ width: 340px;
                                                     '<td><input type="text" name="TaskManagementData[' + investdetails +'][work_in_progress_detail]" value=""></td>' +
                                                     '<td><input type="text" name="TaskManagementData[' + investdetails +'][Remaining_task]" value=""></td>' +
                                                     '<td>' +
-                                                    '<div class="time-required">' +
-                                                            '<input type="number" id="minutes_' + investdetails + '" placeholder="Enter houe" ' +
-                                                            'oninput="updateTime(this)" name="TaskManagementData[' + investdetails + '][minutes]" ' +
-                                                            'value="0" style="border: 1px solid #000; padding: 5px; border-radius: 5px;"> Minutes' +
+                                                        '<div class="time-required">' +
+                                                        '<input type="number" id="days_' + investdetails + '_second" placeholder="Enter days" ' +
+                                                        'oninput="updateTime(this)" name="TaskManagementData[' + investdetails + '][days_second]" ' +
+                                                        'value="0" style="border: 1px solid #000; padding: 5px; border-radius: 5px;"> Days' +
 
-                                                            '<input type="number" id="hours_' + investdetails + '" placeholder="Enter hours" ' +
-                                                            'oninput="updateTime(this)" name="TaskManagementData[' + investdetails + '][hours]" ' +
-                                                            'value="0" style="border: 1px solid #000; padding: 5px; border-radius: 5px;"> Hours' +
+                                                        '<input type="number" id="hours_' + investdetails + '_second" placeholder="Enter hours" ' +
+                                                        'oninput="updateTime(this)" name="TaskManagementData[' + investdetails + '][hours_second]" ' +
+                                                        'value="0" style="border: 1px solid #000; padding: 5px; border-radius: 5px;"> Hours' +
 
-                                                            '<input type="number" id="days_' + investdetails + '" placeholder="Enter days" ' +
-                                                            'oninput="updateTime(this)" name="TaskManagementData[' + investdetails + '][days]" ' +
-                                                            'value="0" style="border: 1px solid #000; padding: 5px; border-radius: 5px;"> Days' +
+                                                        '<input type="number" id="minutes_' + investdetails + '_second" placeholder="Enter Minuts"' +
+                                                        'oninput="updateTime(this)" name="TaskManagementData[' + investdetails + '][minutes_second]" ' +
+                                                        'value="0" style="border: 1px solid #000; padding: 5px; border-radius: 5px;"> Minutes' +
                                                     '</div>' +
                                                     '</td>' +
                                                     
@@ -1135,10 +1134,11 @@ width: 340px;
                                                     '<td><input type="text" name="TaskManagementData[' + investdetails +'][remaining_work_testing]" value=""></td>' +
 
                                                     '<td><select name="TaskManagementData[' + investdetails + '][validation_team_name]">' +
-                                                        '<option value="">-- Select --</option>' +
-                                                        '@foreach ($users as $data)' +
-                                                        '<option value="{{ $data->id }}">{{ $data->name }}</option> ' +
-                                                        '@endforeach' +
+                                                        '<option value="">-- Select --</option>'+
+                                                                '<option value="Configured  ">Work In Progress </option>'+
+                                                               '<option value="Not Completed">Not Completed</option>'+
+                                                                '<option value="Completed"> Completed</option>'+
+                    
                                                     '</select></td>' +
                                                     
 
@@ -1196,6 +1196,9 @@ width: 340px;
                                         let days = parseInt(document.getElementById(`days_${index}`).value) || 0;
                                         let hours = parseInt(document.getElementById(`hours_${index}`).value) || 0;
                                         let minutes = parseInt(document.getElementById(`minutes_${index}`).value) || 0;
+                                        // let days_second = parseInt(document.getElementById(`days_${index}_second`).value)||0;
+                                        // let hours_second = parseInt(document.getElementById(`hours_${index}_second`).value)||0;
+                                        // let minutes_second = parseInt(document.getElementById(`minutes_${index}_second`).value)||0;;
 
                                         // Validate the inputs
                                         if (days < 0) {
@@ -1204,17 +1207,37 @@ width: 340px;
                                             return;
                                         }
 
+                                        // if (days_second < 0) {
+                                        //     alert("Days cannot be negative.");
+                                        //     document.getElementById(`days_${index}_second`).value = 0; // Reset to 0
+                                        //     return;
+                                        // }
+
                                         if (hours < 0 || hours > 23) {
                                             alert("Hours must be between 0 and 23.");
                                             document.getElementById(`hours_${index}`).value = 0; // Reset to 0
                                             return;
                                         }
 
+                                        // if (hours_second < 0 || hours > 23) {
+                                        //     alert("Hours must be between 0 and 23.");
+                                        //     document.getElementById(`hours_${index}_second`).value = 0; // Reset to 0
+                                        //     return;
+                                        // }
+
+
                                         if (minutes < 0 || minutes > 59) {
                                             alert("Minutes must be between 0 and 59.");
                                             document.getElementById(`minutes_${index}`).value = 0; // Reset to 0
                                             return;
                                         }
+                                         
+                                        //  if (minutes < 0 || minutes > 59) {
+                                        //     alert("Minutes must be between 0 and 59.");
+                                        //     document.getElementById(`minutes_${index}`).value = 0; // Reset to 0
+                                        //     return;
+                                        // }
+
 
                                         // Convert everything to total minutes
                                         let totalMinutes = (days * 24 * 60) + (hours * 60) + minutes;
@@ -1248,7 +1271,7 @@ width: 340px;
                                     @component('frontend.forms.language-model')
                                     @endcomponent
                                 </div> --}}
-                            <div class="col-lg-12">
+                            {{-- <div class="col-lg-12">
                                 <div class="group-input">
                                     <label for="others">Supporting document</label>
                                     <div><small class="text-primary">Please Attach all relevant or supporting
@@ -1263,6 +1286,39 @@ width: 340px;
                                         </div>
                                     </div>
 
+                                </div>
+                            </div> --}}
+
+                            <div class="col-lg-12">
+                                <div class="group-input">
+                                    <label for="others">Supporting documents</label>
+                                    <div><small class="text-primary">Please Attach all relevant or supporting documents</small></div>
+                                    {{-- <input type="file" id="myfile" name="Initial_Attachment" {{ $data->stage == 0 || $data->stage == 8 ? "disabled" : "" }}
+                                        value="{{ $data->Initial_Attachment }}"> --}}
+                                        <div class="file-attachment-field">
+                                            <div class="file-attachment-list" id="in_attachment">
+                                                @if ($attachment->in_attachment)
+                                                @foreach (json_decode($attachment->in_attachment) as $file)
+                                                    <h6 type="button" class="file-container text-dark"
+                                                        style="background-color: rgb(243, 242, 240);">
+                                                        <b>{{ $file }}</b>
+                                                        <a href="{{ asset('upload/' . $file) }}"
+                                                            target="_blank"><i class="fa fa-eye text-primary"
+                                                                style="font-size:20px; margin-right:-10px;"></i></a>
+                                                        <a type="button" class="remove-file"
+                                                            data-file-name="{{ $file }}"><i
+                                                                class="fa-solid fa-circle-xmark"
+                                                                style="color:red; font-size:20px;"></i></a>
+                                                    </h6>
+                                                @endforeach
+                                            @endif
+                                            </div>
+                                            <div class="add-btn ">
+                                                <div>Add</div>
+                                                <input {{ $attachment->stage == 0 || $attachment->stage == 4 ? "disabled" : "" }} type="file" id="in_attachment" name="in_attachment[]"
+                                                    oninput="addMultipleFiles(this, 'in_attachment')" multiple>
+                                            </div>
+                                        </div>
                                 </div>
                             </div>
 

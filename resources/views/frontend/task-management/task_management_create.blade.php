@@ -273,20 +273,20 @@
                                                         <td>
                                                             <div class="time-required">
                                                                 <input type="number" id="days" placeholder="Enter days"  
-                                                                    name="TaskManagementData[0][days]" value="0" 
+                                                                    name="TaskManagementData[0][days_second]" value="0" 
                                                                     oninput="updateTime()" 
                                                                     style="border: 1px solid #000; padding: 5px; border-radius: 5px;">
                                                                 Days
                                 
 
                                                                 <input type="number" id="hours" placeholder="Enter hours" 
-                                                                    name="TaskManagementData[0][hours]" value="0" 
+                                                                    name="TaskManagementData[0][hours_second]" value="0" 
                                                                     oninput="updateTime()" 
                                                                     style="border: 1px solid #000; padding: 5px; border-radius: 5px;">
                                                                 Hours
 
                                                                 <input type="number" id="minutes" placeholder="Enter minutes" 
-                                                                    name="TaskManagementData[0][minutes]" value="0" 
+                                                                    name="TaskManagementData[0][minutes_second]" value="0" 
                                                                     oninput="updateTime()" 
                                                                     style="border: 1px solid #000; padding: 5px; border-radius: 5px;">
                                                                 Minutes
@@ -400,7 +400,9 @@
                                                     '<td>' +
                                                             '<input type="datetime-local" name="TaskManagementData[' + investdetails +'][testing_completed_by_developer_on]" class="datetimepicker">' +
                                                     '</td>' +
-                                                    '<td><input type="date" name="TaskManagementData[' + investdetails +'][task_date_time]" value=""></td>' +
+                                                    '<td>' +
+                                                            '<input type="datetime-local" name="TaskManagementData[' + investdetails +'][task_date_time]" class="datetimepicker">' +
+                                                    '</td>' +
                                                     
                                                     '<td>' +
                                                         '<div class="time-required">' +
@@ -422,19 +424,21 @@
                                                     '<td><input type="text" name="TaskManagementData[' + investdetails +'][work_in_progress_detail]" value=""></td>' +
                                                     '<td><input type="text" name="TaskManagementData[' + investdetails +'][Remaining_task]" value=""></td>' +
                                                     '<td>' +
-                                                    '<div class="time-required">' +
-                                                            '<input type="number" id="minutes_' + investdetails + '" placeholder="Enter houe" ' +
-                                                            'oninput="updateTime(this)" name="TaskManagementData[' + investdetails + '][minutes]" ' +
-                                                            'value="0" style="border: 1px solid #000; padding: 5px; border-radius: 5px;"> Minutes' +
+                                                        '<div class="time-required">' +
+                                                        '<input type="number" id="days_' + investdetails + '_second" placeholder="Enter days" ' +
+                                                        'oninput="updateTime(this)" name="TaskManagementData[' + investdetails + '][days_second]" ' +
+                                                        'value="0" style="border: 1px solid #000; padding: 5px; border-radius: 5px;"> Days' +
 
-                                                            '<input type="number" id="hours_' + investdetails + '" placeholder="Enter hours" ' +
-                                                            'oninput="updateTime(this)" name="TaskManagementData[' + investdetails + '][hours]" ' +
-                                                            'value="0" style="border: 1px solid #000; padding: 5px; border-radius: 5px;"> Hours' +
+                                                        '<input type="number" id="hours_' + investdetails + '_second" placeholder="Enter hours" ' +
+                                                        'oninput="updateTime(this)" name="TaskManagementData[' + investdetails + '][hours_second]" ' +
+                                                        'value="0" style="border: 1px solid #000; padding: 5px; border-radius: 5px;"> Hours' +
 
-                                                            '<input type="number" id="days_' + investdetails + '" placeholder="Enter days" ' +
-                                                            'oninput="updateTime(this)" name="TaskManagementData[' + investdetails + '][days]" ' +
-                                                            'value="0" style="border: 1px solid #000; padding: 5px; border-radius: 5px;"> Days' +
-                                                    '</div>' +
+                                                        '<input type="number" id="minutes_' + investdetails + '_second" placeholder="Enter Minuts"' +
+                                                        'oninput="updateTime(this)" name="TaskManagementData[' + investdetails + '][minutes_second]" ' +
+                                                        'value="0" style="border: 1px solid #000; padding: 5px; border-radius: 5px;"> Minutes' +
+                                                    
+                                                        '</div>' +
+                                                    
                                                     '</td>' +
                                                     
                                                     '<td><input type="text" name="TaskManagementData[' + investdetails +'][developer_testing_details]" value=""></td>' +
@@ -442,10 +446,10 @@
                                                     '<td><input type="text" name="TaskManagementData[' + investdetails +'][remaining_work_testing]" value=""></td>' +
 
                                                     '<td><select name="TaskManagementData[' + investdetails + '][validation_team_name]">' +
-                                                        '<option value="">-- Select --</option>' +
-                                                        '@foreach ($users as $data)' +
-                                                        '<option value="{{ $data->id }}">{{ $data->name }}</option> ' +
-                                                        '@endforeach' +
+                                                        '<option value="">-- Select --</option>'+
+                                                                '<option value="Configured  ">Work In Progress </option>'+
+                                                               '<option value="Not Completed">Not Completed</option>'+
+                                                                '<option value="Completed"> Completed</option>'+
                                                     '</select></td>' +
                                                     
 
@@ -502,23 +506,29 @@
                                         let days = parseInt(document.getElementById(`days_${index}`).value) || 0;
                                         let hours = parseInt(document.getElementById(`hours_${index}`).value) || 0;
                                         let minutes = parseInt(document.getElementById(`minutes_${index}`).value) || 0;
+                                        let days_second = parseInt(document.getElementById(`days_second${index}`).value) || 0;
+                                        let hours_second = parseInt(document.getElementById(`hours_second${index}`).value) || 0;
+                                        let minutes_second = parseInt(document.getElementById(`minutes_second${index}`).value) || 0;
 
                                         // Validate the inputs
                                         if (days < 0) {
                                             alert("Days cannot be negative.");
-                                            document.getElementById(`days_${index}`).value = 0; // Reset to 0
+                                            document.getElementById(`days_${index}`).value = 0;
+                                            document.getElementById(`days_second${index}`).value = 0; // Reset to 0
                                             return;
                                         }
 
                                         if (hours < 0 || hours > 23) {
                                             alert("Hours must be between 0 and 23.");
-                                            document.getElementById(`hours_${index}`).value = 0; // Reset to 0
+                                            document.getElementById(`hours_${index}`).value = 0;
+                                            document.getElementById(`hours_second${index}`).value = 0; // Reset to 0
                                             return;
                                         }
 
                                         if (minutes < 0 || minutes > 59) {
                                             alert("Minutes must be between 0 and 59.");
-                                            document.getElementById(`minutes_${index}`).value = 0; // Reset to 0
+                                            document.getElementById(`minutes_${index}`).value = 0;
+                                            document.getElementById(`minutes_second${index}`).value = 0;// Reset to 0
                                             return;
                                         }
 
@@ -550,7 +560,7 @@
                                             <div class="file-attachment-list" id="in_attachment"></div>
                                             <div class="add-btn">
                                                 <div>Add</div>
-                                                <input type="file" id="myfile" name="in_attachment[]"
+                                                <input type="file" id="in_attachment" name="in_attachment[]"
                                                     oninput="addMultipleFiles(this, 'in_attachment')" multiple>
 
                                             </div>
@@ -558,7 +568,6 @@
 
                                     </div>
                                 </div>
-
 
                                 <!-- =========================================================== -->
 
