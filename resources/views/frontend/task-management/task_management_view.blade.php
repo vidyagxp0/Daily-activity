@@ -484,20 +484,20 @@ width: 340px;
                             
                         @elseif($data->stage == 2)
                            
-                            <a href="#moreinfo-modal"> <button class="button_theme1" data-bs-toggle="modal" data-bs-target="#moreinfo-modal">
+                            {{-- <a href="#moreinfo-modal"> <button class="button_theme1" data-bs-toggle="modal" data-bs-target="#moreinfo-modal">
                             Request More Info
                             </button></a>
                             <a href="#signature-modal"> <button class="button_theme1" data-bs-toggle="modal" data-bs-target="#signature-modal">
                             Reviewed
-                            </button></a>
+                            </button></a> --}}
                            
                         @elseif($data->stage == 3)
-                            <a href="#moreinfo-modal"> <button class="button_theme1" data-bs-toggle="modal" data-bs-target="#moreinfo-modal">
+                            {{-- <a href="#moreinfo-modal"> <button class="button_theme1" data-bs-toggle="modal" data-bs-target="#moreinfo-modal">
                             Request More Info
                             </button></a>
                            <a href="#signature-modal"> <button class="button_theme1" data-bs-toggle="modal" data-bs-target="#signature-modal">
                                 Approved
-                            </button></a>
+                            </button></a> --}}
                         
 
                         @endif
@@ -545,7 +545,7 @@ width: 340px;
 
                 <div class="top-block mt-2">
                     <div><strong> Record Name:&nbsp;</strong>Task Management</div>
-                    <div><strong> Site:&nbsp;</strong>{{  Helpers::getDivisionName(session()->get('division')) }}</div>
+                    <div><strong> Site:&nbsp;</strong>{{ Helpers::getDivisionName($data->division_id) }}</div>
                     <div><strong> Current Status:&nbsp;</strong>{{ $data->status }}</div>
                     <div><strong> Initiated By:&nbsp;</strong>{{ Helpers::getInitiatorName($data->initiator_id) }}</div>
                 </div>
@@ -736,14 +736,11 @@ width: 340px;
                         <div class="inner-block-content">
                             <div class="row">
                     
-                                <div class="col-lg-6">
-                                    <div class="group-input">
-                                        <label for="RLS Record Number"><b>Record Number</b></label>
-                                        <input disabled type="text" name="record_number"
-                                            value="{{ Helpers::getDivisionName(session('division')) }}/{{ Auth::user()->name }}/{{ now()->format('d-M-Y') }}/{{ str_pad($record_number, 6, '0', STR_PAD_LEFT) }}"
-">
+                                <div class="group-input">
+                                    <label for="RLS Record Number"><b>Record Number</b></label>
+                                    <input disabled type="text" name="record_number" id="record_number"
+                                        value="{{ Helpers::getDivisionName(session()->get('division')) }}/{{ Auth::user()->name }}/{{ now()->format('d-M-Y') }}/{{ $data->record }}">
 
-                                    </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="group-input">
@@ -1196,9 +1193,9 @@ width: 340px;
                                         let days = parseInt(document.getElementById(`days_${index}`).value) || 0;
                                         let hours = parseInt(document.getElementById(`hours_${index}`).value) || 0;
                                         let minutes = parseInt(document.getElementById(`minutes_${index}`).value) || 0;
-                                        // let days_second = parseInt(document.getElementById(`days_${index}_second`).value)||0;
-                                        // let hours_second = parseInt(document.getElementById(`hours_${index}_second`).value)||0;
-                                        // let minutes_second = parseInt(document.getElementById(`minutes_${index}_second`).value)||0;;
+                                        let days_second = parseInt(document.getElementById(`days_${index}_second`).value)||0;
+                                        let hours_second = parseInt(document.getElementById(`hours_${index}_second`).value)||0;
+                                        let minutes_second = parseInt(document.getElementById(`minutes_${index}_second`).value)||0;;
 
                                         // Validate the inputs
                                         if (days < 0) {
@@ -1207,11 +1204,11 @@ width: 340px;
                                             return;
                                         }
 
-                                        // if (days_second < 0) {
-                                        //     alert("Days cannot be negative.");
-                                        //     document.getElementById(`days_${index}_second`).value = 0; // Reset to 0
-                                        //     return;
-                                        // }
+                                        if (days_second < 0) {
+                                            alert("Days cannot be negative.");
+                                            document.getElementById(`days_${index}_second`).value = 0; // Reset to 0
+                                            return;
+                                        }
 
                                         if (hours < 0 || hours > 23) {
                                             alert("Hours must be between 0 and 23.");
@@ -1219,11 +1216,11 @@ width: 340px;
                                             return;
                                         }
 
-                                        // if (hours_second < 0 || hours > 23) {
-                                        //     alert("Hours must be between 0 and 23.");
-                                        //     document.getElementById(`hours_${index}_second`).value = 0; // Reset to 0
-                                        //     return;
-                                        // }
+                                        if (hours_second < 0 || hours > 23) {
+                                            alert("Hours must be between 0 and 23.");
+                                            document.getElementById(`hours_${index}_second`).value = 0; // Reset to 0
+                                            return;
+                                        }
 
 
                                         if (minutes < 0 || minutes > 59) {
@@ -1232,11 +1229,11 @@ width: 340px;
                                             return;
                                         }
                                          
-                                        //  if (minutes < 0 || minutes > 59) {
-                                        //     alert("Minutes must be between 0 and 59.");
-                                        //     document.getElementById(`minutes_${index}`).value = 0; // Reset to 0
-                                        //     return;
-                                        // }
+                                         if (minutes < 0 || minutes > 59) {
+                                            alert("Minutes must be between 0 and 59.");
+                                            document.getElementById(`minutes_${index}`).value = 0; // Reset to 0
+                                            return;
+                                        }
 
 
                                         // Convert everything to total minutes
