@@ -214,13 +214,67 @@
                                                             <input disabled type="text" name="TaskManagementData[0][serial]" value="1">
                                                         </td>
                                                         <td>
-                                                            <input type="text" name="TaskManagementData[0][repo_name]">
+                                                            
+                                                            <select id="" placeholder="Select..." name="TaskManagementData[0][repo_name]">
+                                                                <option value="">-- Select --</option>
+                                                                <option value="agio_pre_prod">Agio_pre_prod</option>
+                                                                <option value="annuh-pharma">Annuh-Pharma</option>
+                                                                <option value="environmentallab">Environmentlab</option>
+                                                                <option value="invoice-management">Invoice-Management</option>
+                                                                <option value="lims-laravel">Lims-laravel</option>
+                                                                <option value="Medicef-main">Medicef-Main</option>
+                                                            > 
                                                         </td>
                                                         <td>
-                                                            <input type="text" name="TaskManagementData[0][module_process]">
+                                                            <select id="" placeholder="Select..." name="TaskManagementData[0][module_process]">
+                                                                <option value="">-- Select --</option>
+                                                                <option value="adtiyarajput">Aditya Rajput</option>
+                                                                <option value="adtiyapatel">Aditya Patel</option>
+                                                                <option value="AkashMishra">Akash Mishra</option>
+                                                                <option value="Ashishverma">Ashish Verma</option>
+                                                                <option value="Farhankhan">Farhan Khan</option>
+                                                                <option value="Gauravpandit">Gaurav Pandit</option>
+                                                                <option value="gauravmeena">Gaurav Meena</option>
+                                                                <option value="Harsh_Sardiya">Harsh Sardiya</option>
+                                                                <option value="Harsh_chhari">Harsh Chhari</option>
+                                                                <option value="KuldeepPatel">Kuldeep Patel</option>
+                                                                <option value="Lavesh Jain">Lavesh Jain</option>
+                                                                <option value="Leeladharkurmi">Leeladhar Kurmi</option>
+                                                                <option value="ManishMalviya">Manish Malviya</option>
+                                                                <option value="Mayankrathore">Mayank Rathore</option>
+                                                                <option value="monikachaurasiya">Monika Chaurasiya</option>
+                                                                <option value="NavneetChoudhary">Navneet Choudhary</option>
+                                                                <option value="Nickshaychouhan">Nickshay Chouhan</option>
+                                                                <option value="nilesh_birla">Nilesh Birla</option>
+                                                                <option value="Pankajchohan">Pankaj Chohan</option>
+                                                                <option value="Pankajjat">Pankaj Jat</option>
+                                                                <option value="ParmodKumar">Parmod Kumar</option>
+                                                                <option value="Prabhjotbhatia">Prabhjot Bhatia</option>
+                                                                <option value="Rajendrarajput">Rajendra Rajput</option>
+                                                                <option value="Rahulawarkar">Rahul Awarkar</option>
+                                                                <option value="Rupeshpatil">Rupesh Patil</option>
+                                                                <option value="SauravKumar">Saurav Kumar</option>
+                                                                <option value="Shivampatel">Shivam Patel</option>
+                                                                <option value="Shreyadwivedi">Shreya Dwivedi</option>
+                                                                <option value="Shrutidwivedi">Shruti Dwivedi</option>
+                                                                <option value="Shubhammeena">Shubham Meena </option>
+                                                                <option value="Snehabaldeva">Sneha Baldeva </option>
+                                                                <option value="SunilPatel">Sunil Patel</option>
+                                                                <option value="Swapnilpatil">Swapnil Patil</option>
+                                                                <option value="Tushalpatel">Tushal Patel</option>
+                                                                <option value="VaibhavAwarkar">Vaibhav Awarkar</option>
+                                                            > 
                                                         </td>
                                                         <td>
-                                                            <input type="text" name="TaskManagementData[0][activity_task]">
+                                                            <select id="" placeholder="Select..." name="TaskManagementData[0][activity_task]">
+                                                                <option value="">-- Select --</option>
+                                                                <option value="agio">Agio</option>
+                                                                <option value="annuh">Annuh Pharma</option>
+                                                                <option value="environmental">Environmental</option>
+                                                                <option value="invoice">Invoice</option>
+                                                                <option value="lims">Lims</option>
+                                                                <option value="Medicef">Medicef</option>
+                                                            > 
                                                         </td>
                                                         <td>
                                                             <input type="text" name="TaskManagementData[0][activity1_task]">
@@ -392,10 +446,64 @@
                                             function generateTableRow(serialNumber) {
                                                 var html =
                                                     '<tr>' +
-                                                    '<td><input disabled type="text" style ="width:15px" value="' + serialNumber +'"></td>' +
-                                                    '<td><input type="text" name="TaskManagementData[' + investdetails +'][repo_name]" value=""></td>' +
-                                                    '<td><input type="text" name="TaskManagementData[' + investdetails +'][module_process]" value=""></td>' +
-                                                    '<td><input type="text" name="TaskManagementData[' + investdetails +'][activity_task]" value=""></td>' +
+                                                    '<td><input disabled type="text" style ="width:15px" value="' + serialNumber +'"></td>' +  
+                                                  '<td><select name="TaskManagementData[' + investdetails + '][repo_name]">' +
+                                                        '<option value="">-- Select --</option>'+
+                                                                '<option value="agio_pre_prod">Agio_pre_prod</option>'+
+                                                                '<option value="annuh-pharma">Annuh-Pharma</option>'+
+                                                                '<option value="environmentallab">Environmentlab</option>'+
+                                                                '<option value="invoice-management">invoice-management</option>'+
+                                                                '<option value="lims-laravel">Lims-laravel</option>'+
+                                                                '<option value="Medicef-main">Medicef-Main</option>'+                                                            
+                                                    '</select></td>'+
+                                                    '<td><select name="TaskManagementData[' + investdetails + '][module_process]">' +
+                                                        '<option value="">-- Select --</option>'+
+                                                                '<option value="adtiyarajput">Aditya Rajput</option>'+
+                                                                '<option value="adtiyapatel">Aditya Patel</option>'+
+                                                                '<option value="AkashMishra">Akash Mishra</option>'+
+                                                                '<option value="Ashishverma">Ashish Verma</option>'+
+                                                                '<option value="Farhankhan">Farhan Khan</option>'+
+                                                                '<option value="Gauravpandit">Gaurav Pandit</option>'+
+                                                                '<option value="gauravmeena">Gaurav Meena</option>'+
+                                                                '<option value="Harsh_Sardiya">Harsh_Sardiya</option>'+
+                                                                '<option value="Harsh_chhari">Harsh Chhari</option>'+
+                                                                '<option value="KuldeepPatel">Kuldeep Patel</option>'+
+                                                                '<option value="Lavesh Jain">Lavesh Jain</option>'+
+                                                                '<option value="Leeladharkurmi">Leeladhar Kurmi</option>'+
+                                                                '<option value="ManishMalviya">Manish Malviya</option>'+
+                                                                '<option value="Mayankrathore">Mayank Rathore</option>'+
+                                                                '<option value="monikachaurasiya">Monika Chaurasiya</option>'+
+                                                                '<option value="NavneetChoudhary">Navneet Choudhary</option>'+
+                                                                '<option value="Nickshaychouhan">Nickshay Chouhan</option>'+
+                                                                '<option value="nilesh_birla">Nilesh Birla</option>'+
+                                                                '<option value="Pankajchohan">Pankaj Chohan</option>'+
+                                                                '<option value="Pankajjat">Pankaj Jat</option>'+
+                                                                '<option value="ParmodKumar">Parmod Kumar</option>'+
+                                                                '<option value="Prabhjotbhatia">Prabhjot Bhatia</option>'+
+                                                                '<option value="Rajendrarajput">Rajendra Rajput</option>'+
+                                                                '<option value="Rahulawarkar">Rahul Awarkar</option>'+
+                                                                '<option value="Rupeshpatil">Rupesh Patil</option>'+
+                                                                '<option value="SauravKumar">Saurav Kumar</option>'+
+                                                                '<option value="Shivampatel">Shivam Patel</option>'+
+                                                                '<option value="Shreyadwivedi">Shreya Dwivedi</option>'+
+                                                                '<option value="Shrutidwivedi">Shruti Dwivedi</option>'+
+                                                                '<option value="Shubhammeena">Shubham Meena </option>'+
+                                                                '<option value="Snehabaldeva">Sneha Baldeva </option>'+
+                                                                '<option value="SunilPatel">Sunil Patel</option>'+
+                                                                '<option value="Swapnilpatil">Swapnil Patil</option>'+
+                                                                '<option value="Tushalpatel">Tushal Patel</option>'+
+                                                                '<option value="VaibhavAwarkar">Vaibhav Awarkar</option>'+                                                           
+                                                    '</select></td>' +
+
+                                                      '<td><select name="TaskManagementData[' + investdetails + '][activity_task]">' +
+                                                        '<option value="">-- Select --</option>'+
+                                                        '<option value="agio">Agio</option>'+
+                                                                '<option value="annuh">Annuh Pharma</option>'+
+                                                                '<option value="environmental">Environmental</option>'+
+                                                                '<option value="invoice">Invoice</option>'+
+                                                                '<option value="lims">Lims</option>'+
+                                                                '<option value="Medicef">Medicef</option>'+                                                     
+                                                    '</select></td>'+ 
                                                     '<td><input type="text" name="TaskManagementData[' + investdetails +'][activity1_task]" value=""></td>' +
                                                     '<td>' +
                                                             '<input type="datetime-local" name="TaskManagementData[' + investdetails +'][testing_completed_by_developer_on]" class="datetimepicker">' +

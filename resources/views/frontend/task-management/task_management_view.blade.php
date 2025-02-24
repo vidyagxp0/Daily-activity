@@ -842,22 +842,67 @@ width: 340px;
                                                         <tr style="text-align: center; vertical-align: middle; padding: 20px;">
                                                             <td disabled>{{ $serialNumber++ }}</td>
                                                             <td>
-                                                                <input type="text"
-                                                                    {{ isset($data->stage) && ($data->stage == 0 || $data->stage == 8) ? 'disabled' : '' }}
-                                                                    name="TaskManagementData[{{ $loop->index }}][repo_name]"
-                                                                    value="{{ $taskGrid['repo_name'] ?? '' }}">
+                                                                    <select  name="TaskManagementData[{{ $loop->index }}][repo_name]">
+                                                                        <option value="" {{ empty($taskGrid['repo_name']) ? 'selected' : '' }}>-- Select --</option>
+                                                                        <option value="agio_pre_prod" {{ ($taskGrid['repo_name'] ?? '') === 'agio_pre_prod' ? 'selected' : '' }}>Agio_pre_prod</option>
+                                                                        <option value="annuh-pharma" {{ ($taskGrid['repo_name'] ?? '') === 'annuh-pharma' ? 'selected' : '' }}>Annuh-Pharma</option>
+                                                                        <option value="environmentallab" {{ ($taskGrid['repo_name'] ?? '') === 'environmentallab' ? 'selected' : '' }}>Environmentlab</option>
+                                                                        <option value="invoice-management" {{ ($taskGrid['repo_name'] ?? '') === 'invoice-management' ? 'selected' : '' }}>invoice-management</option>
+                                                                        <option value="lims-laravel" {{ ($taskGrid['repo_name'] ?? '') === 'lims-laravel' ? 'selected' : '' }}>Lims-laravel</option>
+                                                                        <option value="Medicef-main" {{ ($taskGrid['repo_name'] ?? '') === 'Medicef-main' ? 'selected' : '' }}>Medicef-Main</option>
+                                                                    </select>
+                                                            </td>
+                                                            <td>   
+                                                                    <select name="TaskManagementData[{{ $loop->index }}][module_process]">
+                                                                        <option value="" {{ empty($taskGrid['module_process']) ? 'selected' : '' }}>-- Select --</option>
+                                                                        <option value="adtiyarajput" {{ ($taskGrid['module_process'] ?? '') === 'adtiyarajput' ? 'selected' : '' }}>Aditya Rajput</option>
+                                                                        <option value="adtiyapatel" {{ ($taskGrid['module_process'] ?? '') === 'adtiyapatel' ? 'selected' : '' }}>Aditya Patel</option>
+                                                                        <option value="AkashMishra" {{ ($taskGrid['module_process'] ?? '') === 'AkashMishra' ? 'selected' : '' }}>Akash Mishra</option>
+                                                                        <option value="Ashishverma" {{ ($taskGrid['module_process'] ?? '') === 'Ashishverma' ? 'selected' : '' }}>Ashish Verma</option>
+                                                                        <option value="Farhankhan" {{ ($taskGrid['module_process'] ?? '') === 'Farhankhan' ? 'selected' : '' }}>Farhan Khan</option>
+                                                                        <option value="Gauravpandit" {{ ($taskGrid['module_process'] ?? '') === 'Gauravpandit' ? 'selected' : '' }}>Gaurav Pandit</option>
+                                                                        <option value="gauravmeena" {{ ($taskGrid['module_process'] ?? '') === 'gauravmeena' ? 'selected' : '' }}>Gaurav Meena</option>
+                                                                        <option value="Harsh_Sardiya" {{ ($taskGrid['module_process'] ?? '') === 'Harsh_Sardiya' ? 'selected' : '' }}>Harsh Sardiya</option>
+                                                                        <option value="Harsh_chhari" {{ ($taskGrid['module_process'] ?? '') === 'Harsh_chhari' ? 'selected' : '' }}>Harsh Chhari</option>
+                                                                        <option value="KuldeepPatel" {{ ($taskGrid['module_process'] ?? '') === 'KuldeepPatel' ? 'selected' : '' }}>Kuldeep Patel</option>
+                                                                        <option value="Lavesh Jain" {{ ($taskGrid['module_process'] ?? '') === 'Lavesh Jain' ? 'selected' : '' }}>Lavesh Jain</option>
+                                                                        <option value="Leeladharkurmi" {{ ($taskGrid['module_process'] ?? '') === 'Leeladharkurmi' ? 'selected' : '' }}>Leeladhar Kurmi</option>
+                                                                        <option value="ManishMalviya" {{ ($taskGrid['module_process'] ?? '') === 'ManishMalviya' ? 'selected' : '' }}>Manish Malviya</option>
+                                                                        <option value="Mayankrathore" {{ ($taskGrid['module_process'] ?? '') === 'Mayankrathore' ? 'selected' : '' }}>Mayank Rathore</option>
+                                                                        <option value="monikachaurasiya" {{ ($taskGrid['module_process'] ?? '') === 'monikachaurasiya' ? 'selected' : '' }}>Monika Chaurasiya</option>
+                                                                        <option value="NavneetChoudhary" {{ ($taskGrid['module_process'] ?? '') === 'NavneetChoudhary' ? 'selected' : '' }}>Navneet Choudhary</option>
+                                                                        <option value="Nickshaychouhan" {{ ($taskGrid['module_process'] ?? '') === 'Nickshaychouhan' ? 'selected' : '' }}>Nickshay Chouhan</option>
+                                                                        <option value="nilesh_birla" {{ ($taskGrid['module_process'] ?? '') === 'nilesh_birla' ? 'selected' : '' }}>Nilesh Birla</option>
+                                                                        <option value="Pankajchohan" {{ ($taskGrid['module_process'] ?? '') === 'Pankajchohan' ? 'selected' : '' }}>Pankaj Chohan</option>
+                                                                        <option value="Pankajjat" {{ ($taskGrid['module_process'] ?? '') === 'Pankajjat' ? 'selected' : '' }}>Pankaj Jat</option>
+                                                                        <option value="ParmodKumar" {{ ($taskGrid['module_process'] ?? '') === 'ParmodKumar' ? 'selected' : '' }}>Parmod Kumar</option>
+                                                                        <option value="Prabhjotbhatia" {{ ($taskGrid['module_process'] ?? '') === 'Prabhjotbhatia' ? 'selected' : '' }}>Prabhjot Bhatia</option>
+                                                                        <option value="Rajendrarajput" {{ ($taskGrid['module_process'] ?? '') === 'Rajendrarajput' ? 'selected' : '' }}>Rajendra Rajput</option>
+                                                                        <option value="Rahulawarkar" {{ ($taskGrid['module_process'] ?? '') === 'Rahulawarkar' ? 'selected' : '' }}>Rahul Awarkar</option>
+                                                                        <option value="Rupeshpatil" {{ ($taskGrid['module_process'] ?? '') === 'Rupeshpatil' ? 'selected' : '' }}>Rupesh Patil</option>
+                                                                        <option value="SauravKumar" {{ ($taskGrid['module_process'] ?? '') === 'SauravKumar' ? 'selected' : '' }}>Saurav Kumar</option>
+                                                                        <option value="Shivampatel" {{ ($taskGrid['module_process'] ?? '') === 'Shivampatel' ? 'selected' : '' }}>Shivam Patel</option>
+                                                                        <option value="Shreyadwivedi" {{ ($taskGrid['module_process'] ?? '') === 'Shreyadwivedi' ? 'selected' : '' }}>Shreya Dwivedi</option>
+                                                                        <option value="Shrutidwivedi" {{ ($taskGrid['module_process'] ?? '') === 'Shrutidwivedi' ? 'selected' : '' }}>Shruti Dwivedi</option>
+                                                                        <option value="Shubhammeena" {{ ($taskGrid['module_process'] ?? '') === 'Shubhammeena' ? 'selected' : '' }}>Shubham Meena</option>
+                                                                        <option value="Snehabaldeva" {{ ($taskGrid['module_process'] ?? '') === 'Snehabaldeva' ? 'selected' : '' }}>Sneha Baldeva</option>
+                                                                        <option value="SunilPatel" {{ ($taskGrid['module_process'] ?? '') === 'SunilPatel' ? 'selected' : '' }}>Sunil Patel</option>
+                                                                        <option value="Swapnilpatil" {{ ($taskGrid['module_process'] ?? '') === 'Swapnilpatil' ? 'selected' : '' }}>Swapnil Patil</option>
+                                                                        <option value="Tushalpatel" {{ ($taskGrid['module_process'] ?? '') === 'Tushalpatel' ? 'selected' : '' }}>Tushal Patel</option>
+                                                                        <option value="VaibhavAwarkar" {{ ($taskGrid['module_process'] ?? '') === 'VaibhavAwarkar' ? 'selected' : '' }}>Vaibhav Awarkar</option>
+                                                                        
+                                                                    </select>
                                                             </td>
                                                             <td>
-                                                                <input type="text"
-                                                                    {{ isset($data->stage) && ($data->stage == 0 || $data->stage == 8) ? 'disabled' : '' }}
-                                                                    name="TaskManagementData[{{ $loop->index }}][module_process]"
-                                                                    value="{{ $taskGrid['module_process'] ?? '' }}">
-                                                            </td>
-                                                            <td>
-                                                                <input type="text"
-                                                                    {{ isset($data->stage) && ($data->stage == 0 || $data->stage == 8) ? 'disabled' : '' }}
-                                                                    name="TaskManagementData[{{ $loop->index }}][activity_task]"
-                                                                    value="{{ $taskGrid['activity_task'] ?? '' }}">
+                                                                    <select name="TaskManagementData[{{ $loop->index }}][activity_task]">
+                                                                        <option value="" {{ empty($taskGrid['activity_task']) ? 'selected' : '' }}>-- Select --</option>
+                                                                        <option value="agio" {{ ($taskGrid['activity_task'] ?? '') === 'agio' ? 'selected' : '' }}>Agio</option>
+                                                                        <option value="annuh" {{ ($taskGrid['activity_task'] ?? '') === 'annuh' ? 'selected' : '' }}>Annuh Pharma</option>
+                                                                        <option value="environmental" {{ ($taskGrid['activity_task'] ?? '') === 'environmental' ? 'selected' : '' }}>Environment</option>
+                                                                        <option value="invoice" {{ ($taskGrid['activity_task'] ?? '') === 'invoice' ? 'selected' : '' }}>Invoice</option>
+                                                                        <option value="lims" {{ ($taskGrid['activity_task'] ?? '') === 'lims' ? 'selected' : '' }}>Lims</option>
+                                                                        <option value="Medicef" {{ ($taskGrid['activity_task'] ?? '') === 'Medicef' ? 'selected' : '' }}>Medicef</option>
+                                                                    </select>
                                                             </td>
 
                                                             <td>
@@ -918,6 +963,7 @@ width: 340px;
                                                                     {{ isset($data->stage) && ($data->stage == 0 || $data->stage == 8) ? 'disabled' : '' }}
                                                                     name="TaskManagementData[{{ $loop->index }}][work_in_progress_detail]"
                                                                     value="{{ $taskGrid['work_in_progress_detail'] ?? '' }}">
+                                                                    
                                                             </td>
                                                             <td>
                                                                 <input type="text"
@@ -1081,9 +1127,64 @@ width: 340px;
                                                 var html = 
                                                         '<tr>' +
                                                             '<td><input disabled type="text" style ="width:15px" value="' + serialNumber +'"></td>' +
-                                                    '<td><input type="text" name="TaskManagementData[' + investdetails +'][repo_name]" value=""></td>' +
-                                                    '<td><input type="text" name="TaskManagementData[' + investdetails +'][module_process]" value=""></td>' +
-                                                    '<td><input type="text" name="TaskManagementData[' + investdetails +'][activity_task]" value=""></td>' +
+                                                    '<td><select name="TaskManagementData[' + investdetails + '][repo_name]">' +
+                                                        '<option value="">-- Select --</option>'+
+                                                                '<option value="agio_pre_prod">Agio_pre_prod</option>'+
+                                                                '<option value="annuh-pharma">Annuh-Pharma</option>'+
+                                                                '<option value="environmentallab">Environmentlab</option>'+
+                                                                '<option value="invoice-management">invoice-management</option>'+
+                                                                '<option value="lims-laravel">Lims-laravel</option>'+
+                                                                '<option value="Medicef-main">Medicef-Main</option>'+                                                            
+                                                    '</select></td>'+
+                                                    '<td><select name="TaskManagementData[' + investdetails + '][module_process]">' +
+                                                        '<option value="">-- Select --</option>'+
+                                                                '<option value="adtiyarajput">Aditya Rajput</option>'+
+                                                                '<option value="adtiyapatel">Aditya Patel</option>'+
+                                                                '<option value="AkashMishra">Akash Mishra</option>'+
+                                                                '<option value="Ashishverma">Ashish Verma</option>'+
+                                                                '<option value="Farhankhan">Farhan Khan</option>'+
+                                                                '<option value="Gauravpandit">Gaurav Pandit</option>'+
+                                                                '<option value="gauravmeena">Gaurav Meena</option>'+
+                                                                '<option value="Harsh_Sardiya">Harsh Sardiya</option>'+
+                                                                '<option value="Harsh_chhari">Harsh Chhari</option>'+
+                                                                '<option value="KuldeepPatel">Kuldeep Patel</option>'+
+                                                                '<option value="Lavesh Jain">Lavesh Jain</option>'+
+                                                                '<option value="Leeladharkurmi">Leeladhar kurmi</option>'+
+                                                                '<option value="ManishMalviya">Manish Malviya</option>'+
+                                                                '<option value="Mayankrathore">Mayank Rathore</option>'+
+                                                                '<option value="monikachaurasiya">Monika Chaurasiya</option>'+
+                                                                '<option value="NavneetChoudhary">Navneet Choudhary</option>'+
+                                                                '<option value="Nickshaychouhan">Nickshay Chouhan</option>'+
+                                                                '<option value="nilesh_birla">Nilesh Birla</option>'+
+                                                                '<option value="Pankajchohan">Pankaj Chohan</option>'+
+                                                                '<option value="Pankajjat">Pankaj Jat</option>'+
+                                                                '<option value="ParmodKumar">Parmod Kumar</option>'+
+                                                                '<option value="Prabhjotbhatia">Prabhjot Bhatia</option>'+
+                                                                '<option value="Rajendrarajput">Rajendra Rajput</option>'+
+                                                                '<option value="Rahulawarkar">Rahul Awarkar</option>'+
+                                                                '<option value="Rupeshpatil">Rupesh Patil</option>'+
+                                                                '<option value="SauravKumar">Saurav Kumar</option>'+
+                                                                '<option value="Shivampatel">Shivam Patel</option>'+
+                                                                '<option value="Shreyadwivedi">Shreya Dwivedi</option>'+
+                                                                '<option value="Shrutidwivedi">Shruti Dwivedi</option>'+
+                                                                '<option value="Shubhammeena">Shubham Meena </option>'+
+                                                                '<option value="Snehabaldeva">Sneha Baldeva </option>'+
+                                                                '<option value="SunilPatel">Sunil Patel</option>'+
+                                                                '<option value="Swapnilpatil">Swapnil Patil</option>'+
+                                                                '<option value="Tushalpatel">Tushal Patel</option>'+
+                                                                '<option value="VaibhavAwarkar">Vaibhav Awarkar</option>'+                                                           
+                                                    '</select></td>' +
+
+                                                      '<td><select name="TaskManagementData[' + investdetails + '][activity_task]">' +
+                                                        '<option value="">-- Select --</option>'+
+                                                        '<option value="agio">Agio</option>'+
+                                                                '<option value="annuh">Annuh Pharma</option>'+
+                                                                '<option value="environmental">Environmental</option>'+
+                                                                '<option value="invoice">Invoice</option>'+
+                                                                '<option value="lims">Lims</option>'+
+                                                                '<option value="Medicef">Medicef</option>'+                                                     
+                                                    '</select></td>'+ 
+
                                                     '<td><input type="text" name="TaskManagementData[' + investdetails +'][activity1_task]" value=""></td>' +
                                                     '<td>' +
                                                             '<input type="datetime-local" name="TaskManagementData[' + investdetails +'][testing_completed_by_developer_on]" class="datetimepicker">' +
