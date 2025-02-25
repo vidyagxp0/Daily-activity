@@ -791,8 +791,7 @@ width: 340px;
                                             Task Management
                                             <button type="button" name="agenda"
                                                 id="task_manamegemnt_grid">+</button>
-                                        </label>
-                                        <div class="table-responsive">
+                                        </label><div class="table-responsive">
                                             <table class="table table-bordered" style="width: 250%" id="task_Management_Table">
                                                 <thead>
                                                     <tr style="text-align: center; vertical-align: middle; padding: 20px;">
@@ -801,13 +800,9 @@ width: 340px;
                                                         <th>Developer Name</th>
                                                         <th>Customer Name</th>
                                                         <th>Activities</th>
-                                                        <th> Start Date</th>
+                                                        <th>Start Date</th>
                                                         <th>TCD task Completion Date</th>
                                                         <th>Time Required</th>
-                                                        {{-- <th>TCD task Completion Date</th> --}}
-                                                        {{-- <th>Time Required</th> --}}
-                                                        {{-- <th>TCD task Completion Date</th> --}}
-                                                        {{-- <th>Status</th> --}}
                                                         <th>Work in Progress Details</th>
                                                         <th>Remaining Activity / Task</th>
                                                         <th>Time Required for Remaining Activity / Task</th>
@@ -818,12 +813,8 @@ width: 340px;
                                                         <th>Validation Team Name</th>
                                                         <th>Validation Team Remark</th>
                                                         <th>Configuration update as per Validation Team</th>
-                                                        {{-- <th>Developer Name</th> --}}
-                                                        {{-- <th> Start Date</th> --}}
                                                         <th>Revalidation Team Name</th>
                                                         <th>Revalidation Remark</th>
-                                                        {{-- <th>Revalidation Team Name</th> --}}
-                                                        {{-- <th>TCD</th> --}}
                                                         <th>Final Status</th>
                                                         <th>Completion Date</th>
                                                         <th>Reviewer Remarks</th>
@@ -833,192 +824,111 @@ width: 340px;
                                                 <tbody>
                                                     @php
                                                         $serialNumber = 1;
-
-                                                        // Ensure $TaskGridData->data1 is an array by decoding and re-encoding
                                                         $taskGridDataArray = json_decode(json_encode($TaskGridData->data), true) ?? [];
                                                     @endphp
-
+                                        
                                                     @foreach ($taskGridDataArray as $taskGrid)
                                                         <tr style="text-align: center; vertical-align: middle; padding: 20px;">
                                                             <td disabled>{{ $serialNumber++ }}</td>
                                                             <td>
-                                                                    <select  name="TaskManagementData[{{ $loop->index }}][repo_name]">
-                                                                        <option value="" {{ empty($taskGrid['repo_name']) ? 'selected' : '' }}>-- Select --</option>
-                                                                        <option value="agio_pre_prod" {{ ($taskGrid['repo_name'] ?? '') === 'agio_pre_prod' ? 'selected' : '' }}>Agio_pre_prod</option>
-                                                                        <option value="annuh-pharma" {{ ($taskGrid['repo_name'] ?? '') === 'annuh-pharma' ? 'selected' : '' }}>Annuh-Pharma</option>
-                                                                        <option value="environmentallab" {{ ($taskGrid['repo_name'] ?? '') === 'environmentallab' ? 'selected' : '' }}>Environmentlab</option>
-                                                                        <option value="invoice-management" {{ ($taskGrid['repo_name'] ?? '') === 'invoice-management' ? 'selected' : '' }}>invoice-management</option>
-                                                                        <option value="lims-laravel" {{ ($taskGrid['repo_name'] ?? '') === 'lims-laravel' ? 'selected' : '' }}>Lims-laravel</option>
-                                                                        <option value="Medicef-main" {{ ($taskGrid['repo_name'] ?? '') === 'Medicef-main' ? 'selected' : '' }}>Medicef-Main</option>
-                                                                    </select>
-                                                            </td>
-                                                            <td>   
-                                                                    <select name="TaskManagementData[{{ $loop->index }}][module_process]">
-                                                                        <option value="" {{ empty($taskGrid['module_process']) ? 'selected' : '' }}>-- Select --</option>
-                                                                        <option value="adtiyarajput" {{ ($taskGrid['module_process'] ?? '') === 'adtiyarajput' ? 'selected' : '' }}>Aditya Rajput</option>
-                                                                        <option value="adtiyapatel" {{ ($taskGrid['module_process'] ?? '') === 'adtiyapatel' ? 'selected' : '' }}>Aditya Patel</option>
-                                                                        <option value="AkashMishra" {{ ($taskGrid['module_process'] ?? '') === 'AkashMishra' ? 'selected' : '' }}>Akash Mishra</option>
-                                                                        <option value="Ashishverma" {{ ($taskGrid['module_process'] ?? '') === 'Ashishverma' ? 'selected' : '' }}>Ashish Verma</option>
-                                                                        <option value="Farhankhan" {{ ($taskGrid['module_process'] ?? '') === 'Farhankhan' ? 'selected' : '' }}>Farhan Khan</option>
-                                                                        <option value="Gauravpandit" {{ ($taskGrid['module_process'] ?? '') === 'Gauravpandit' ? 'selected' : '' }}>Gaurav Pandit</option>
-                                                                        <option value="gauravmeena" {{ ($taskGrid['module_process'] ?? '') === 'gauravmeena' ? 'selected' : '' }}>Gaurav Meena</option>
-                                                                        <option value="Harsh_Sardiya" {{ ($taskGrid['module_process'] ?? '') === 'Harsh_Sardiya' ? 'selected' : '' }}>Harsh Sardiya</option>
-                                                                        <option value="Harsh_chhari" {{ ($taskGrid['module_process'] ?? '') === 'Harsh_chhari' ? 'selected' : '' }}>Harsh Chhari</option>
-                                                                        <option value="KuldeepPatel" {{ ($taskGrid['module_process'] ?? '') === 'KuldeepPatel' ? 'selected' : '' }}>Kuldeep Patel</option>
-                                                                        <option value="Lavesh Jain" {{ ($taskGrid['module_process'] ?? '') === 'Lavesh Jain' ? 'selected' : '' }}>Lavesh Jain</option>
-                                                                        <option value="Leeladharkurmi" {{ ($taskGrid['module_process'] ?? '') === 'Leeladharkurmi' ? 'selected' : '' }}>Leeladhar Kurmi</option>
-                                                                        <option value="ManishMalviya" {{ ($taskGrid['module_process'] ?? '') === 'ManishMalviya' ? 'selected' : '' }}>Manish Malviya</option>
-                                                                        <option value="Mayankrathore" {{ ($taskGrid['module_process'] ?? '') === 'Mayankrathore' ? 'selected' : '' }}>Mayank Rathore</option>
-                                                                        <option value="monikachaurasiya" {{ ($taskGrid['module_process'] ?? '') === 'monikachaurasiya' ? 'selected' : '' }}>Monika Chaurasiya</option>
-                                                                        <option value="NavneetChoudhary" {{ ($taskGrid['module_process'] ?? '') === 'NavneetChoudhary' ? 'selected' : '' }}>Navneet Choudhary</option>
-                                                                        <option value="Nickshaychouhan" {{ ($taskGrid['module_process'] ?? '') === 'Nickshaychouhan' ? 'selected' : '' }}>Nickshay Chouhan</option>
-                                                                        <option value="nilesh_birla" {{ ($taskGrid['module_process'] ?? '') === 'nilesh_birla' ? 'selected' : '' }}>Nilesh Birla</option>
-                                                                        <option value="Pankajchohan" {{ ($taskGrid['module_process'] ?? '') === 'Pankajchohan' ? 'selected' : '' }}>Pankaj Chohan</option>
-                                                                        <option value="Pankajjat" {{ ($taskGrid['module_process'] ?? '') === 'Pankajjat' ? 'selected' : '' }}>Pankaj Jat</option>
-                                                                        <option value="ParmodKumar" {{ ($taskGrid['module_process'] ?? '') === 'ParmodKumar' ? 'selected' : '' }}>Parmod Kumar</option>
-                                                                        <option value="Prabhjotbhatia" {{ ($taskGrid['module_process'] ?? '') === 'Prabhjotbhatia' ? 'selected' : '' }}>Prabhjot Bhatia</option>
-                                                                        <option value="Rajendrarajput" {{ ($taskGrid['module_process'] ?? '') === 'Rajendrarajput' ? 'selected' : '' }}>Rajendra Rajput</option>
-                                                                        <option value="Rahulawarkar" {{ ($taskGrid['module_process'] ?? '') === 'Rahulawarkar' ? 'selected' : '' }}>Rahul Awarkar</option>
-                                                                        <option value="Rupeshpatil" {{ ($taskGrid['module_process'] ?? '') === 'Rupeshpatil' ? 'selected' : '' }}>Rupesh Patil</option>
-                                                                        <option value="SauravKumar" {{ ($taskGrid['module_process'] ?? '') === 'SauravKumar' ? 'selected' : '' }}>Saurav Kumar</option>
-                                                                        <option value="Shivampatel" {{ ($taskGrid['module_process'] ?? '') === 'Shivampatel' ? 'selected' : '' }}>Shivam Patel</option>
-                                                                        <option value="Shreyadwivedi" {{ ($taskGrid['module_process'] ?? '') === 'Shreyadwivedi' ? 'selected' : '' }}>Shreya Dwivedi</option>
-                                                                        <option value="Shrutidwivedi" {{ ($taskGrid['module_process'] ?? '') === 'Shrutidwivedi' ? 'selected' : '' }}>Shruti Dwivedi</option>
-                                                                        <option value="Shubhammeena" {{ ($taskGrid['module_process'] ?? '') === 'Shubhammeena' ? 'selected' : '' }}>Shubham Meena</option>
-                                                                        <option value="Snehabaldeva" {{ ($taskGrid['module_process'] ?? '') === 'Snehabaldeva' ? 'selected' : '' }}>Sneha Baldeva</option>
-                                                                        <option value="SunilPatel" {{ ($taskGrid['module_process'] ?? '') === 'SunilPatel' ? 'selected' : '' }}>Sunil Patel</option>
-                                                                        <option value="Swapnilpatil" {{ ($taskGrid['module_process'] ?? '') === 'Swapnilpatil' ? 'selected' : '' }}>Swapnil Patil</option>
-                                                                        <option value="Tushalpatel" {{ ($taskGrid['module_process'] ?? '') === 'Tushalpatel' ? 'selected' : '' }}>Tushal Patel</option>
-                                                                        <option value="VaibhavAwarkar" {{ ($taskGrid['module_process'] ?? '') === 'VaibhavAwarkar' ? 'selected' : '' }}>Vaibhav Awarkar</option>
-                                                                        
-                                                                    </select>
+                                                                <select name="TaskManagementData[{{ $loop->index }}][repo_name]">
+                                                                    <option value="" {{ empty($taskGrid['repo_name']) ? 'selected' : '' }}>-- Select --</option>
+                                                                    <option value="agio_pre_prod" {{ ($taskGrid['repo_name'] ?? '') === 'agio_pre_prod' ? 'selected' : '' }}>Agio_pre_prod</option>
+                                                                    <option value="annuh-pharma" {{ ($taskGrid['repo_name'] ?? '') === 'annuh-pharma' ? 'selected' : '' }}>Annuh-Pharma</option>
+                                                                    <option value="environmentallab" {{ ($taskGrid['repo_name'] ?? '') === 'environmentallab' ? 'selected' : '' }}>Environmentlab</option>
+                                                                    <option value="invoice-management" {{ ($taskGrid['repo_name'] ?? '') === 'invoice-management' ? 'selected' : '' }}>invoice-management</option>
+                                                                    <option value="lims-laravel" {{ ($taskGrid['repo_name'] ?? '') === 'lims-laravel' ? 'selected' : '' }}>Lims-laravel</option>
+                                                                    <option value="Medicef-main" {{ ($taskGrid['repo_name'] ?? '') === 'Medicef-main' ? 'selected' : '' }}>Medicef-Main</option>
+                                                                </select>
                                                             </td>
                                                             <td>
-                                                                    <select name="TaskManagementData[{{ $loop->index }}][activity_task]">
-                                                                        <option value="" {{ empty($taskGrid['activity_task']) ? 'selected' : '' }}>-- Select --</option>
-                                                                        <option value="agio" {{ ($taskGrid['activity_task'] ?? '') === 'agio' ? 'selected' : '' }}>Agio</option>
-                                                                        <option value="annuh" {{ ($taskGrid['activity_task'] ?? '') === 'annuh' ? 'selected' : '' }}>Annuh Pharma</option>
-                                                                        <option value="environmental" {{ ($taskGrid['activity_task'] ?? '') === 'environmental' ? 'selected' : '' }}>Environment</option>
-                                                                        <option value="invoice" {{ ($taskGrid['activity_task'] ?? '') === 'invoice' ? 'selected' : '' }}>Invoice</option>
-                                                                        <option value="lims" {{ ($taskGrid['activity_task'] ?? '') === 'lims' ? 'selected' : '' }}>Lims</option>
-                                                                        <option value="Medicef" {{ ($taskGrid['activity_task'] ?? '') === 'Medicef' ? 'selected' : '' }}>Medicef</option>
-                                                                    </select>
+                                                                <select name="TaskManagementData[{{ $loop->index }}][module_process]">
+                                                                    <option value="" {{ empty($taskGrid['module_process']) ? 'selected' : '' }}>-- Select --</option>
+                                                                    <option value="adtiyarajput" {{ ($taskGrid['module_process'] ?? '') === 'adtiyarajput' ? 'selected' : '' }}>Aditya Rajput</option>
+                                                                    <option value="adtiyapatel" {{ ($taskGrid['module_process'] ?? '') === 'adtiyapatel' ? 'selected' : '' }}>Aditya Patel</option>
+                                                                    <option value="AkashMishra" {{ ($taskGrid['module_process'] ?? '') === 'AkashMishra' ? 'selected' : '' }}>Akash Mishra</option>
+                                                                    <option value="Ashishverma" {{ ($taskGrid['module_process'] ?? '') === 'Ashishverma' ? 'selected' : '' }}>Ashish Verma</option>
+                                                                    <option value="Farhankhan" {{ ($taskGrid['module_process'] ?? '') === 'Farhankhan' ? 'selected' : '' }}>Farhan Khan</option>
+                                                                    <option value="Gauravpandit" {{ ($taskGrid['module_process'] ?? '') === 'Gauravpandit' ? 'selected' : '' }}>Gaurav Pandit</option>
+                                                                    <option value="gauravmeena" {{ ($taskGrid['module_process'] ?? '') === 'gauravmeena' ? 'selected' : '' }}>Gaurav Meena</option>
+                                                                    <option value="Harsh_Sardiya" {{ ($taskGrid['module_process'] ?? '') === 'Harsh_Sardiya' ? 'selected' : '' }}>Harsh Sardiya</option>
+                                                                    <option value="Harsh_chhari" {{ ($taskGrid['module_process'] ?? '') === 'Harsh_chhari' ? 'selected' : '' }}>Harsh Chhari</option>
+                                                                    <option value="KuldeepPatel" {{ ($taskGrid['module_process'] ?? '') === 'KuldeepPatel' ? 'selected' : '' }}>Kuldeep Patel</option>
+                                                                    <option value="Lavesh Jain" {{ ($taskGrid['module_process'] ?? '') === 'Lavesh Jain' ? 'selected' : '' }}>Lavesh Jain</option>
+                                                                    <option value="Leeladharkurmi" {{ ($taskGrid['module_process'] ?? '') === 'Leeladharkurmi' ? 'selected' : '' }}>Leeladhar Kurmi</option>
+                                                                    <option value="ManishMalviya" {{ ($taskGrid['module_process'] ?? '') === 'ManishMalviya' ? 'selected' : '' }}>Manish Malviya</option>
+                                                                    <option value="Mayankrathore" {{ ($taskGrid['module_process'] ?? '') === 'Mayankrathore' ? 'selected' : '' }}>Mayank Rathore</option>
+                                                                    <option value="monikachaurasiya" {{ ($taskGrid['module_process'] ?? '') === 'monikachaurasiya' ? 'selected' : '' }}>Monika Chaurasiya</option>
+                                                                    <option value="NavneetChoudhary" {{ ($taskGrid['module_process'] ?? '') === 'NavneetChoudhary' ? 'selected' : '' }}>Navneet Choudhary</option>
+                                                                    <option value="Nickshaychouhan" {{ ($taskGrid['module_process'] ?? '') === 'Nickshaychouhan' ? 'selected' : '' }}>Nickshay Chouhan</option>
+                                                                    <option value="nilesh_birla" {{ ($taskGrid['module_process'] ?? '') === 'nilesh_birla' ? 'selected' : '' }}>Nilesh Birla</option>
+                                                                    <option value="Pankajchohan" {{ ($taskGrid['module_process'] ?? '') === 'Pankajchohan' ? 'selected' : '' }}>Pankaj Chohan</option>
+                                                                    <option value="Pankajjat" {{ ($taskGrid['module_process'] ?? '') === 'Pankajjat' ? 'selected' : '' }}>Pankaj Jat</option>
+                                                                    <option value="ParmodKumar" {{ ($taskGrid['module_process'] ?? '') === 'ParmodKumar' ? 'selected' : '' }}>Parmod Kumar</option>
+                                                                    <option value="Prabhjotbhatia" {{ ($taskGrid['module_process'] ?? '') === 'Prabhjotbhatia' ? 'selected' : '' }}>Prabhjot Bhatia</option>
+                                                                    <option value="Rajendrarajput" {{ ($taskGrid['module_process'] ?? '') === 'Rajendrarajput' ? 'selected' : '' }}>Rajendra Rajput</option>
+                                                                    <option value="Rahulawarkar" {{ ($taskGrid['module_process'] ?? '') === 'Rahulawarkar' ? 'selected' : '' }}>Rahul Awarkar</option>
+                                                                    <option value="Rupeshpatil" {{ ($taskGrid['module_process'] ?? '') === 'Rupeshpatil' ? 'selected' : '' }}>Rupesh Patil</option>
+                                                                    <option value="SauravKumar" {{ ($taskGrid['module_process'] ?? '') === 'SauravKumar' ? 'selected' : '' }}>Saurav Kumar</option>
+                                                                    <option value="Shivampatel" {{ ($taskGrid['module_process'] ?? '') === 'Shivampatel' ? 'selected' : '' }}>Shivam Patel</option>
+                                                                    <option value="Shreyadwivedi" {{ ($taskGrid['module_process'] ?? '') === 'Shreyadwivedi' ? 'selected' : '' }}>Shreya Dwivedi</option>
+                                                                    <option value="Shrutidwivedi" {{ ($taskGrid['module_process'] ?? '') === 'Shrutidwivedi' ? 'selected' : '' }}>Shruti Dwivedi</option>
+                                                                    <option value="Shubhammeena" {{ ($taskGrid['module_process'] ?? '') === 'Shubhammeena' ? 'selected' : '' }}>Shubham Meena</option>
+                                                                    <option value="Snehabaldeva" {{ ($taskGrid['module_process'] ?? '') === 'Snehabaldeva' ? 'selected' : '' }}>Sneha Baldeva</option>
+                                                                    <option value="SunilPatel" {{ ($taskGrid['module_process'] ?? '') === 'SunilPatel' ? 'selected' : '' }}>Sunil Patel</option>
+                                                                    <option value="Swapnilpatil" {{ ($taskGrid['module_process'] ?? '') === 'Swapnilpatil' ? 'selected' : '' }}>Swapnil Patil</option>
+                                                                    <option value="Tushalpatel" {{ ($taskGrid['module_process'] ?? '') === 'Tushalpatel' ? 'selected' : '' }}>Tushal Patel</option>
+                                                                    <option value="VaibhavAwarkar" {{ ($taskGrid['module_process'] ?? '') === 'VaibhavAwarkar' ? 'selected' : '' }}>Vaibhav Awarkar</option>
+                                                                </select>
                                                             </td>
-
                                                             <td>
-                                                                <input type="text"
-                                                                    {{ isset($data->stage) && ($data->stage == 0 || $data->stage == 8) ? 'disabled' : '' }}
-                                                                    name="TaskManagementData[{{ $loop->index }}][activity1_task]"
-                                                                    value="{{ $taskGrid['activity1_task'] ?? '' }}">
+                                                                <select name="TaskManagementData[{{ $loop->index }}][activity_task]">
+                                                                    <option value="" {{ empty($taskGrid['activity_task']) ? 'selected' : '' }}>-- Select --</option>
+                                                                    <option value="agio" {{ ($taskGrid['activity_task'] ?? '') === 'agio' ? 'selected' : '' }}>Agio</option>
+                                                                    <option value="annuh" {{ ($taskGrid['activity_task'] ?? '') === 'annuh' ? 'selected' : '' }}>Annuh Pharma</option>
+                                                                    <option value="environmental" {{ ($taskGrid['activity_task'] ?? '') === 'environmental' ? 'selected' : '' }}>Environment</option>
+                                                                    <option value="invoice" {{ ($taskGrid['activity_task'] ?? '') === 'invoice' ? 'selected' : '' }}>Invoice</option>
+                                                                    <option value="lims" {{ ($taskGrid['activity_task'] ?? '') === 'lims' ? 'selected' : '' }}>Lims</option>
+                                                                    <option value="Medicef" {{ ($taskGrid['activity_task'] ?? '') === 'Medicef' ? 'selected' : '' }}>Medicef</option>
+                                                                </select>
                                                             </td>
-
                                                             <td>
-                                                                <input type="datetime-local"
-                                                                     name="TaskManagementData[{{ $loop->index }}][testing_completed_by_developer_on]" 
-                                                                     value="{{ $taskGrid['testing_completed_by_developer_on'] ?? '' }}" class="datetimepicker">
+                                                                <textarea class="auto-resize-textarea" name="TaskManagementData[{{ $loop->index }}][activity1_task]">{{ $taskGrid['activity1_task'] ?? '' }}</textarea>
                                                             </td>
-
                                                             <td>
-                                                                <input type="datetime-local"
-                                                                     name="TaskManagementData[{{ $loop->index }}][task_date_time]" 
-                                                                     value="{{ $taskGrid['task_date_time'] ?? '' }}" class="datetimepicker">
+                                                                <input type="datetime-local" name="TaskManagementData[{{ $loop->index }}][task_date_time]" value="{{ $taskGrid['task_date_time'] ?? '' }}" class="datetimepicker">
+                                                            </td>
+                                                            <td>
+                                                                <input type="datetime-local" name="TaskManagementData[{{ $loop->index }}][testing_completed_by_developer_on]" value="{{ $taskGrid['testing_completed_by_developer_on'] ?? '' }}" class="datetimepicker">
                                                             </td>
                                                             <td>
                                                                 <div class="time-required">
-
-                                                                    <input type="number" 
-                                                                        {{ isset($data->stage) && ($data->stage == 0 || $data->stage == 8) ? 'disabled' : '' }}
-                                                                        name="TaskManagementData[{{ $loop->index }}][days]" 
-                                                                        value="{{ $taskGrid['days'] ?? '' }}" 
-                                                                        placeholder="Enter Days" style="border: 1px solid #000; padding: 5px; border-radius: 5px;">Days
-
-                                                                    <input type="number" 
-                                                                        {{ isset($data->stage) && ($data->stage == 0 || $data->stage == 8) ? 'disabled' : '' }}
-                                                                        name="TaskManagementData[{{ $loop->index }}][hours]" 
-                                                                        value="{{ $taskGrid['hours'] ?? '' }}" 
-                                                                        placeholder="Enter Hours" style="border: 1px solid #000; padding: 5px; border-radius: 5px;">Hours
-
-
-                                                                        <input type="number" 
-                                                                        {{ isset($data->stage) && ($data->stage == 0 || $data->stage == 8) ? 'disabled' : '' }}
-                                                                        name="TaskManagementData[{{ $loop->index }}][minutes]" 
-                                                                        value="{{ $taskGrid['minutes'] ?? '' }}" 
-                                                                        placeholder="Enter Minutes" style="border: 1px solid #000; padding: 5px; border-radius: 5px;">Minutes
-                                                                    
+                                                                    <input type="number" name="TaskManagementData[{{ $loop->index }}][days]" value="{{ $taskGrid['days'] ?? '' }}" placeholder="Enter Days" style="border: 1px solid #000; padding: 5px; border-radius: 5px;">Days
+                                                                    <input type="number" name="TaskManagementData[{{ $loop->index }}][hours]" value="{{ $taskGrid['hours'] ?? '' }}" placeholder="Enter Hours" style="border: 1px solid #000; padding: 5px; border-radius: 5px;">Hours
+                                                                    <input type="number" name="TaskManagementData[{{ $loop->index }}][minutes]" value="{{ $taskGrid['minutes'] ?? '' }}" placeholder="Enter Minutes" style="border: 1px solid #000; padding: 5px; border-radius: 5px;">Minutes
                                                                 </div>
                                                             </td>
-
-                                                            {{-- <td>
-                                                                <select name="TaskManagementData[{{ $loop->index }}][status]">
-                                                                    <option value="" {{ empty($taskGrid['status']) ? 'selected' : '' }}>-- Select --</option>
-                                                                    <option value="Yes" {{ ($taskGrid['status'] ?? '') == 'Yes' ? 'selected' : '' }}>Yes</option>
-                                                                    <option value="No" {{ ($taskGrid['status'] ?? '') == 'No' ? 'selected' : '' }}>No</option>
-                                                                    <option value="Work in Progress" {{ ($taskGrid['status'] ?? '') == 'Work in Progress' ? 'selected' : '' }}>Work in Progress</option>
-                                                                </select>
-                                                            </td> --}}
-                                                        
-
                                                             <td>
-                                                                <input type="text"
-                                                                    {{ isset($data->stage) && ($data->stage == 0 || $data->stage == 8) ? 'disabled' : '' }}
-                                                                    name="TaskManagementData[{{ $loop->index }}][work_in_progress_detail]"
-                                                                    value="{{ $taskGrid['work_in_progress_detail'] ?? '' }}">
-                                                                    
+                                                                <textarea class="auto-resize-textarea" name="TaskManagementData[{{ $loop->index }}][work_in_progress_detail]">{{ $taskGrid['work_in_progress_detail'] ?? '' }}</textarea>
                                                             </td>
                                                             <td>
-                                                                <input type="text"
-                                                                    {{ isset($data->stage) && ($data->stage == 0 || $data->stage == 8) ? 'disabled' : '' }}
-                                                                    name="TaskManagementData[{{ $loop->index }}][Remaining_task]"
-                                                                    value="{{ $taskGrid['Remaining_task'] ?? '' }}">
+                                                                <textarea class="auto-resize-textarea" name="TaskManagementData[{{ $loop->index }}][Remaining_task]">{{ $taskGrid['Remaining_task'] ?? '' }}</textarea>
                                                             </td>
                                                             <td>
                                                                 <div class="time-required">
-
-                                                                    <input type="number" 
-                                                                        {{ isset($data->stage) && ($data->stage == 0 || $data->stage == 8) ? 'disabled' : '' }}
-                                                                        name="TaskManagementData[{{ $loop->index }}][days_second]" 
-                                                                        value="{{ $taskGrid['days_second'] ?? '' }}" 
-                                                                        placeholder="Enter Days" style="border: 1px solid #000; padding: 5px; border-radius: 5px;">Days
-
-                                                                    <input type="number" 
-                                                                        {{ isset($data->stage) && ($data->stage == 0 || $data->stage == 8) ? 'disabled' : '' }}
-                                                                        name="TaskManagementData[{{ $loop->index }}][hours_second]" 
-                                                                        value="{{ $taskGrid['hours_second'] ?? '' }}" 
-                                                                        placeholder="Enter Hours" style="border: 1px solid #000; padding: 5px; border-radius: 5px;">Hours
-
-
-                                                                        <input type="number" 
-                                                                        {{ isset($data->stage) && ($data->stage == 0 || $data->stage == 8) ? 'disabled' : '' }}
-                                                                        name="TaskManagementData[{{ $loop->index }}][minutes_second]" 
-                                                                        value="{{ $taskGrid['minutes_second'] ?? '' }}" 
-                                                                        placeholder="Enter Minutes" style="border: 1px solid #000; padding: 5px; border-radius: 5px;">Minutes
-                                                                   
+                                                                    <input type="number" name="TaskManagementData[{{ $loop->index }}][days_second]" value="{{ $taskGrid['days_second'] ?? '' }}" placeholder="Enter Days" style="border: 1px solid #000; padding: 5px; border-radius: 5px;">Days
+                                                                    <input type="number" name="TaskManagementData[{{ $loop->index }}][hours_second]" value="{{ $taskGrid['hours_second'] ?? '' }}" placeholder="Enter Hours" style="border: 1px solid #000; padding: 5px; border-radius: 5px;">Hours
+                                                                    <input type="number" name="TaskManagementData[{{ $loop->index }}][minutes_second]" value="{{ $taskGrid['minutes_second'] ?? '' }}" placeholder="Enter Minutes" style="border: 1px solid #000; padding: 5px; border-radius: 5px;">Minutes
                                                                 </div>
                                                             </td>
-                                                            {{-- <td>
-                                                                <select name="TaskManagementData[{{ $loop->index }}][testing_completed_by_developer]">
-                                                                    <option value="" {{ empty($taskGrid['testing_completed_by_developer']) ? 'selected' : '' }}>-- Select --</option>
-                                                                    <option value="Yes" {{ ($taskGrid['testing_completed_by_developer'] ?? '') === 'Yes' ? 'selected' : '' }}>Yes</option>
-                                                                    <option value="No" {{ ($taskGrid['testing_completed_by_developer'] ?? '') === 'No' ? 'selected' : '' }}>No</option>
-                                                                </select>
-                                                            </td> --}}
                                                             <td>
-                                                                <input type="text"
-                                                                    {{ isset($data->stage) && ($data->stage == 0 || $data->stage == 8) ? 'disabled' : '' }}
-                                                                    name="TaskManagementData[{{ $loop->index }}][developer_testing_details]"
-                                                                    value="{{ $taskGrid['developer_testing_details'] ?? '' }}">
+                                                                <textarea class="auto-resize-textarea" name="TaskManagementData[{{ $loop->index }}][developer_testing_details]">{{ $taskGrid['developer_testing_details'] ?? '' }}</textarea>
                                                             </td>
                                                             <td>
-                                                                <input type="text"
-                                                                    {{ isset($data->stage) && ($data->stage == 0 || $data->stage == 8) ? 'disabled' : '' }}
-                                                                    name="TaskManagementData[{{ $loop->index }}][remaining_work]"
-                                                                    value="{{ $taskGrid['remaining_work'] ?? '' }}">
+                                                                <textarea class="auto-resize-textarea" name="TaskManagementData[{{ $loop->index }}][remaining_work]">{{ $taskGrid['remaining_work'] ?? '' }}</textarea>
                                                             </td>
                                                             <td>
-                                                                <input type="text"
-                                                                    {{ isset($data->stage) && ($data->stage == 0 || $data->stage == 8) ? 'disabled' : '' }}
-                                                                    name="TaskManagementData[{{ $loop->index }}][remaining_work_testing]"
-                                                                    value="{{ $taskGrid['remaining_work_testing'] ?? '' }}">
+                                                                <textarea class="auto-resize-textarea" name="TaskManagementData[{{ $loop->index }}][remaining_work_testing]">{{ $taskGrid['remaining_work_testing'] ?? '' }}</textarea>
                                                             </td>
                                                             <td>
                                                                 <select name="TaskManagementData[{{ $loop->index }}][validation_team_name]">
@@ -1029,47 +939,23 @@ width: 340px;
                                                                 </select>
                                                             </td>
                                                             <td>
-                                                                <input type="text"
-                                                                    name="TaskManagementData[{{ $loop->index }}][validation_team_remark]"
-                                                                    value="{{ $taskGrid['validation_team_remark'] ?? '' }}">
+                                                                <textarea class="auto-resize-textarea" name="TaskManagementData[{{ $loop->index }}][validation_team_remark]">{{ $taskGrid['validation_team_remark'] ?? '' }}</textarea>
                                                             </td>
                                                             <td>
-                                                                <input type="text"
-                                                                    name="TaskManagementData[{{ $loop->index }}][configuration_update_validation_team]"
-                                                                    value="{{ $taskGrid['configuration_update_validation_team'] ?? '' }}">
+                                                                <textarea class="auto-resize-textarea" name="TaskManagementData[{{ $loop->index }}][configuration_update_validation_team]">{{ $taskGrid['configuration_update_validation_team'] ?? '' }}</textarea>
                                                             </td>
                                                             <td>
-                                                                <input type="text"
-                                                                    name="TaskManagementData[{{ $loop->index }}][developer_name]"
-                                                                    value="{{ $taskGrid['developer_name'] ?? '' }}">
-                                                            </td>
-                                                           
-
-                                                            <td>
-                                                                <input type="text"
-                                                                    name="TaskManagementData[{{ $loop->index }}][revalidation_remark]"
-                                                                    value="{{ $taskGrid['revalidation_remark'] ?? '' }}">
+                                                                <textarea class="auto-resize-textarea" name="TaskManagementData[{{ $loop->index }}][revalidation_remark]">{{ $taskGrid['revalidation_remark'] ?? '' }}</textarea>
                                                             </td>
                                                             <td>
-                                                                <input type="text"
-                                                                    name="TaskManagementData[{{ $loop->index }}][revalidation_remark_team]"
-                                                                    value="{{ $taskGrid['revalidation_remark_team'] ?? '' }}">
+                                                                <textarea class="auto-resize-textarea" name="TaskManagementData[{{ $loop->index }}][revalidation_remark_team]">{{ $taskGrid['revalidation_remark_team'] ?? '' }}</textarea>
                                                             </td>
-
-                                                            {{-- <td>
-                                                                <input type="datetime-local"
-                                                                     name="TaskManagementData[{{ $loop->index }}][testing_completed_by_developer_on]" 
-                                                                     value="{{ $taskGrid['testing_completed_by_developer_on'] ?? '' }}" class="datetimepicker">
-                                                            </td> --}}
-
                                                             <td>
                                                                 <select name="TaskManagementData[{{ $loop->index }}][final_status]">
                                                                     <option value="" {{ empty($taskGrid['final_status']) ? 'selected' : '' }}>-- Select --</option>
                                                                     <option value="Configured" {{ ($taskGrid['final_status'] ?? '') === 'Configured' ? 'selected' : '' }}>Work In Progress</option>
-                                                                    <option value="Not Completed" {{ ($taskGrid['final_status'] ?? '') === 'Not Completed' ? 'selected' : '' }}>Not Completed</option>
-                                                                    <option value="Completed" {{ ($taskGrid['final_status'] ?? '') === 'Completed' ? 'selected' : '' }}>Completed</option>
-                                                                </select>
-                                                            </td>
+                                                                    <option value="Not Completed" {{ ($taskGrid['final_status']??'')==='Not Completed'? 'selected':''}}>Not Completed</option>
+                                                                    <option value=" Completed" {{ ($taskGrid['final_status']??'') ==='Completed'? 'selected':''}}>Completed</option>
 
                                                             <td>
                                                                 <div class="new-date-data-field">
@@ -1094,12 +980,8 @@ width: 340px;
                                                                     </div>
                                                                 </div>
                                                             </td>
-
-
                                                             <td>
-                                                                <input type="text"
-                                                                    name="TaskManagementData[{{ $loop->index }}][seniour_management_remark]"
-                                                                    value="{{ $taskGrid['seniour_management_remark'] ?? '' }}">
+                                                                <textarea class="auto-resize-textarea" name="TaskManagementData[{{ $loop->index }}][seniour_management_remark]">{{ $taskGrid['seniour_management_remark'] ?? '' }}</textarea>
                                                             </td>
                                                             <td>
                                                                 <button class="removeRowBtn">Remove</button>
@@ -1113,178 +995,142 @@ width: 340px;
                                     </div>
                                 </div>
 
-                                <script>
-                                    $(document).ready(function() {
+                              
+<script>
+    $(document).ready(function() {
+        let investdetails = 1;
+        $('#task_manamegemnt_grid').click(function(e) {
+            function generateTableRow(serialNumber) {
+                var html =
+                    '<tr>' +
+                    '<td><input disabled type="text" style="width:15px" value="' + serialNumber + '"></td>' +
+                    '<td><select name="TaskManagementData[' + investdetails + '][repo_name]">' +
+                        '<option value="">-- Select --</option>' +
+                        '<option value="agio_pre_prod">Agio_pre_prod</option>' +
+                        '<option value="annuh-pharma">Annuh-Pharma</option>' +
+                        '<option value="environmentallab">Environmentlab</option>' +
+                        '<option value="invoice-management">invoice-management</option>' +
+                        '<option value="lims-laravel">Lims-laravel</option>' +
+                        '<option value="Medicef-main">Medicef-Main</option>' +
+                    '</select></td>' +
+                    '<td><select name="TaskManagementData[' + investdetails + '][module_process]">' +
+                        '<option value="">-- Select --</option>' +
+                        '<option value="adtiyarajput">Aditya Rajput</option>' +
+                        '<option value="adtiyapatel">Aditya Patel</option>' +
+                        '<option value="AkashMishra">Akash Mishra</option>' +
+                        '<option value="Ashishverma">Ashish Verma</option>' +
+                        '<option value="Farhankhan">Farhan Khan</option>' +
+                        '<option value="Gauravpandit">Gaurav Pandit</option>' +
+                        '<option value="gauravmeena">Gaurav Meena</option>' +
+                        '<option value="Harsh_Sardiya">Harsh_Sardiya</option>' +
+                        '<option value="Harsh_chhari">Harsh Chhari</option>' +
+                        '<option value="KuldeepPatel">Kuldeep Patel</option>' +
+                        '<option value="Lavesh Jain">Lavesh Jain</option>' +
+                        '<option value="Leeladharkurmi">Leeladhar Kurmi</option>' +
+                        '<option value="ManishMalviya">Manish Malviya</option>' +
+                        '<option value="Mayankrathore">Mayank Rathore</option>' +
+                        '<option value="monikachaurasiya">Monika Chaurasiya</option>' +
+                        '<option value="NavneetChoudhary">Navneet Choudhary</option>' +
+                        '<option value="Nickshaychouhan">Nickshay Chouhan</option>' +
+                        '<option value="nilesh_birla">Nilesh Birla</option>' +
+                        '<option value="Pankajchohan">Pankaj Chohan</option>' +
+                        '<option value="Pankajjat">Pankaj Jat</option>' +
+                        '<option value="ParmodKumar">Parmod Kumar</option>' +
+                        '<option value="Prabhjotbhatia">Prabhjot Bhatia</option>' +
+                        '<option value="Rajendrarajput">Rajendra Rajput</option>' +
+                        '<option value="Rahulawarkar">Rahul Awarkar</option>' +
+                        '<option value="Rupeshpatil">Rupesh Patil</option>' +
+                        '<option value="SauravKumar">Saurav Kumar</option>' +
+                        '<option value="Shivampatel">Shivam Patel</option>' +
+                        '<option value="Shreyadwivedi">Shreya Dwivedi</option>' +
+                        '<option value="Shrutidwivedi">Shruti Dwivedi</option>' +
+                        '<option value="Shubhammeena">Shubham Meena</option>' +
+                        '<option value="Snehabaldeva">Sneha Baldeva</option>' +
+                        '<option value="SunilPatel">Sunil Patel</option>' +
+                        '<option value="Swapnilpatil">Swapnil Patil</option>' +
+                        '<option value="Tushalpatel">Tushal Patel</option>' +
+                        '<option value="VaibhavAwarkar">Vaibhav Awarkar</option>' +
+                    '</select></td>' +
+                    '<td><select name="TaskManagementData[' + investdetails + '][activity_task]">' +
+                        '<option value="">-- Select --</option>' +
+                        '<option value="agio">Agio</option>' +
+                        '<option value="annuh">Annuh Pharma</option>' +
+                        '<option value="environmental">Environmental</option>' +
+                        '<option value="invoice">Invoice</option>' +
+                        '<option value="lims">Lims</option>' +
+                        '<option value="Medicef">Medicef</option>' +
+                    '</select></td>' +
+                    '<td><textarea class="auto-resize-textarea" name="TaskManagementData[' + investdetails + '][activity1_task]"></textarea></td>' +
+                    '<td><input type="datetime-local" name="TaskManagementData[' + investdetails + '][task_date_time]" class="datetimepicker"></td>' +
+                    '<td><input type="datetime-local" name="TaskManagementData[' + investdetails + '][testing_completed_by_developer_on]" class="datetimepicker"></td>' +
+                    '<td>' +
+                        '<div class="time-required">' +
+                            '<input type="number" id="days_' + investdetails + '" placeholder="Enter days" oninput="updateTime(this)" name="TaskManagementData[' + investdetails + '][days]" value="0" style="border: 1px solid #000; padding: 5px; border-radius: 5px;"> Days' +
+                            '<input type="number" id="hours_' + investdetails + '" placeholder="Enter hours" oninput="updateTime(this)" name="TaskManagementData[' + investdetails + '][hours]" value="0" style="border: 1px solid #000; padding: 5px; border-radius: 5px;"> Hours' +
+                            '<input type="number" id="minutes_' + investdetails + '" placeholder="Enter minutes" oninput="updateTime(this)" name="TaskManagementData[' + investdetails + '][minutes]" value="0" style="border: 1px solid #000; padding: 5px; border-radius: 5px;"> Minutes' +
+                        '</div>' +
+                    '</td>' +
+                    '<td><textarea class="auto-resize-textarea" name="TaskManagementData[' + investdetails + '][work_in_progress_detail]"></textarea></td>' +
+                    '<td><textarea class="auto-resize-textarea" name="TaskManagementData[' + investdetails + '][Remaining_task]"></textarea></td>' +
+                    '<td>' +
+                        '<div class="time-required">' +
+                            '<input type="number" id="days_' + investdetails + '_second" placeholder="Enter days" oninput="updateTime(this)" name="TaskManagementData[' + investdetails + '][days_second]" value="0" style="border: 1px solid #000; padding: 5px; border-radius: 5px;"> Days' +
+                            '<input type="number" id="hours_' + investdetails + '_second" placeholder="Enter hours" oninput="updateTime(this)" name="TaskManagementData[' + investdetails + '][hours_second]" value="0" style="border: 1px solid #000; padding: 5px; border-radius: 5px;"> Hours' +
+                            '<input type="number" id="minutes_' + investdetails + '_second" placeholder="Enter minutes" oninput="updateTime(this)" name="TaskManagementData[' + investdetails + '][minutes_second]" value="0" style="border: 1px solid #000; padding: 5px; border-radius: 5px;"> Minutes' +
+                        '</div>' +
+                    '</td>' +
+                    '<td><textarea class="auto-resize-textarea" name="TaskManagementData[' + investdetails + '][developer_testing_details]"></textarea></td>' +
+                    '<td><textarea class="auto-resize-textarea" name="TaskManagementData[' + investdetails + '][remaining_work]"></textarea></td>' +
+                    '<td><textarea class="auto-resize-textarea" name="TaskManagementData[' + investdetails + '][remaining_work_testing]"></textarea></td>' +
 
-                                        // Generate the user options dynamically from server-side data[task_date_time]
-                                        let userOptionHtml = `
-                                        
-                                        // `;
+                    '<td><select name="TaskManagementData[' + investdetails + '][validation_team_name]">' +
+                        '<option value="">-- Select --</option>' +
+                        '<option value="Configured">Work In Progress</option>' +
+                        '<option value="Not Completed">Not Completed</option>' +
+                        '<option value="Completed">Completed</option>' +
+                    '</select></td>' +
+                    '<td><textarea class="auto-resize-textarea" name="TaskManagementData[' + investdetails + '][validation_team_remark]"></textarea></td>' +
+                    '<td><textarea class="auto-resize-textarea" name="TaskManagementData[' + investdetails + '][configuration_update_validation_team]"></textarea></td>' +
+                    '<td><textarea class="auto-resize-textarea" name="TaskManagementData[' + investdetails + '][revalidation_remark]"></textarea></td>' +
+                    '<td><textarea class="auto-resize-textarea" name="TaskManagementData[' + investdetails + '][revalidation_remark_team]"></textarea></td>' +
+                    '<td><textarea class="auto-resize-textarea" name="TaskManagementData['+ investdetails +'][task_date_time]"></textarea></td>'+ 
+                    '<td><select name="TaskManagementData[' + investdetails + '][final_status]">' +
+                        '<option value="">-- Select --</option>' +
+                        '<option value="Configured">Work In Progress</option>' +
+                        '<option value="Not Completed">Not Completed</option>' +
+                        '<option value="Completed">Completed</option>' +
+                    '</select></td>' +
+                    '<td><div class="new-date-data-field"><div class="group-input input-date"> <div class="calenderauditee"><input id="date_' + investdetails + '_activity_config_final_date" type="text" name="TaskManagementData[' + investdetails + '][activity_config_final_date]" placeholder="DD-MMM-YYYY" /> <input type="date" name="TaskManagementData[' + investdetails + '][activity_config_final_date]" min="{{ \Carbon\Carbon::now()->format("Y-m-d") }}" value="" id="date_' + investdetails + '_activity_config_final_date" class="hide-input show_date" style="position: absolute; top: 0; left: 0; opacity: 0;" oninput="handleDateInput(this, \'date_' + investdetails + '_activity_config_final_date\')" /> </div> </div></div></td>' +
+                    '<td><textarea class="auto-resize-textarea" name="TaskManagementData[' + investdetails + '][seniour_management_remark]"></textarea></td>' +
+                    '<td><button class="removeRowBtn">Remove</button></td>' +
+                    '</tr>';
+                investdetails++; // Increment the row number here
+                return html;
+            }
 
-                                        $('#task_manamegemnt_grid').click(function(e) {
-                                            function generateTableRow(serialNumber) {
-                                                var investdetails = $('#task_Management_Table tbody tr').length + 1;
-                                                var html = 
-                                                        '<tr>' +
-                                                            '<td><input disabled type="text" style ="width:15px" value="' + serialNumber +'"></td>' +
-                                                    '<td><select name="TaskManagementData[' + investdetails + '][repo_name]">' +
-                                                        '<option value="">-- Select --</option>'+
-                                                                '<option value="agio_pre_prod">Agio_pre_prod</option>'+
-                                                                '<option value="annuh-pharma">Annuh-Pharma</option>'+
-                                                                '<option value="environmentallab">Environmentlab</option>'+
-                                                                '<option value="invoice-management">invoice-management</option>'+
-                                                                '<option value="lims-laravel">Lims-laravel</option>'+
-                                                                '<option value="Medicef-main">Medicef-Main</option>'+                                                            
-                                                    '</select></td>'+
-                                                    '<td><select name="TaskManagementData[' + investdetails + '][module_process]">' +
-                                                        '<option value="">-- Select --</option>'+
-                                                                '<option value="adtiyarajput">Aditya Rajput</option>'+
-                                                                '<option value="adtiyapatel">Aditya Patel</option>'+
-                                                                '<option value="AkashMishra">Akash Mishra</option>'+
-                                                                '<option value="Ashishverma">Ashish Verma</option>'+
-                                                                '<option value="Farhankhan">Farhan Khan</option>'+
-                                                                '<option value="Gauravpandit">Gaurav Pandit</option>'+
-                                                                '<option value="gauravmeena">Gaurav Meena</option>'+
-                                                                '<option value="Harsh_Sardiya">Harsh Sardiya</option>'+
-                                                                '<option value="Harsh_chhari">Harsh Chhari</option>'+
-                                                                '<option value="KuldeepPatel">Kuldeep Patel</option>'+
-                                                                '<option value="Lavesh Jain">Lavesh Jain</option>'+
-                                                                '<option value="Leeladharkurmi">Leeladhar kurmi</option>'+
-                                                                '<option value="ManishMalviya">Manish Malviya</option>'+
-                                                                '<option value="Mayankrathore">Mayank Rathore</option>'+
-                                                                '<option value="monikachaurasiya">Monika Chaurasiya</option>'+
-                                                                '<option value="NavneetChoudhary">Navneet Choudhary</option>'+
-                                                                '<option value="Nickshaychouhan">Nickshay Chouhan</option>'+
-                                                                '<option value="nilesh_birla">Nilesh Birla</option>'+
-                                                                '<option value="Pankajchohan">Pankaj Chohan</option>'+
-                                                                '<option value="Pankajjat">Pankaj Jat</option>'+
-                                                                '<option value="ParmodKumar">Parmod Kumar</option>'+
-                                                                '<option value="Prabhjotbhatia">Prabhjot Bhatia</option>'+
-                                                                '<option value="Rajendrarajput">Rajendra Rajput</option>'+
-                                                                '<option value="Rahulawarkar">Rahul Awarkar</option>'+
-                                                                '<option value="Rupeshpatil">Rupesh Patil</option>'+
-                                                                '<option value="SauravKumar">Saurav Kumar</option>'+
-                                                                '<option value="Shivampatel">Shivam Patel</option>'+
-                                                                '<option value="Shreyadwivedi">Shreya Dwivedi</option>'+
-                                                                '<option value="Shrutidwivedi">Shruti Dwivedi</option>'+
-                                                                '<option value="Shubhammeena">Shubham Meena </option>'+
-                                                                '<option value="Snehabaldeva">Sneha Baldeva </option>'+
-                                                                '<option value="SunilPatel">Sunil Patel</option>'+
-                                                                '<option value="Swapnilpatil">Swapnil Patil</option>'+
-                                                                '<option value="Tushalpatel">Tushal Patel</option>'+
-                                                                '<option value="VaibhavAwarkar">Vaibhav Awarkar</option>'+                                                           
-                                                    '</select></td>' +
+            var tableBody = $('#task_Management_Table tbody');
+            var rowCount = tableBody.children('tr').length;
+            var newRow = generateTableRow(rowCount + 1);
+            tableBody.append(newRow);
 
-                                                      '<td><select name="TaskManagementData[' + investdetails + '][activity_task]">' +
-                                                        '<option value="">-- Select --</option>'+
-                                                        '<option value="agio">Agio</option>'+
-                                                                '<option value="annuh">Annuh Pharma</option>'+
-                                                                '<option value="environmental">Environmental</option>'+
-                                                                '<option value="invoice">Invoice</option>'+
-                                                                '<option value="lims">Lims</option>'+
-                                                                '<option value="Medicef">Medicef</option>'+                                                     
-                                                    '</select></td>'+ 
+            // Initialize auto-resize for newly added textareas
+            const newTextareas = newRow.querySelectorAll('.auto-resize-textarea');
+            newTextareas.forEach(textarea => {
+                textarea.addEventListener('input', function() {
+                    this.style.height = 'auto'; // Reset the height
+                    this.style.height = (this.scrollHeight) + 'px'; // Set the height to the scroll height
+                });
 
-                                                    '<td><input type="text" name="TaskManagementData[' + investdetails +'][activity1_task]" value=""></td>' +
-                                                    '<td>' +
-                                                            '<input type="datetime-local" name="TaskManagementData[' + investdetails +'][testing_completed_by_developer_on]" class="datetimepicker">' +
-                                                    '</td>' +
-                                                    '<td>' +
-                                                            '<input type="datetime-local" name="TaskManagementData[' + investdetails +'][task_date_time]" class="datetimepicker">' +
-                                                    '</td>' +
-                                                    
-                                                    '<td>' +
-                                                        '<div class="time-required">' +
-                                                            '<input type="number" id="days_' + investdetails + '" placeholder="Enter days" ' +
-                                                            'oninput="updateTime(this)" name="TaskManagementData[' + investdetails + '][days]" ' +
-                                                            'value="0" style="border: 1px solid #000; padding: 5px; border-radius: 5px;"> Days' +
+                // Trigger the input event to adjust the height initially (if there's content)
+                textarea.dispatchEvent(new Event('input'));
+            });
+        });
 
-                                                            '<input type="number" id="hours_' + investdetails + '" placeholder="Enter hours" ' +
-                                                            'oninput="updateTime(this)" name="TaskManagementData[' + investdetails + '][hours]" ' +
-                                                            'value="0" style="border: 1px solid #000; padding: 5px; border-radius: 5px;"> Hours' +
-
-                                                            '<input type="number" id="minutes_' + investdetails + '" placeholder="Enter Minuts"' +
-                                                            'oninput="updateTime(this)" name="TaskManagementData[' + investdetails + '][minutes]" ' +
-                                                            'value="0" style="border: 1px solid #000; padding: 5px; border-radius: 5px;"> Minutes' +
-
-                                                        '</div>' +
-                                                    '</td>' +
-
-                                                    '<td><input type="text" name="TaskManagementData[' + investdetails +'][work_in_progress_detail]" value=""></td>' +
-                                                    '<td><input type="text" name="TaskManagementData[' + investdetails +'][Remaining_task]" value=""></td>' +
-                                                    '<td>' +
-                                                        '<div class="time-required">' +
-                                                        '<input type="number" id="days_' + investdetails + '_second" placeholder="Enter days" ' +
-                                                        'oninput="updateTime(this)" name="TaskManagementData[' + investdetails + '][days_second]" ' +
-                                                        'value="0" style="border: 1px solid #000; padding: 5px; border-radius: 5px;"> Days' +
-
-                                                        '<input type="number" id="hours_' + investdetails + '_second" placeholder="Enter hours" ' +
-                                                        'oninput="updateTime(this)" name="TaskManagementData[' + investdetails + '][hours_second]" ' +
-                                                        'value="0" style="border: 1px solid #000; padding: 5px; border-radius: 5px;"> Hours' +
-
-                                                        '<input type="number" id="minutes_' + investdetails + '_second" placeholder="Enter Minuts"' +
-                                                        'oninput="updateTime(this)" name="TaskManagementData[' + investdetails + '][minutes_second]" ' +
-                                                        'value="0" style="border: 1px solid #000; padding: 5px; border-radius: 5px;"> Minutes' +
-                                                    '</div>' +
-                                                    '</td>' +
-                                                    
-                                                    '<td><input type="text" name="TaskManagementData[' + investdetails +'][developer_testing_details]" value=""></td>' +
-                                                    '<td><input type="text" name="TaskManagementData[' + investdetails +'][remaining_work]" value=""></td>' +
-                                                    '<td><input type="text" name="TaskManagementData[' + investdetails +'][remaining_work_testing]" value=""></td>' +
-
-                                                    '<td><select name="TaskManagementData[' + investdetails + '][validation_team_name]">' +
-                                                        '<option value="">-- Select --</option>'+
-                                                                '<option value="Configured  ">Work In Progress </option>'+
-                                                               '<option value="Not Completed">Not Completed</option>'+
-                                                                '<option value="Completed"> Completed</option>'+
-                    
-                                                    '</select></td>' +
-                                                    
-
-                                                    '<td><input type="text" name="TaskManagementData[' + investdetails +'][validation_team_remark]" value=""></td>' +
-                                                    '<td><input type="text" name="TaskManagementData[' + investdetails +'][configuration_update_validation_team]" value=""></td>' +
-                                                    '<td><input type="text" name="TaskManagementData[' + investdetails +'][revalidation_remark]" value=""></td>' +
-                                                    '<td><input type="text" name="TaskManagementData[' + investdetails +'][revalidation_remark_team]" value=""></td>' +
-                                                    '<td><input type="text" name="TaskManagementData[' + investdetails +'][task_date_time]" class="datetimepicker"></td>' +
-                                                    
-
-                                                   
-
-                                                    '<td><select name="TaskManagementData[' + investdetails + '][final_status]">' +
-                                                        ' <option value="">-- Select --</option>'+
-                                                                '<option value="Configured  ">Work In Progress </option>'+
-                                                               '<option value="Not Completed">Not Completed</option>'+
-                                                                '<option value="Completed"> Completed</option>'+
-                                                    '</select></td>' +
-
-
-                                                    // '<td><input type="date" name="TaskManagementData[' + investdetails +
-                                                    // '][activity_config_final_date]" value=""></td>' +
-
-
-                                                    '<td><div class="new-date-data-field"><div class="group-input input-date"> <div class="calenderauditee"><input id="date_' + investdetails + '_activity_config_final_date" type="text" name="TaskManagementData[' + investdetails + '][activity_config_final_date]" placeholder="DD-MMM-YYYY" /> <input type="date" name="TaskManagementData[' + investdetails + '][activity_config_final_date]" min="{{ \Carbon\Carbon::now()->format("Y-m-d") }}" value="" id="date_' + investdetails + '_activity_config_final_date" class="hide-input show_date" style="position: absolute; top: 0; left: 0; opacity: 0;" oninput="handleDateInput(this, \'date_' + investdetails + '_activity_config_final_date\')" /> </div> </div></div></td>' +
-
-                                                    '<td><input type="text" name="TaskManagementData[' + investdetails +
-                                                    '][seniour_management_remark]" value=""></td>' +
-                                                    
-                                                    
-                                                    '<td><button class="removeRowBtn">Remove</button>' +
-                                                    '</tr>';
-                                                investdetails++; // Increment the row number here
-                                                return html;
-                                            }
-
-
-                                            var tableBody = $('#task_Management_Table tbody');
-                                            var rowCount = tableBody.children('tr').length;
-                                            var newRow = generateTableRow(rowCount + 1);
-                                            tableBody.append(newRow);
-                                        });
-                                        $(document).on('click', '.removeRowBtn', function() {
-                                            $(this).closest('tr').remove();
-                                        });
-                                    });
-                                </script>
+        $(document).on('click', '.removeRowBtn', function() {
+            $(this).closest('tr').remove();
+        });
+    });
+</script>
 
                                 <script>
                                     function updateTime(element) {
@@ -1814,6 +1660,20 @@ width: 340px;
             $('#rchars').text(textlen);
         });
     </script>
+  <script>
+     
+    document.addEventListener('DOMContentLoaded', function () {
+        const textareas = document.querySelectorAll('.auto-resize-textarea');
+        textareas.forEach(textarea => {
+            textarea.addEventListener('input', function() {
+                this.style.height = 'auto'; // Reset the height
+                this.style.height = (this.scrollHeight) + 'px'; // Set the height to the scroll height
+            });
 
+            // Trigger the input event to adjust the height initially (if there's content)
+            textarea.dispatchEvent(new Event('input'));
+        });
+    });
+</script>
 
 @endsection

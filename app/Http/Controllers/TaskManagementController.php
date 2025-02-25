@@ -39,6 +39,7 @@ class TaskManagementController extends Controller
         $taskmanagement->record_number = $request->record_number;
         $taskmanagement->short_description = $request->short_description;
         $taskmanagement->final_comments= $request->final_comments;
+      
         
         // if (!empty($request->in_attachment)) {
         //     $files = [];
