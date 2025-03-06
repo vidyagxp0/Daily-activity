@@ -84,6 +84,7 @@ use App\Http\Controllers\AnalystController;
 Use App\Http\Controllers\lims\AnalyticsController;
 use App\Http\Controllers\YearlyTrainingPlannerController;
 use App\Http\Controllers\tms\TNIController;
+use App\Http\Controllers\CompanyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -1280,3 +1281,15 @@ Route::get('task_management_show/{id}', [TaskManagementController::class, 'task_
 Route::post('task_management_update/{id}', [ TaskManagementController::class, 'taskManagementUpdate'])->name('task_management_update');
 Route::get('TaskManagementAuditTrail/{id}', [ TaskManagementController::class, 'AuditTrailTask'])->name('TaskManagementAuditTrail');
 Route::post('taskManagementSendStage/{id}', [TaskManagementController::class, 'taskManagementSendStage'])->name('taskManagementSendStage');
+
+
+
+Route::get('/companies', [CompanyController::class, 'index']);
+Route::post('/companies', [CompanyController::class, 'store']);
+Route::post('/companies/{id}/holidays', [CompanyController::class, 'storeHolidays']);
+Route::get('/companies/{id}/holidays', [CompanyController::class, 'getHolidays']);
+Route::delete('/holidays/{id}', [CompanyController::class, 'deleteHoliday']);
+Route::get('/holidays', [CompanyController::class, 'showHolidays'])->name('showHolidays');
+
+
+
