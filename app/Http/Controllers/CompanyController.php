@@ -31,17 +31,13 @@ class CompanyController extends Controller
         $request->validate([
             'holidays' => 'required|array',
             'holidays.*.start_date' => 'required|date_format:Y-m-d',
-            'holidays.*.end_date' => 'required|date_format:Y-m-d',
+            'holidays.*.end_date' => 'required|date_format:Y-m-d|after_or_equal:holidays.*.start_date',
             'holidays.*.reason' => 'required|string|max:255',
         ]);
     
         $company = Company::findOrFail($company_id);
         
         foreach ($request->holidays as $holiday) {
-            if ($holiday['end_date'] < $holiday['start_date']) {
-                return redirect()->back()->withErrors(['error' => 'End date cannot be before start date.']);
-            }
-    
             CompanyHoliday::create([
                 'company_id' => $company->id,
                 'start_date' => $holiday['start_date'],
@@ -50,7 +46,8 @@ class CompanyController extends Controller
             ]);
         }
     
-        return redirect()->back()->with('success', 'Holidays added successfully!');
+        // ✅ Corrected redirection to the dashboard
+        return redirect()->to(url('rcms/qms-dashboard'))->with('success', 'Holidays added successfully!');
     }
     
     public function showHolidays()
@@ -60,9 +57,6 @@ class CompanyController extends Controller
     
         return view('frontend.holidaays.holidays', compact('companies', 'holidays'));
     }
-    
-
-
 
     // Get a company's holidays
     public function getHolidays($company_id)
@@ -78,4 +72,3 @@ class CompanyController extends Controller
         return response()->json(['message' => 'Holiday deleted successfully']);
     }
 }
-

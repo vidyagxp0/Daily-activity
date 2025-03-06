@@ -12,7 +12,13 @@
 
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
+        <script>
+            setTimeout(function () {
+                window.location.href = "/rcms/qms-dashboard"; // Redirect to dashboard after 2 seconds
+            }, 2000);
+        </script>
     @endif
+
     <form action="" method="POST" id="holidayForm">
         @csrf
         <div class="mb-3">
@@ -42,9 +48,8 @@
         </div>
     
         <button type="button" id="addMore" class="btn btn-secondary">Add More</button>
-        <button type="submit" class="btn btn-primary">Save Holidays</button>
+        <a type="submit" class="btn btn-primary" href="{{ url('rcms/qms-dashboard') }}">Save Holidays</a>
     </form>
-    
 
     <script>
         document.getElementById('addMore').addEventListener('click', function () {
@@ -65,21 +70,45 @@
             `;
             holidayFields.insertAdjacentHTML('beforeend', newField);
         });
+
+        // document.getElementById('company_id').addEventListener('change', function () {
+        //     let companyId = this.value;
+        //     let form = document.getElementById('holidayForm');
+            
+        //     if (companyId) {
+        //         form.action = "/companies/" + companyId + "/holidays";  
+        //     } else {
+        //         form.action = ""; 
+        //     }
+        // });
+
+        // document.getElementById('holidayForm').addEventListener('submit', function (event) {
+        //     event.preventDefault(); // Prevent form submission
+
+        //     let form = this;
+        //     let formData = new FormData(form);
+
+        //     fetch(form.action, {
+        //         method: 'POST',
+        //         body: formData,
+        //         headers: {
+        //             'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value
+        //         }
+        //     })
+        //     .then(response => response.json())
+        //     .then(data => {
+        //         if (data.success) {
+        //             alert("Holidays added successfully!");
+        //             window.location.href = "/rcms/qms-dashboard"; // Redirect after success
+        //         } else {
+        //             alert("Error saving holidays. Please try again.");
+        //         }
+        //     })
+        //     .catch(error => {
+        //         console.error('Error:', error);
+        //     });
+        // });
     </script>
 
-    
-    <script>
-document.getElementById('company_id').addEventListener('change', function () {
-    let companyId = this.value;
-    let form = document.getElementById('holidayForm');
-    
-    if (companyId) {
-        form.action = "/companies/" + companyId + "/holidays";  
-    } else {
-        form.action = ""; 
-    }
-});
-
-</script>
 </body>
 </html>
