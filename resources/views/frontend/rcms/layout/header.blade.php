@@ -484,6 +484,11 @@
                             <a href="{{ url('rcms/form-division') }}"> <button class="button_theme1">Create
                                     Record</button> </a>
                         </div>
+
+                        <div class="create">
+                            <a href="{{ url('/holidays') }}"> <button class="button_theme1">Create
+                                    Holiday</button> </a>
+                        </div>
                     </div>
                 </div>
             </div>

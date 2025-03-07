@@ -1285,7 +1285,7 @@ Route::post('taskManagementSendStage/{id}', [TaskManagementController::class, 't
 
 
 Route::get('/companies', [CompanyController::class, 'index']);
-Route::post('/companies', [CompanyController::class, 'store']);
+Route::post('/companies/holidays', [CompanyController::class, 'storeHolidays'])->name('store.holidays');
 Route::post('/companies/{id}/holidays', [CompanyController::class, 'storeHolidays']);
 // Route::get('/companies/{id}/holidays', [CompanyController::class, 'storeHolidays']);
 Route::get('/companies/{id}/holidays', [CompanyController::class, 'getHolidays']);

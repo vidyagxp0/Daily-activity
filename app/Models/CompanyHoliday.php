@@ -9,7 +9,9 @@ class CompanyHoliday extends Model
 {
     use HasFactory;
     
-    protected $fillable = ['company_id', 'holiday_date'];
+  
+    protected $fillable = ['company_id', 'start_date', 'end_date', 'reason'];
+    
 
     public function company()
     {
