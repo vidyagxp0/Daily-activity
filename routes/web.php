@@ -5,6 +5,7 @@
 use App\Http\Controllers\ActionItemController;
 use App\Http\Controllers\Ajax\AjaxController;
 use App\Http\Controllers\Api\KSIController;
+use App\Http\Controllers\ProjectTaskManagementController;
 use App\Http\Controllers\lims\InventoryManagementController;
 use App\Http\Controllers\MyActivityController;
 use App\Http\Controllers\rcms\MarketComplaintController;
@@ -1280,3 +1281,10 @@ Route::get('task_management_show/{id}', [TaskManagementController::class, 'task_
 Route::post('task_management_update/{id}', [ TaskManagementController::class, 'taskManagementUpdate'])->name('task_management_update');
 Route::get('TaskManagementAuditTrail/{id}', [ TaskManagementController::class, 'AuditTrailTask'])->name('TaskManagementAuditTrail');
 Route::post('taskManagementSendStage/{id}', [TaskManagementController::class, 'taskManagementSendStage'])->name('taskManagementSendStage');
+// project planner
+
+Route::get('/task/create', [ProjectTaskManagementController::class, 'create'])->name('task.create');
+Route::post('/task/store', [ProjectTaskManagementController::class, 'store'])->name('task.store');
+Route::get('/task/{id}', [ProjectTaskManagementController::class, 'index'])->name('task.index');
+Route::post('task/update/{id}', [ProjectTaskManagementController::class, 'update'])->name('task.update');
+
