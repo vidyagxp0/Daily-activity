@@ -5,6 +5,7 @@
 use App\Http\Controllers\ActionItemController;
 use App\Http\Controllers\Ajax\AjaxController;
 use App\Http\Controllers\Api\KSIController;
+use App\Http\Controllers\ProjectTaskManagementController;
 use App\Http\Controllers\lims\InventoryManagementController;
 use App\Http\Controllers\MyActivityController;
 use App\Http\Controllers\rcms\MarketComplaintController;
@@ -66,6 +67,7 @@ use App\Http\Controllers\rcms\OOTController;
 use App\Http\Controllers\SupplierAuditController;
 
 use App\Http\Controllers\tms\TrainerController;
+use App\Http\Controllers\WeekendDaysController;
 use App\Imports\DocumentsImport;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\tms\JobTrainingController;
@@ -1293,4 +1295,11 @@ Route::delete('/holidays/{id}', [CompanyController::class, 'deleteHoliday']);
 Route::get('/holidays', [CompanyController::class, 'showHolidays'])->name('showHolidays');
 
 
+Route::post('/weekend-days', [WeekendDaysController::class, 'store'])->name('weekend.days');
+// project planner
+
+Route::get('/task/create', [ProjectTaskManagementController::class, 'create'])->name('task.create');
+Route::post('/task/store', [ProjectTaskManagementController::class, 'store'])->name('task.store');
+Route::get('/task/{id}', [ProjectTaskManagementController::class, 'index'])->name('task.index');
+Route::post('task/update/{id}', [ProjectTaskManagementController::class, 'update'])->name('task.update');
 
