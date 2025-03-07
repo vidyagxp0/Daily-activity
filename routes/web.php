@@ -66,6 +66,7 @@ use App\Http\Controllers\rcms\OOTController;
 use App\Http\Controllers\SupplierAuditController;
 
 use App\Http\Controllers\tms\TrainerController;
+use App\Http\Controllers\WeekendDaysController;
 use App\Imports\DocumentsImport;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\tms\JobTrainingController;
@@ -1280,3 +1281,5 @@ Route::get('task_management_show/{id}', [TaskManagementController::class, 'task_
 Route::post('task_management_update/{id}', [ TaskManagementController::class, 'taskManagementUpdate'])->name('task_management_update');
 Route::get('TaskManagementAuditTrail/{id}', [ TaskManagementController::class, 'AuditTrailTask'])->name('TaskManagementAuditTrail');
 Route::post('taskManagementSendStage/{id}', [TaskManagementController::class, 'taskManagementSendStage'])->name('taskManagementSendStage');
+
+Route::post('/weekend-days', [WeekendDaysController::class, 'store'])->name('weekend.days');
