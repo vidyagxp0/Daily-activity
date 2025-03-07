@@ -5,6 +5,7 @@
 use App\Http\Controllers\ActionItemController;
 use App\Http\Controllers\Ajax\AjaxController;
 use App\Http\Controllers\Api\KSIController;
+use App\Http\Controllers\ProjectTaskManagementController;
 use App\Http\Controllers\lims\InventoryManagementController;
 use App\Http\Controllers\MyActivityController;
 use App\Http\Controllers\rcms\MarketComplaintController;
@@ -1283,3 +1284,10 @@ Route::get('TaskManagementAuditTrail/{id}', [ TaskManagementController::class, '
 Route::post('taskManagementSendStage/{id}', [TaskManagementController::class, 'taskManagementSendStage'])->name('taskManagementSendStage');
 
 Route::post('/weekend-days', [WeekendDaysController::class, 'store'])->name('weekend.days');
+// project planner
+
+Route::get('/task/create', [ProjectTaskManagementController::class, 'create'])->name('task.create');
+Route::post('/task/store', [ProjectTaskManagementController::class, 'store'])->name('task.store');
+Route::get('/task/{id}', [ProjectTaskManagementController::class, 'index'])->name('task.index');
+Route::post('task/update/{id}', [ProjectTaskManagementController::class, 'update'])->name('task.update');
+

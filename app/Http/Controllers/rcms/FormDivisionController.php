@@ -138,6 +138,9 @@ class FormDivisionController extends Controller
         elseif ($request->process_name == 'Analyst Qualification') {
             return redirect('rcms/analytics_qualification');
         }
+        elseif ($request->process_name == 'Project Planner') {
+            return redirect('/task/create');
+        }
        
     }
 

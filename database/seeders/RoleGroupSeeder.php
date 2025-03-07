@@ -53,6 +53,8 @@ class RoleGroupSeeder extends Seeder
             'New Document' => ['Initiator', 'Author', 'HOD/Designee', 'QA','Approver', 'Reviewer', 'View Only', 'FP', 'Trainer', 'Closed Record'],            
             'Audit Program' => ['Initiator', 'Audit Manager', 'View Only', 'FP', 'Closed Record'],
             'Task Management' => ['Initiator', 'HOD/Designee', 'QA', 'CFT', 'QA', 'QA Head/Designee', 'External User', 'QA', 'View Only', 'FP', 'Closed Record'],
+            'Project Planner' => ['Initiator', 'HOD/Designee', 'QA', 'CFT', 'QA', 'QA Head/Designee', 'External User', 'QA', 'View Only', 'FP', 'Closed Record'],
+
             
         ];
 
