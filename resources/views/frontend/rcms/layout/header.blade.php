@@ -488,9 +488,79 @@
                             <a href="{{ url('/holidays') }}"> <button class="button_theme1">Create
                                     Holiday</button> </a>
                         </div>
+                        <div class="create">
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#weekendModal">
+                                    Weekend Day
+                                </button>
+                            </div>
                     </div>
                 </div>
             </div>
+
+            <div class="modal fade" id="weekendModal" tabindex="-1" aria-labelledby="weekendModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="weekendModalLabel">Add Weekend Days</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <!-- Form to Save Company and Weekend Days -->
+                        <form action="{{ route('weekend.days') }}" method="POST">
+                            @csrf
+
+                            <!-- Company Name -->
+                            <label>Company Name:</label>
+                            <input type="text" name="company_name" class="form-control" required>
+
+                            <!-- Weekend Days (Multi-Select) -->
+                            <label>Weekend Days:</label>
+                            <select id="weekend_days" name="weekend_days[]" class="form-control" multiple required>
+                                <option value="Monday">Monday</option>
+                                <option value="Tuesday">Tuesday</option>
+                                <option value="Wednesday">Wednesday</option>
+                                <option value="Thursday">Thursday</option>
+                                <option value="Friday">Friday</option>
+                                <option value="Saturday">Saturday</option>
+                                <option value="Sunday">Sunday</option>
+                            </select>
+
+                            <label>Year:</label>
+                            <select id="year" name="year" class="form-control" required>
+                                <option value="">Select Year</option>
+                                <option value="2025">2025</option>
+                                <option value="2026">2026</option>
+                                <option value="2027">2027</option>
+                                <option value="2028">2028</option>
+                                <option value="2029">2029</option>
+                                <option value="2030">2030</option>
+                                <option value="2031">2031</option>
+                                <option value="2032">2032</option>
+                                <option value="2033">2033</option>
+                                <option value="2034">2034</option>
+                                <option value="2035">2035</option>
+                            </select>
+
+                            <div class="modal-footer mt-3">
+                                <button type="submit" class="btn btn-primary">Save</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Include Bootstrap CSS & JS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script>
+            VirtualSelect.init({
+                            ele: '#weekend_days'
+                        });
+        </script>
 
             {{-- <div class="header-bottom">
                 <div class="container-fluid">
