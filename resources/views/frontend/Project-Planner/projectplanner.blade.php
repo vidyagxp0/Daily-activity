@@ -258,6 +258,14 @@ $(document).ready(function () {
                 <td><input type="date" name="dataprojectplanner[${rowIdx}][start_date]" class="form-control start_date" value="${lastEndDate ? new Date(new Date(lastEndDate).setDate(new Date(lastEndDate).getDate() + 1)).toISOString().split('T')[0] : ''}"></td>
                 <td><input type="date" name="dataprojectplanner[${rowIdx}][end_date]" class="form-control end_date" readonly></td>
                 <td><input type="text" name="dataprojectplanner[${rowIdx}][remarks]" class="form-control"></td>
+                 <td>
+                    <select name="dataprojectplanner[${rowIdx}][category]" class="form-control">
+                        <option value="">-- Select Category --</option>
+                        <option value="Customers only">Customers only</option>
+                        <option value="Vendor">Vendor</option>
+                        <option value="Customers & Vendor">Customers & Vendor</option>
+                    </select>
+                </td>
                 <td><input type="date" name="dataprojectplanner[${rowIdx}][actual_start_date]" class="form-control "></td>
                 <td><input type="date" name="dataprojectplanner[${rowIdx}][actual_end_date]" class="form-control ]" ></td>
                 <td><input type="file" name="dataprojectplanner[${rowIdx}][supporting_document]" class="form-control supporting_document"></td>
@@ -289,6 +297,7 @@ $(document).ready(function () {
                     <th>Start Date</th>
                     <th>End Date</th>
                     <th>Remarks</th>
+                    <th>Category  </th>
                     <th>Actual Start Date</th>
                     <th>Actual End Date</th>
                     <th>Supporting Documents</th>
@@ -315,6 +324,14 @@ $(document).ready(function () {
                     <td><input type="date" name="dataprojectplanner[0][start_date]" class="form-control start_date"></td>
                     <td><input type="date" name="dataprojectplanner[0][end_date]" class="form-control end_date" readonly></td>
                     <td><input type="text" name="dataprojectplanner[0][remarks]" class="form-control"></td>
+                    <td>
+                        <select name="dataprojectplanner[0][category]" class="form-control">
+                            <option value="">--Select Category--</option>
+                            <option value="Customers only">Customers only</option>
+                            <option value="Vendor">Vendor</option>
+                            <option value="Customers & Vendor">Customers & Vendor</option>
+                        </select>
+                    </td>
                     <td><input type="date" name="dataprojectplanner[0][actual_start_date]" class="form-control "></td>
                     <td><input type="date" name="dataprojectplanner[0][actual_end_date]" class="form-control" ></td>
                     <td><input type="file" name="dataprojectplanner[0][supporting_document]" class="form-control supporting_document"></td>
