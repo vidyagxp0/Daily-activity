@@ -14,10 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::table('company_holidays', function (Blueprint $table) {
-            $table->string('company_name'); // Store company name
-            $table->date('start_date');
-            $table->date('end_date');
-            $table->string('reason');
+            $table->string('company_name')->nullable(); // Store company name
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
+            $table->string('reason')->nullable();
         });
     }
 

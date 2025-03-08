@@ -1303,3 +1303,11 @@ Route::post('/task/store', [ProjectTaskManagementController::class, 'store'])->n
 Route::get('/task/{id}', [ProjectTaskManagementController::class, 'index'])->name('task.index');
 Route::post('task/update/{id}', [ProjectTaskManagementController::class, 'update'])->name('task.update');
 
+Route::get('/get-holidays-weekends', [ProjectTaskManagementController::class, 'getHolidaysWeekends'])->name('get.holidays.weekends');
+
+Route::post('/calculate-end-date', [ProjectTaskManagementController::class, 'calculateEndDate'])->name('calculate.end.date');
+
+
+
+
+

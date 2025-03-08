@@ -511,8 +511,18 @@
                             @csrf
 
                             <!-- Company Name -->
-                            <label>Company Name:</label>
-                            <input type="text" name="company_name" class="form-control" required>
+                            <!-- <label>Company Name:</label>
+                            <input type="text" name="company_name" class="form-control" required> -->
+
+                            <label>Weekend Days:</label>
+                            <select id="company_name" name="company_name" class="form-control" required>
+                                <option value="1">Medicef-Main</option>
+                                <option value="2">Annuh-Pharma</option>
+                                <option value="3">Environmentlab</option>
+                                <option value="4">Invoice-Management</option>
+                                <option value="5">Lims-laravel</option>
+                            <option value="6">Agio_pre_prod</option>
+                            </select>
 
                             <!-- Weekend Days (Multi-Select) -->
                             <label>Weekend Days:</label>

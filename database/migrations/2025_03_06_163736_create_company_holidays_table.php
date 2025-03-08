@@ -15,8 +15,9 @@ return new class extends Migration
     {
         Schema::create('company_holidays', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('company_id')->constrained()->onDelete('cascade');
-            $table->date('holiday_date');
+            // $table->foreignId('company_id')->constrained()->onDelete('cascade');
+            $table->string('company_id')->nullable(); // Store company name
+            $table->date('holiday_date')->nullable();
             $table->timestamps();
         });
     }
