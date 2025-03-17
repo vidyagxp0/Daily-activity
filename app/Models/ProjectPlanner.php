@@ -9,7 +9,21 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class ProjectPlanner extends Model
 {
     use HasFactory;
-    protected $fillable = ['company_id', 'milestone', 'functionality', 'start_date', 'end_date', 'no_of_days', 'remarks', 'supporting_document'];
+    protected $fillable = [
+        'company_id',
+        'company_name',
+        'year',
+        'description',
+        'comments',
+        'supporting_document',
+        'project_details',
+    ];
+    
+
+    protected $casts = [
+        'project_details' => 'array',
+    ];
+    
     public function company()
     {
         return $this->belongsTo(Company::class, 'company_id');

@@ -10,9 +10,11 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('company_id')->constrained('companies', 'company_id')->onDelete('cascade');
             $table->string('company_name');
+            $table->string('year');
+            $table->string('description');
             $table->string('comments')->nullable();
             $table->string('supporting_document')->nullable();
-            $table->json('project_details');
+            $table->json('project_details')->nullable();
             $table->timestamps();
         });
     }

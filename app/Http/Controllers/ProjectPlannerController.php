@@ -109,7 +109,7 @@ class ProjectPlannerController extends Controller
             return response()->json($holiday, 201);
         } catch (\Exception $e) {
             Log::error('Error creating holiday: ' . $e->getMessage());
-            return response()->json(['message' => 'An error occurred while creating the holiday'], 500);
+            return response()->json(['message' => 'An error occurred while creating the holiday'. $e->getMessage()], 500);
         }
     }
 
@@ -257,9 +257,10 @@ class ProjectPlannerController extends Controller
         try {
             $validator = Validator::make($request->all(), [
                 'company_name' => 'required',
+                'year' => 'required',
+                'description' => 'required',
                 'comments' => 'nullable',
                 'supporting_document' => 'nullable',
-                'project_details' => 'required|json',
             ]);
 
             if ($validator->fails()) {
@@ -279,15 +280,18 @@ class ProjectPlannerController extends Controller
             $projectPlanner = ProjectPlanner::create([
                 'company_id' => $companyId,
                 'company_name' => $request->company_name,
+                'year' => $request->year,
+                'description' => $request->description,
                 'comments' => $request->comments,
                 'supporting_document' => $request->supporting_document,
-                'project_details' => $request->project_details,
+                'project_details' => $request->project_details ?? [],
             ]);
+            
 
             return response()->json($projectPlanner, 201);
         } catch (\Exception $e) {
             Log::error('Error creating project planner: ' . $e->getMessage());
-            return response()->json(['message' => 'An error occurred while creating the project planner'], 500);
+            return response()->json(['message' => 'An error occurred while creating the project planner'. $e->getMessage()], 500);
         }
     }
 
@@ -315,16 +319,26 @@ class ProjectPlannerController extends Controller
 
             $validator = Validator::make($request->all(), [
                 'company_name' => 'required',
+                'year' => 'required',
+                'description' => 'required',
                 'comments' => 'nullable',
                 'supporting_document' => 'nullable',
-                'project_details' => 'required|json',
+                'project_details' => 'required|array',
             ]);
 
             if ($validator->fails()) {
                 return response()->json($validator->errors(), 400);
             }
 
-            $projectPlanner->update($request->only(['company_name', 'comments', 'supporting_document', 'project_details']));
+            $projectPlanner->update([
+                'company_name' => $request->company_name,
+                'year' => $request->year,
+                'description' => $request->description,
+                'comments' => $request->comments,
+                'supporting_document' => $request->supporting_document,
+                'project_details' => $request->project_details ?? [],
+            ]);
+            
             return response()->json($projectPlanner);
         } catch (\Exception $e) {
             Log::error('Error updating project planner: ' . $e->getMessage());
