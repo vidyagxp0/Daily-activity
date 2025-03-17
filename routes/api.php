@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\AllFormsController;
 use App\Http\Controllers\Api\ChartController;
 use App\Http\Controllers\Api\HelperController;
 use App\Http\Controllers\ApiController;
+use App\Http\Controllers\ProjectPlannerController;
 use App\Http\Controllers\UserLoginController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -192,5 +193,39 @@ Route::get('samplemanagementdivisionchart', [ChartController::class, 'samplemana
 Route::get('samplemanagementsampletypechart', [ChartController::class, 'samplemanagementsampletypechart'])->name('samplemanagementsampletypechart');
 
 Route::get('samplemanagementturnaroundchart', [ChartController::class, 'samplemanagementturnaroundchart'])->name('samplemanagementturnaroundchart');
+
+
+
+
+
+
+
+Route::prefix('project-planner')->group(function () {
+    // Company Routes
+    Route::post('/companies', [ProjectPlannerController::class, 'createCompany']);
+    Route::get('/companies/{id}', [ProjectPlannerController::class, 'getCompany']);
+    Route::put('/companies/{id}', [ProjectPlannerController::class, 'updateCompany']);
+    Route::delete('/companies/{id}', [ProjectPlannerController::class, 'deleteCompany']);
+
+    // Company Holidays Routes
+    Route::post('/companies/{companyId}/holidays', [ProjectPlannerController::class, 'createHoliday']);
+    Route::get('/companies/{companyId}/holidays', [ProjectPlannerController::class, 'getHolidays']);
+    Route::put('/holidays/{id}', [ProjectPlannerController::class, 'updateHoliday']);
+    Route::delete('/holidays/{id}', [ProjectPlannerController::class, 'deleteHoliday']);
+
+    // Company Weekends Routes
+    Route::post('/companies/{companyId}/weekends', [ProjectPlannerController::class, 'createWeekend']);
+    Route::get('/companies/{companyId}/weekends', [ProjectPlannerController::class, 'getWeekend']);
+    Route::put('/weekends/{id}', [ProjectPlannerController::class, 'updateWeekend']);
+    Route::delete('/weekends/{id}', [ProjectPlannerController::class, 'deleteWeekend']);
+
+    // Project Planner Routes
+    Route::post('/companies/{companyId}/project-planner', [ProjectPlannerController::class, 'createProjectPlanner']);
+    Route::get('/companies/{companyId}/project-planner', [ProjectPlannerController::class, 'getProjectPlanner']);
+    Route::put('/project-planner/{id}', [ProjectPlannerController::class, 'updateProjectPlanner']);
+    Route::delete('/project-planner/{id}', [ProjectPlannerController::class, 'deleteProjectPlanner']);
+
+    Route::get('/companies/{companyId}/weekend-and-holidays', [ProjectPlannerController::class, 'getWeekendAndHolidays']);
+});
 
 
