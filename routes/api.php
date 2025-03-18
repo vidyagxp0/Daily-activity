@@ -206,6 +206,8 @@ Route::prefix('project-planner')->group(function () {
     Route::get('/companies/{id}', [ProjectPlannerController::class, 'getCompany']);
     Route::put('/companies/{id}', [ProjectPlannerController::class, 'updateCompany']);
     Route::delete('/companies/{id}', [ProjectPlannerController::class, 'deleteCompany']);
+    Route::get('/get-all-companies', [ProjectPlannerController::class, 'getAllCompanies']);
+
 
     // Company Holidays Routes
     Route::post('/companies/{companyId}/holidays', [ProjectPlannerController::class, 'createHoliday']);

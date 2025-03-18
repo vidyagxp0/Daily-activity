@@ -32,6 +32,18 @@ class ProjectPlannerController extends Controller
         }
     }
 
+    public function getAllCompanies()
+{
+    try {
+        $companies = Company::select('company_id', 'name')->get();
+        return response()->json($companies);
+    } catch (\Exception $e) {
+        Log::error('Error fetching companies: ' . $e->getMessage());
+        return response()->json(['message' => 'An error occurred while fetching companies'], 500);
+    }
+}
+
+
     public function getCompany($id)
     {
         try {
