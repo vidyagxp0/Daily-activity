@@ -58,7 +58,7 @@
                                                 <i class="fas fa-clipboard-list"></i>
                                             </div>
                                             <div class="name" style="margin-left: 10px;">
-                                                <strong style="font-size: 24px; color: #333;">LIMS Analytics Dashboard</strong>
+                                                <strong style="font-size: 24px; color: #333;"> Dashboard</strong>
                                             </div>
                                         </div>
                                         
@@ -66,101 +66,7 @@
                                 </div>
                     
                                 <!-- Counter Cards -->
-                                <div class="inner-block main-block" style="margin-top: 30px;">
-                                    <div class="container mt-5">
-                                        {{-- <h2 class="text-center mb-4" style="color: #555;">Dynamic Counter Dashboard with Graphs</h2> --}}
-                                        <div class="row g-4 justify-content-center">
-                                            <!-- Ongoing Tests -->
-                                            <div class="col-md-2">
-                                                <div class="counter-card ongoing" style="background: #fef3e6; border-radius: 10px; padding: 20px; text-align: center; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-                                                    <div class="icon-new" style="font-size: 40px; color: #ff9800;"><i class="fas fa-hourglass-half"></i></div>
-                                                    <h5 style="color: #555;">On Going Tests</h5>
-                                                    <h1 class="counter" style="font-size: 36px; color: #333;">20</h1>
-                                                </div>
-                                            </div>
-                                            <!-- Completed Tests -->
-                                            <div class="col-md-2">
-                                                <div class="counter-card completed" style="background: #e8f5e9; border-radius: 10px; padding: 20px; text-align: center; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-                                                    <div class="icon-new" style="font-size: 40px; color: #4caf50;"><i class="fas fa-check-circle"></i></div>
-                                                    <h5 style="color: #555;">Completed Tests</h5>
-                                                    <h1 class="counter" style="font-size: 36px; color: #333;">10</h1>
-                                                </div>
-                                            </div>
-                                            <!-- Pending Tests -->
-                                            <div class="col-md-2">
-                                                <div class="counter-card pending" style="background: #e3f2fd; border-radius: 10px; padding: 20px; text-align: center; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-                                                    <div class="icon-new" style="font-size: 40px; color: #2196f3;"><i class="fas fa-clock"></i></div>
-                                                    <h5 style="color: #555;">Pending Tests</h5>
-                                                    <h1 class="counter" style="font-size: 36px; color: #333;">15</h1>
-                                                </div>
-                                            </div>
-                                            <!-- Instrument Calibration -->
-                                            <div class="col-md-2">
-                                                <div class="counter-card calibration" style="background: #f3e5f5; border-radius: 10px; padding: 20px; text-align: center; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-                                                    <div class="icon-new" style="font-size: 40px; color: #9c27b0;"><i class="fas fa-tools"></i></div>
-                                                    <h5 style="color: #555;">Instruments</h5>
-                                                    <h1  class="counter" style="font-size: 36px; margin-top: 40px; color: #333;">7</h1>
-                                                </div>
-                                            </div>
-                                            <!-- Instrument Under Calibration -->
-                                            <div class="col-md-2">
-                                                <div class="counter-card Instrument" style="background: #ede7f6; border-radius: 10px; padding: 20px; text-align: center; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-                                                    <div class="icon-new" style="font-size: 40px; color: #673ab7;"><i class="fas fa-cogs"></i></div>
-                                                    <h5 style="color: #555;">Instrument Under Calibration</h5>
-                                                    <h1 class="counter" style="font-size: 36px; color: #333;">9</h1>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <div class="counter-card Instrument" style="background: #d7e2ed; border-radius: 10px; padding: 20px; text-align: center; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-                                                    <div class="icon-new" style="font-size: 40px; color: #303030;"><i class="fas fa-clipboard-check"></i></div>
-                                                    <h5 style="color: #555;">Pending Lab Technician By Test</h5>
-                                                    <h1 class="counter" style="font-size: 36px; color: #333;">4</h1>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                {{-- </div> --}}
-                    
-                                <!-- Graphs Section -->
-                                <div class="inner-block main-block" style="margin-top: 30px;">
-                                    <div class="row">
-                                        <!-- Test Overview Graph -->
-                                        <div class="col-md-6">
-                                            <h3 class="text-center mb-4" style="color: #555;">Test Overview Graph</h3>
-                                            <div class="d-flex justify-content-center">
-                                                <canvas id="testGraph" style="width: 100%; height: 250px; background: #f5f5f5; border-radius: 10px; padding: 10px;"></canvas>
-                                            </div>
-                                        </div>
-                                        <!-- Test Wise Stats -->
-                                        <div class="col-md-6">
-                                            <h3 class="text-center mb-4" style="color: #555;">Category Distribution</h3>
-                                            <div style=" height: 320px;" class="d-flex justify-content-center">
-                                                <canvas id="pieChart" style="width: 100%; height: 250px; background: #f5f5f5; border-radius: 10px; padding: 10px;"></canvas>
-                                            </div>
-                                        </div>
-                                    </div>
-                    
-                                    <div class="row mt-5">
-                                        <!-- Monthly Trends -->
-                                        <div class="col-md-6">
-                                            <h3 class="text-center mb-4" style="color: #555;">Monthly Trends</h3>
-                                            <div class="d-flex justify-content-center">
-                                                <canvas id="monthlyTrends" style="width: 100%; height: 250px; background: #f5f5f5; border-radius: 10px; padding: 10px;"></canvas>
-                                            </div>
-                                        </div>
-                                        <!-- Performance Progress -->
-                                        <div class="col-md-6">
-                                            <h3 class="text-center mb-4" style="color: #555;">Performance Progress</h3>
-                                            <div class="d-flex justify-content-center">
-                                                <canvas id="performanceProgress" style="width: 100%; height: 250px; background: #f5f5f5; border-radius: 10px; padding: 10px;"></canvas>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-            </div>
+                                
                   
 
                             <hr>
@@ -4418,7 +4324,7 @@ var options = {
     <!-- Main container for charts -->
     <div class="row g-5">
       <!------------------------------------ Department Chart --------------------------------------------->
-      <div class="col-md-6">
+      {{-- <div class="col-md-6">
         <div class="card shadow">
           <div class="card-header text-black d-flex justify-content-between align-items-center" style="background-color: #bfd0f2;">
             <h5 class="mb-0">Department Chart</h5>
@@ -4448,7 +4354,7 @@ var options = {
             </div>
           </div>
         </div>
-      </div>
+      </div> --}}
       
       <script>
         let departmentChart; 
@@ -4549,7 +4455,7 @@ var options = {
 
   <!-- Division Chart -->
   {{-- <div class="row g-4"> --}}
-    <div class="col-md-6">
+    {{-- <div class="col-md-6">
       <div class="card shadow">
         <div class="card-header text-black d-flex justify-content-between align-items-center" style="background-color: #bfd0f2;">
           <h5 class="mb-0">Division Chart</h5>
@@ -4571,7 +4477,7 @@ var options = {
         </div>
       </div>
     </div>
-  </div>
+  </div> --}}
 
     
     <script>
@@ -4648,7 +4554,7 @@ var options = {
     </br> 
 
       <!--------------------------- Stage Chart ---------------------------------------------->
-      <div class="row g-5">
+      {{-- <div class="row g-5">
 <div class="col-md-6">
     <div class="card shadow">
         <div class="card-header text-black d-flex justify-content-between align-items-center" style="background-color: #bfd0f2;">
@@ -4686,7 +4592,7 @@ var options = {
         <canvas id="receiptsControlChart" class="chart-canvas" style="display:none;" width="400" height="200"></canvas>
         <div id="errorMessage" class="text-center text-muted" style="display: none;">No data available</div>
       </div>
-    </div>
+    </div> --}}
 
   
 
@@ -4810,7 +4716,7 @@ var options = {
 
  <!----------------------------------------------------- Turna Round Chart----------------------------------------->
    
- <div class="col-md-6">
+ {{-- <div class="col-md-6">
     <div class="card shadow">
       <div class="card-header text-black d-flex justify-content-between align-items-center" style="background-color: #bfd0f2;">
         <h5 class="mb-0">Turn Around Time Chart</h5>
@@ -4831,7 +4737,7 @@ var options = {
       
       </div>
     </div>
-  </div>
+  </div> --}}
 
 
 <script>
@@ -4920,7 +4826,7 @@ updateChartType('bar');
   
 <!----------------------------------- Sample Type Chart --------------------------------------------------->
 
-<div class="col-md-6">
+{{-- <div class="col-md-6">
     <div class="card shadow">
       <div class="card-header text-black text-center" style="background-color: #bfd0f2;">
         <h5 class="mb-0">Sample Type Chart</h5>
@@ -4935,7 +4841,7 @@ updateChartType('bar');
         <div id="errorMessage" class="text-center text-muted" style="display: none;">No data available</div>
       </div>
     </div>
-  </div>
+  </div> --}}
   
   <script>
     // Show loader while fetching data
@@ -5007,6 +4913,40 @@ updateChartType('bar');
   <!----------------------------------- Sample Type Chart END --------------------------------------------------->
   
   
+    <h5 class="mb-0">Speaker Chart</h5>
+ 
+    <canvas id="taskChart"></canvas>
+
+    <script>
+        
+        fetch('/api/taskmanagementchart')
+            .then(response => response.json())
+            .then(data => {
+                const ctx = document.getElementById('taskChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar',  
+                    data: {
+                        labels: data.body.labels,
+                        datasets: [{
+                            label: 'Task Count',
+                            data: data.body.series,
+                            backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: { beginAtZero: true }
+                        }
+                    }
+                });
+            })
+            .catch(error => console.error("Error fetching chart data:", error));
+    </script>
+
+
   
     
 

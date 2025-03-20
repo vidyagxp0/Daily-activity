@@ -35,6 +35,7 @@ use Carbon\Carbon;
 use Helpers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\JsonResponse;
 
 class ChartController extends Controller
 {
@@ -1908,4 +1909,34 @@ class ChartController extends Controller
             ]);
         }
     }
+
+    public function taskmanagementchart()
+    {
+        try {
+            $data = DB::table('task_management_grids')
+            ->selectRaw("JSON_UNQUOTE(JSON_EXTRACT(data, '$[0].work_in_progress_detail')) as work_in_progress_detail, COUNT(*) as count")
+            ->whereRaw("JSON_EXTRACT(data, '$[0].work_in_progress_detail') IS NOT NULL")
+            ->groupBy('work_in_progress_detail')
+            ->get();
+            // dd($data);
+    
+            // JSON response format
+            $response = [
+                'labels' => $data->pluck('work_in_progress_detail')->toArray(),
+                'series' => $data->pluck('count')->toArray()
+            ];
+    
+            return response()->json([
+                'data' => 'ok',
+                'body' => $response
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'data' => 'error',
+                'message' => $e->getMessage()
+            ]);
+        }
+    }
+    
+
 }

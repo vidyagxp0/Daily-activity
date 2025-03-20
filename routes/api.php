@@ -191,6 +191,6 @@ Route::get('samplemanagementdepartmentchart', [ChartController::class, 'samplema
 Route::get('samplemanagementdivisionchart', [ChartController::class, 'samplemanagementdivisionchart'])->name('samplemanagementdivisionchart');
 Route::get('samplemanagementsampletypechart', [ChartController::class, 'samplemanagementsampletypechart'])->name('samplemanagementsampletypechart');
 
-Route::get('samplemanagementturnaroundchart', [ChartController::class, 'samplemanagementturnaroundchart'])->name('samplemanagementturnaroundchart');
+Route::get('taskmanagementchart', [ChartController::class, 'taskmanagementchart'])->name('taskmanagementchart');
 
 

@@ -26,6 +26,7 @@
         display: none;
     }
     </style>
+
     <style>
         .table-responsive::-webkit-scrollbar {
             height: 20px;
@@ -475,29 +476,29 @@ width: 340px;
                                 Audit Trail </a> </button>
 
                         @if ($data->stage == 1)
-                            {{-- <a href="#signature-modal"><button class="button_theme1" data-bs-toggle="modal" data-bs-target="#signature-modal">
+                            <a href="#signature-modal"><button class="button_theme1" data-bs-toggle="modal" data-bs-target="#signature-modal">
                                 Send For Review
-                            </button> </a> --}}
+                            </button> </a>
                             <a href="#cancel-modal"><button class="button_theme1" data-bs-toggle="modal" data-bs-target="#cancel-modal">
                                 Cancel
                             </button> </a>
                             
                         @elseif($data->stage == 2)
                            
-                            {{-- <a href="#moreinfo-modal"> <button class="button_theme1" data-bs-toggle="modal" data-bs-target="#moreinfo-modal">
+                            <a href="#moreinfo-modal"> <button class="button_theme1" data-bs-toggle="modal" data-bs-target="#moreinfo-modal">
                             Request More Info
                             </button></a>
                             <a href="#signature-modal"> <button class="button_theme1" data-bs-toggle="modal" data-bs-target="#signature-modal">
                             Reviewed
-                            </button></a> --}}
+                            </button></a>
                            
                         @elseif($data->stage == 3)
-                            {{-- <a href="#moreinfo-modal"> <button class="button_theme1" data-bs-toggle="modal" data-bs-target="#moreinfo-modal">
+                            <a href="#moreinfo-modal"> <button class="button_theme1" data-bs-toggle="modal" data-bs-target="#moreinfo-modal">
                             Request More Info
                             </button></a>
                            <a href="#signature-modal"> <button class="button_theme1" data-bs-toggle="modal" data-bs-target="#signature-modal">
                                 Approved
-                            </button></a> --}}
+                            </button></a>
                         
 
                         @endif
@@ -510,7 +511,7 @@ width: 340px;
 
                 <div class="status">
                     <div class="head">Current Status</div>
-                    {{-- @if ($data->stage == 0)
+                    @if ($data->stage == 0)
                         <div class="progress-bars">
                             <div class="bg-danger">Closed-Cancelled</div>
                         </div>
@@ -539,12 +540,12 @@ width: 340px;
                             @endif
 
                         </div>
-                    @endif --}}
+                    @endif
                 </div>
 
 
                 <div class="top-block mt-2">
-                    <div><strong> Record Name:&nbsp;</strong>Task Management</div>
+                    <div><strong> Record Name:&nbsp;</strong>Presentation Grid </div>
                     <div><strong> Site:&nbsp;</strong>{{ Helpers::getDivisionName($data->division_id) }}</div>
                     <div><strong> Current Status:&nbsp;</strong>{{ $data->status }}</div>
                     <div><strong> Initiated By:&nbsp;</strong>{{ Helpers::getInitiatorName($data->initiator_id) }}</div>
@@ -557,9 +558,9 @@ width: 340px;
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-titles ml-10">Action Item Workflow</h4>
+                            <h4 class="modal-titles ml-10"> Workflow</h4>
                         </div>
-                        {{-- <div  style="" class="modal-body main-new-workflow">
+                         <div  style="" class="modal-body main-new-workflow">
                             <Div class="button-box">
                                 @if ($data->stage == 0)
                                     <div class="">
@@ -577,11 +578,11 @@ width: 340px;
                                     </div>
                                 @if ($data->stage >= 2)
                                     <div  class="active">
-                                        HOD Review
+                                        Review
                                     </div> 
                                 @else
                                     <div  class="mini_buttons">
-                                        HOD Review
+                                        Review
                                     </div>
                                 @endif
                                     <div class="down-logo">
@@ -591,11 +592,11 @@ width: 340px;
                                     </div>
                                 @if ($data->stage >= 3)
                                     <div  class="active">
-                                        QA/CQA Review
+                                       Approved
                                     </div>
                                 @else
                                     <div  class="mini_buttons">
-                                        QA/CQA Review
+                                       Approved
                                     </div>
                                 @endif
                                     <div class="down-logo">
@@ -605,83 +606,21 @@ width: 340px;
                                     </div>
                                 @if ($data->stage >= 4)
                                     <div  class="active">
-                                        QA/CQA Approval
+                                        Closed-Done
                                     </div>
                                 @else
                                     <div  class="mini_buttons">
-                                        QA/CQA Approval
+                                        Closed-Done
                                     </div>
                                 @endif
                                     <div class="down-logo">
                                         <img class="dawn_arrow" src="{{ asset('user/images/down.gif') }}" alt="..."
                                             class="w-100 h-100">
         
-                                    </div>
-                                @if ($data->stage >= 5)
-
-                                    <div  class="active">
-                                        CAPA In progress
-                                    </div>
-                                @else
-                                    <div  class="mini_buttons">
-                                        CAPA In progress
-                                    </div>
-                                @endif
-                                    <div class="down-logo">
-                                        <img class="dawn_arrow" src="{{ asset('user/images/down.gif') }}" alt="..."
-                                            class="w-100 h-100">
-        
-                                    </div>
-                                @if ($data->stage >= 6)
-
-                                    <div  class="active">
-                                        HOD Final Review
-                                    </div>
-                                @else
-                                    <div  class="mini_buttons">
-                                        HOD Final Review
-                                    </div>
-                                @endif
-                                    <div class="down-logo">
-                                        <img class="dawn_arrow" src="{{ asset('user/images/down.gif') }}" alt="..."
-                                            class="w-100 h-100">
-        
-                                    </div>
-                                @if ($data->stage >= 7)
-                                    <div  class="active">
-                                        QA/CQA Closure Review
-                                    </div>
-                                @else
-                                    <div  class="mini_buttons">
-                                        QA/CQA Closure Review
-                                    </div>
-                                @endif
-                                    <div class="down-logo">
-                                        <img class="dawn_arrow" src="{{ asset('user/images/down.gif') }}" alt="..."
-                                            class="w-100 h-100">
-        
-                                    </div>
-                                @if ($data->stage >= 8)
-                                    <div  class="active">
-                                        QAH/CQAH Approval
-                                    </div>
-                                @else
-                                    <div  class="mini_buttons">
-                                        QAH/CQAH Approval
-                                    </div>
-                                @endif
-                                    <div class="down-logo">
-                                        <img class="dawn_arrow" src="{{ asset('user/images/down.gif') }}" alt="..."
-                                            class="w-100 h-100">
-        
-                                    </div>
-                                @if ($data->stage >= 9)
-                                    <div class=" mini_buttons bg-danger">Closed - Done</div>
-                                @else
-                                    <div class="mini_buttons">Closed - Done </div>
-                                @endif
-                                @endif    
-                            </Div> --}}
+                                    </div> 
+                              
+                                @endif   
+                            </Div>
                         </div>
                     </div>
                 </div>
@@ -794,32 +733,18 @@ width: 340px;
                                         </label><div class="table-responsive">
                                             <table class="table table-bordered" style="width: 250%" id="task_Management_Table">
                                                 <thead>
-                                                    <tr style="text-align: center; vertical-align: middle; padding: 20px;">
-                                                        <th>Row #</th>
-                                                        <th>Repo Name / Instance Name</th>
-                                                        <th>Developer Name</th>
-                                                        <th>Customer Name</th>
-                                                        <th>Activities</th>
-                                                        <th>Start Date</th>
-                                                        <th>TCD task Completion Date</th>
-                                                        <th>Time Required</th>
-                                                        <th>Work in Progress Details</th>
-                                                        <th>Remaining Activity / Task</th>
-                                                        <th>Time Required for Remaining Activity / Task</th>
-                                                        <th>Testing Completed by Developer</th>
-                                                        <th>Developer Testing Details</th>
-                                                        <th>Remaining Work</th>
-                                                        <th>Remaining Work Testing</th>
-                                                        <th>Validation Team Name</th>
-                                                        <th>Validation Team Remark</th>
-                                                        <th>Configuration update as per Validation Team</th>
-                                                        <th>Revalidation Team Name</th>
-                                                        <th>Revalidation Remark</th>
-                                                        <th>Final Status</th>
-                                                        <th>Completion Date</th>
-                                                        <th>Reviewer Remarks</th>
-                                                        <th>Action</th>
-                                                    </tr>
+                                                    
+                                                        <tr style="text-align: center; vertical-align: middle; padding: 20px;">
+                                                            <th>Row #</th>
+                                                            <th>Topic</th>
+                                                            <th>Category</th>
+                                                            <th>Date</th>
+                                                            <th>Speaker</th>
+                                                            <th>Attachments</th>
+                                                            <th> Remarks </th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    
                                                 </thead>
                                                 <tbody>
                                                     @php
@@ -831,159 +756,52 @@ width: 340px;
                                                         <tr style="text-align: center; vertical-align: middle; padding: 20px;">
                                                             <td disabled>{{ $serialNumber++ }}</td>
                                                             <td>
-                                                                <select name="TaskManagementData[{{ $loop->index }}][repo_name]">
-                                                                    <option value="" {{ empty($taskGrid['repo_name']) ? 'selected' : '' }}>-- Select --</option>
-                                                                    <option value="agio_pre_prod" {{ ($taskGrid['repo_name'] ?? '') === 'agio_pre_prod' ? 'selected' : '' }}>Agio_pre_prod</option>
-                                                                    <option value="annuh-pharma" {{ ($taskGrid['repo_name'] ?? '') === 'annuh-pharma' ? 'selected' : '' }}>Annuh-Pharma</option>
-                                                                    <option value="environmentallab" {{ ($taskGrid['repo_name'] ?? '') === 'environmentallab' ? 'selected' : '' }}>Environmentlab</option>
-                                                                    <option value="invoice-management" {{ ($taskGrid['repo_name'] ?? '') === 'invoice-management' ? 'selected' : '' }}>invoice-management</option>
-                                                                    <option value="lims-laravel" {{ ($taskGrid['repo_name'] ?? '') === 'lims-laravel' ? 'selected' : '' }}>Lims-laravel</option>
-                                                                    <option value="Medicef-main" {{ ($taskGrid['repo_name'] ?? '') === 'Medicef-main' ? 'selected' : '' }}>Medicef-Main</option>
-                                                                </select>
-                                                            </td>
-                                                            <td>
-                                                                <select name="TaskManagementData[{{ $loop->index }}][module_process]">
-                                                                    <option value="" {{ empty($taskGrid['module_process']) ? 'selected' : '' }}>-- Select --</option>
-                                                                    <option value="adtiyarajput" {{ ($taskGrid['module_process'] ?? '') === 'adtiyarajput' ? 'selected' : '' }}>Aditya Rajput</option>
-                                                                    <option value="adtiyapatel" {{ ($taskGrid['module_process'] ?? '') === 'adtiyapatel' ? 'selected' : '' }}>Aditya Patel</option>
-                                                                    <option value="AkashMishra" {{ ($taskGrid['module_process'] ?? '') === 'AkashMishra' ? 'selected' : '' }}>Akash Mishra</option>
-                                                                    <option value="Ashishverma" {{ ($taskGrid['module_process'] ?? '') === 'Ashishverma' ? 'selected' : '' }}>Ashish Verma</option>
-                                                                    <option value="Farhankhan" {{ ($taskGrid['module_process'] ?? '') === 'Farhankhan' ? 'selected' : '' }}>Farhan Khan</option>
-                                                                    <option value="Gauravpandit" {{ ($taskGrid['module_process'] ?? '') === 'Gauravpandit' ? 'selected' : '' }}>Gaurav Pandit</option>
-                                                                    <option value="gauravmeena" {{ ($taskGrid['module_process'] ?? '') === 'gauravmeena' ? 'selected' : '' }}>Gaurav Meena</option>
-                                                                    <option value="Harsh_Sardiya" {{ ($taskGrid['module_process'] ?? '') === 'Harsh_Sardiya' ? 'selected' : '' }}>Harsh Sardiya</option>
-                                                                    <option value="Harsh_chhari" {{ ($taskGrid['module_process'] ?? '') === 'Harsh_chhari' ? 'selected' : '' }}>Harsh Chhari</option>
-                                                                    <option value="KuldeepPatel" {{ ($taskGrid['module_process'] ?? '') === 'KuldeepPatel' ? 'selected' : '' }}>Kuldeep Patel</option>
-                                                                    <option value="Lavesh Jain" {{ ($taskGrid['module_process'] ?? '') === 'Lavesh Jain' ? 'selected' : '' }}>Lavesh Jain</option>
-                                                                    <option value="Leeladharkurmi" {{ ($taskGrid['module_process'] ?? '') === 'Leeladharkurmi' ? 'selected' : '' }}>Leeladhar Kurmi</option>
-                                                                    <option value="ManishMalviya" {{ ($taskGrid['module_process'] ?? '') === 'ManishMalviya' ? 'selected' : '' }}>Manish Malviya</option>
-                                                                    <option value="Mayankrathore" {{ ($taskGrid['module_process'] ?? '') === 'Mayankrathore' ? 'selected' : '' }}>Mayank Rathore</option>
-                                                                    <option value="monikachaurasiya" {{ ($taskGrid['module_process'] ?? '') === 'monikachaurasiya' ? 'selected' : '' }}>Monika Chaurasiya</option>
-                                                                    <option value="NavneetChoudhary" {{ ($taskGrid['module_process'] ?? '') === 'NavneetChoudhary' ? 'selected' : '' }}>Navneet Choudhary</option>
-                                                                    <option value="Nickshaychouhan" {{ ($taskGrid['module_process'] ?? '') === 'Nickshaychouhan' ? 'selected' : '' }}>Nickshay Chouhan</option>
-                                                                    <option value="nilesh_birla" {{ ($taskGrid['module_process'] ?? '') === 'nilesh_birla' ? 'selected' : '' }}>Nilesh Birla</option>
-                                                                    <option value="Pankajchohan" {{ ($taskGrid['module_process'] ?? '') === 'Pankajchohan' ? 'selected' : '' }}>Pankaj Chohan</option>
-                                                                    <option value="Pankajjat" {{ ($taskGrid['module_process'] ?? '') === 'Pankajjat' ? 'selected' : '' }}>Pankaj Jat</option>
-                                                                    <option value="ParmodKumar" {{ ($taskGrid['module_process'] ?? '') === 'ParmodKumar' ? 'selected' : '' }}>Parmod Kumar</option>
-                                                                    <option value="Prabhjotbhatia" {{ ($taskGrid['module_process'] ?? '') === 'Prabhjotbhatia' ? 'selected' : '' }}>Prabhjot Bhatia</option>
-                                                                    <option value="Rajendrarajput" {{ ($taskGrid['module_process'] ?? '') === 'Rajendrarajput' ? 'selected' : '' }}>Rajendra Rajput</option>
-                                                                    <option value="Rahulawarkar" {{ ($taskGrid['module_process'] ?? '') === 'Rahulawarkar' ? 'selected' : '' }}>Rahul Awarkar</option>
-                                                                    <option value="Rupeshpatil" {{ ($taskGrid['module_process'] ?? '') === 'Rupeshpatil' ? 'selected' : '' }}>Rupesh Patil</option>
-                                                                    <option value="SauravKumar" {{ ($taskGrid['module_process'] ?? '') === 'SauravKumar' ? 'selected' : '' }}>Saurav Kumar</option>
-                                                                    <option value="Shivampatel" {{ ($taskGrid['module_process'] ?? '') === 'Shivampatel' ? 'selected' : '' }}>Shivam Patel</option>
-                                                                    <option value="Shreyadwivedi" {{ ($taskGrid['module_process'] ?? '') === 'Shreyadwivedi' ? 'selected' : '' }}>Shreya Dwivedi</option>
-                                                                    <option value="Shrutidwivedi" {{ ($taskGrid['module_process'] ?? '') === 'Shrutidwivedi' ? 'selected' : '' }}>Shruti Dwivedi</option>
-                                                                    <option value="Shubhammeena" {{ ($taskGrid['module_process'] ?? '') === 'Shubhammeena' ? 'selected' : '' }}>Shubham Meena</option>
-                                                                    <option value="Snehabaldeva" {{ ($taskGrid['module_process'] ?? '') === 'Snehabaldeva' ? 'selected' : '' }}>Sneha Baldeva</option>
-                                                                    <option value="SunilPatel" {{ ($taskGrid['module_process'] ?? '') === 'SunilPatel' ? 'selected' : '' }}>Sunil Patel</option>
-                                                                    <option value="Swapnilpatil" {{ ($taskGrid['module_process'] ?? '') === 'Swapnilpatil' ? 'selected' : '' }}>Swapnil Patil</option>
-                                                                    <option value="Tushalpatel" {{ ($taskGrid['module_process'] ?? '') === 'Tushalpatel' ? 'selected' : '' }}>Tushal Patel</option>
-                                                                    <option value="VaibhavAwarkar" {{ ($taskGrid['module_process'] ?? '') === 'VaibhavAwarkar' ? 'selected' : '' }}>Vaibhav Awarkar</option>
-                                                                </select>
-                                                            </td>
-                                                            <td>
-                                                                <select name="TaskManagementData[{{ $loop->index }}][activity_task]">
-                                                                    <option value="" {{ empty($taskGrid['activity_task']) ? 'selected' : '' }}>-- Select --</option>
-                                                                    <option value="agio" {{ ($taskGrid['activity_task'] ?? '') === 'agio' ? 'selected' : '' }}>Agio</option>
-                                                                    <option value="annuh" {{ ($taskGrid['activity_task'] ?? '') === 'annuh' ? 'selected' : '' }}>Annuh Pharma</option>
-                                                                    <option value="environmental" {{ ($taskGrid['activity_task'] ?? '') === 'environmental' ? 'selected' : '' }}>Environment</option>
-                                                                    <option value="invoice" {{ ($taskGrid['activity_task'] ?? '') === 'invoice' ? 'selected' : '' }}>Invoice</option>
-                                                                    <option value="lims" {{ ($taskGrid['activity_task'] ?? '') === 'lims' ? 'selected' : '' }}>Lims</option>
-                                                                    <option value="Medicef" {{ ($taskGrid['activity_task'] ?? '') === 'Medicef' ? 'selected' : '' }}>Medicef</option>
-                                                                </select>
-                                                            </td>
-                                                            <td>
                                                                 <textarea class="auto-resize-textarea" name="TaskManagementData[{{ $loop->index }}][activity1_task]">{{ $taskGrid['activity1_task'] ?? '' }}</textarea>
-                                                            </td>
-                                                            <td>
-                                                                <input type="datetime-local" name="TaskManagementData[{{ $loop->index }}][task_date_time]" value="{{ $taskGrid['task_date_time'] ?? '' }}" class="datetimepicker">
-                                                            </td>
-                                                            <td>
-                                                                <input type="datetime-local" name="TaskManagementData[{{ $loop->index }}][testing_completed_by_developer_on]" value="{{ $taskGrid['testing_completed_by_developer_on'] ?? '' }}" class="datetimepicker">
-                                                            </td>
-                                                            <td>
-                                                                <div class="time-required">
-                                                                    <input type="number" name="TaskManagementData[{{ $loop->index }}][days]" value="{{ $taskGrid['days'] ?? '' }}" placeholder="Enter Days" style="border: 1px solid #000; padding: 5px; border-radius: 5px;">Days
-                                                                    <input type="number" name="TaskManagementData[{{ $loop->index }}][hours]" value="{{ $taskGrid['hours'] ?? '' }}" placeholder="Enter Hours" style="border: 1px solid #000; padding: 5px; border-radius: 5px;">Hours
-                                                                    <input type="number" name="TaskManagementData[{{ $loop->index }}][minutes]" value="{{ $taskGrid['minutes'] ?? '' }}" placeholder="Enter Minutes" style="border: 1px solid #000; padding: 5px; border-radius: 5px;">Minutes
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <textarea class="auto-resize-textarea" name="TaskManagementData[{{ $loop->index }}][work_in_progress_detail]">{{ $taskGrid['work_in_progress_detail'] ?? '' }}</textarea>
-                                                            </td>
-                                                            <td>
-                                                                <textarea class="auto-resize-textarea" name="TaskManagementData[{{ $loop->index }}][Remaining_task]">{{ $taskGrid['Remaining_task'] ?? '' }}</textarea>
-                                                            </td>
-                                                            <td>
-                                                                <div class="time-required">
-                                                                    <input type="number" name="TaskManagementData[{{ $loop->index }}][days_second]" value="{{ $taskGrid['days_second'] ?? '' }}" placeholder="Enter Days" style="border: 1px solid #000; padding: 5px; border-radius: 5px;">Days
-                                                                    <input type="number" name="TaskManagementData[{{ $loop->index }}][hours_second]" value="{{ $taskGrid['hours_second'] ?? '' }}" placeholder="Enter Hours" style="border: 1px solid #000; padding: 5px; border-radius: 5px;">Hours
-                                                                    <input type="number" name="TaskManagementData[{{ $loop->index }}][minutes_second]" value="{{ $taskGrid['minutes_second'] ?? '' }}" placeholder="Enter Minutes" style="border: 1px solid #000; padding: 5px; border-radius: 5px;">Minutes
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <textarea class="auto-resize-textarea" name="TaskManagementData[{{ $loop->index }}][developer_testing_details]">{{ $taskGrid['developer_testing_details'] ?? '' }}</textarea>
-                                                            </td>
-                                                            <td>
-                                                                <textarea class="auto-resize-textarea" name="TaskManagementData[{{ $loop->index }}][remaining_work]">{{ $taskGrid['remaining_work'] ?? '' }}</textarea>
-                                                            </td>
-                                                            <td>
-                                                                <textarea class="auto-resize-textarea" name="TaskManagementData[{{ $loop->index }}][remaining_work_testing]">{{ $taskGrid['remaining_work_testing'] ?? '' }}</textarea>
                                                             </td>
                                                             <td>
                                                                 <select name="TaskManagementData[{{ $loop->index }}][validation_team_name]">
                                                                     <option value="" {{ empty($taskGrid['validation_team_name']) ? 'selected' : '' }}>-- Select --</option>
-                                                                    <option value="Configured" {{ ($taskGrid['validation_team_name'] ?? '') === 'Configured' ? 'selected' : '' }}>Work In Progress</option>
-                                                                    <option value="Not Completed" {{ ($taskGrid['validation_team_name'] ?? '') === 'Not Completed' ? 'selected' : '' }}>Not Completed</option>
-                                                                    <option value="Completed" {{ ($taskGrid['validation_team_name'] ?? '') === 'Completed' ? 'selected' : '' }}>Completed</option>
+                                                                    <option value="GLP" {{ ($taskGrid['validation_team_name'] ?? '') === 'GLP' ? 'selected' : '' }}>GLP</option>
+                                                                    <option value="GMP" {{ ($taskGrid['validation_team_name'] ?? '') === 'GMP' ? 'selected' : '' }}>GMP</option>
+                                                                    <option value="GCP" {{ ($taskGrid['validation_team_name'] ?? '') === 'GCP' ? 'selected' : '' }}>GCP</option>
+                                                                    <option value="GDP" {{ ($taskGrid['validation_team_name'] ?? '') === 'GDP' ? 'selected' : '' }}>GDP</option>
+                                                                    <option value="GEP" {{ ($taskGrid['validation_team_name'] ?? '') === 'GEP' ? 'selected' : '' }}>GEP</option>
+                                                                    <option value="Others" {{ ($taskGrid['validation_team_name'] ?? '') === 'Others' ? 'selected' : '' }}>Others</option>
                                                                 </select>
                                                             </td>
+                                                          
                                                             <td>
-                                                                <textarea class="auto-resize-textarea" name="TaskManagementData[{{ $loop->index }}][validation_team_remark]">{{ $taskGrid['validation_team_remark'] ?? '' }}</textarea>
+                                                                <input type="datetime-local" name="TaskManagementData[{{ $loop->index }}][testing_completed_by_developer_on]" value="{{ $taskGrid['testing_completed_by_developer_on'] ?? '' }}" class="datetimepicker">
                                                             </td>
                                                             <td>
-                                                                <textarea class="auto-resize-textarea" name="TaskManagementData[{{ $loop->index }}][configuration_update_validation_team]">{{ $taskGrid['configuration_update_validation_team'] ?? '' }}</textarea>
+                                                                <select name="TaskManagementData[{{ $loop->index }}][work_in_progress_detail]">
+                                                                    <option value="">-- Select Speaker --</option>
+                                                                    @foreach ($users as $user)
+                                                                        <option value="{{ $user->id }}" 
+                                                                            {{ ($taskGrid['work_in_progress_detail'] ?? '') == $user->id ? 'selected' : '' }}>
+                                                                            {{ $user->name }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
                                                             </td>
+                                                            
+                                                         
                                                             <td>
-                                                                <textarea class="auto-resize-textarea" name="TaskManagementData[{{ $loop->index }}][revalidation_remark]">{{ $taskGrid['revalidation_remark'] ?? '' }}</textarea>
+                                                                <input type="file" name="TaskManagementData[{{ $loop->index }}][developer_testing_details]">
+                                                                
+                                                                @if (!empty($taskGrid['developer_testing_details']))
+                                                                    <br>
+                                                                    <a href="{{ asset($taskGrid['developer_testing_details']) }}" target="_blank">View File</a>
+                                                                    <input type="hidden" name="TaskManagementData[{{ $loop->index }}][old_developer_testing_details]" value="{{ $taskGrid['developer_testing_details'] }}">
+                                                                @endif
                                                             </td>
-                                                            <td>
-                                                                <textarea class="auto-resize-textarea" name="TaskManagementData[{{ $loop->index }}][revalidation_remark_team]">{{ $taskGrid['revalidation_remark_team'] ?? '' }}</textarea>
-                                                            </td>
-                                                            <td>
-                                                                <select name="TaskManagementData[{{ $loop->index }}][final_status]">
-                                                                    <option value="" {{ empty($taskGrid['final_status']) ? 'selected' : '' }}>-- Select --</option>
-                                                                    <option value="Configured" {{ ($taskGrid['final_status'] ?? '') === 'Configured' ? 'selected' : '' }}>Work In Progress</option>
-                                                                    <option value="Not Completed" {{ ($taskGrid['final_status']??'')==='Not Completed'? 'selected':''}}>Not Completed</option>
-                                                                    <option value=" Completed" {{ ($taskGrid['final_status']??'') ==='Completed'? 'selected':''}}>Completed</option>
+                                                            
+                                                            
 
                                                             <td>
-                                                                <div class="new-date-data-field">
-                                                                    <div class="group-input input-date">
-                                                                        <div class="calenderauditee">
-                                                                            <input
-                                                                            class="click_date"
-                                                                            id="date_{{ $loop->index }}_activity_config_final_date" 
-                                                                            type="text" name="TaskManagementData[{{ $loop->index }}][activity_config_final_date]"
-                                                                            placeholder="DD-MMM-YYYY"
-                                                                            value="{{  !empty($taskGrid['activity_config_final_date']) ?   \Carbon\Carbon::parse($taskGrid['activity_config_final_date'])->format('d-M-Y') : '' }}"
-                                                                            />
-                                                                            <input type="date" 
-                                                                            name="TaskManagementData[{{ $loop->index }}][activity_config_final_date]"
-                                                                        
-                                                                            value="{{ !empty($taskGrid['activity_config_final_date']) ? \Carbon\Carbon::parse($taskGrid['activity_config_final_date'])->format('Y-m-d') : '' }}"
-                                                                            id="date_{{ $loop->index }}_activity_config_final_date"
-                                                                            class="hide-input show_date"
-                                                                            style="position: absolute; top: 0; left: 0; opacity: 0;" 
-                                                                            onchange="handleDateInput(this, 'date_{{ $loop->index }}_activity_config_final_date')" />
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
+                                                                <textarea class="auto-resize-textarea" name="TaskManagementData[{{ $loop->index }}][remaining_work]">{{ $taskGrid['remaining_work'] ?? '' }}</textarea>
                                                             </td>
-                                                            <td>
-                                                                <textarea class="auto-resize-textarea" name="TaskManagementData[{{ $loop->index }}][seniour_management_remark]">{{ $taskGrid['seniour_management_remark'] ?? '' }}</textarea>
-                                                            </td>
-                                                            <td>
+                                                          <td>
                                                                 <button class="removeRowBtn">Remove</button>
                                                             </td>                                                           
                                                         </tr>
@@ -996,141 +814,66 @@ width: 340px;
                                 </div>
 
                               
-<script>
-    $(document).ready(function() {
-        let investdetails = 1;
-        $('#task_manamegemnt_grid').click(function(e) {
-            function generateTableRow(serialNumber) {
-                var html =
-                    '<tr>' +
-                    '<td><input disabled type="text" style="width:15px" value="' + serialNumber + '"></td>' +
-                    '<td><select name="TaskManagementData[' + investdetails + '][repo_name]">' +
-                        '<option value="">-- Select --</option>' +
-                        '<option value="agio_pre_prod">Agio_pre_prod</option>' +
-                        '<option value="annuh-pharma">Annuh-Pharma</option>' +
-                        '<option value="environmentallab">Environmentlab</option>' +
-                        '<option value="invoice-management">invoice-management</option>' +
-                        '<option value="lims-laravel">Lims-laravel</option>' +
-                        '<option value="Medicef-main">Medicef-Main</option>' +
-                    '</select></td>' +
-                    '<td><select name="TaskManagementData[' + investdetails + '][module_process]">' +
-                        '<option value="">-- Select --</option>' +
-                        '<option value="adtiyarajput">Aditya Rajput</option>' +
-                        '<option value="adtiyapatel">Aditya Patel</option>' +
-                        '<option value="AkashMishra">Akash Mishra</option>' +
-                        '<option value="Ashishverma">Ashish Verma</option>' +
-                        '<option value="Farhankhan">Farhan Khan</option>' +
-                        '<option value="Gauravpandit">Gaurav Pandit</option>' +
-                        '<option value="gauravmeena">Gaurav Meena</option>' +
-                        '<option value="Harsh_Sardiya">Harsh_Sardiya</option>' +
-                        '<option value="Harsh_chhari">Harsh Chhari</option>' +
-                        '<option value="KuldeepPatel">Kuldeep Patel</option>' +
-                        '<option value="Lavesh Jain">Lavesh Jain</option>' +
-                        '<option value="Leeladharkurmi">Leeladhar Kurmi</option>' +
-                        '<option value="ManishMalviya">Manish Malviya</option>' +
-                        '<option value="Mayankrathore">Mayank Rathore</option>' +
-                        '<option value="monikachaurasiya">Monika Chaurasiya</option>' +
-                        '<option value="NavneetChoudhary">Navneet Choudhary</option>' +
-                        '<option value="Nickshaychouhan">Nickshay Chouhan</option>' +
-                        '<option value="nilesh_birla">Nilesh Birla</option>' +
-                        '<option value="Pankajchohan">Pankaj Chohan</option>' +
-                        '<option value="Pankajjat">Pankaj Jat</option>' +
-                        '<option value="ParmodKumar">Parmod Kumar</option>' +
-                        '<option value="Prabhjotbhatia">Prabhjot Bhatia</option>' +
-                        '<option value="Rajendrarajput">Rajendra Rajput</option>' +
-                        '<option value="Rahulawarkar">Rahul Awarkar</option>' +
-                        '<option value="Rupeshpatil">Rupesh Patil</option>' +
-                        '<option value="SauravKumar">Saurav Kumar</option>' +
-                        '<option value="Shivampatel">Shivam Patel</option>' +
-                        '<option value="Shreyadwivedi">Shreya Dwivedi</option>' +
-                        '<option value="Shrutidwivedi">Shruti Dwivedi</option>' +
-                        '<option value="Shubhammeena">Shubham Meena</option>' +
-                        '<option value="Snehabaldeva">Sneha Baldeva</option>' +
-                        '<option value="SunilPatel">Sunil Patel</option>' +
-                        '<option value="Swapnilpatil">Swapnil Patil</option>' +
-                        '<option value="Tushalpatel">Tushal Patel</option>' +
-                        '<option value="VaibhavAwarkar">Vaibhav Awarkar</option>' +
-                    '</select></td>' +
-                    '<td><select name="TaskManagementData[' + investdetails + '][activity_task]">' +
-                        '<option value="">-- Select --</option>' +
-                        '<option value="agio">Agio</option>' +
-                        '<option value="annuh">Annuh Pharma</option>' +
-                        '<option value="environmental">Environmental</option>' +
-                        '<option value="invoice">Invoice</option>' +
-                        '<option value="lims">Lims</option>' +
-                        '<option value="Medicef">Medicef</option>' +
-                    '</select></td>' +
-                    '<td><textarea class="auto-resize-textarea" name="TaskManagementData[' + investdetails + '][activity1_task]"></textarea></td>' +
-                    '<td><input type="datetime-local" name="TaskManagementData[' + investdetails + '][task_date_time]" class="datetimepicker"></td>' +
-                    '<td><input type="datetime-local" name="TaskManagementData[' + investdetails + '][testing_completed_by_developer_on]" class="datetimepicker"></td>' +
-                    '<td>' +
-                        '<div class="time-required">' +
-                            '<input type="number" id="days_' + investdetails + '" placeholder="Enter days" oninput="updateTime(this)" name="TaskManagementData[' + investdetails + '][days]" value="0" style="border: 1px solid #000; padding: 5px; border-radius: 5px;"> Days' +
-                            '<input type="number" id="hours_' + investdetails + '" placeholder="Enter hours" oninput="updateTime(this)" name="TaskManagementData[' + investdetails + '][hours]" value="0" style="border: 1px solid #000; padding: 5px; border-radius: 5px;"> Hours' +
-                            '<input type="number" id="minutes_' + investdetails + '" placeholder="Enter minutes" oninput="updateTime(this)" name="TaskManagementData[' + investdetails + '][minutes]" value="0" style="border: 1px solid #000; padding: 5px; border-radius: 5px;"> Minutes' +
-                        '</div>' +
-                    '</td>' +
-                    '<td><textarea class="auto-resize-textarea" name="TaskManagementData[' + investdetails + '][work_in_progress_detail]"></textarea></td>' +
-                    '<td><textarea class="auto-resize-textarea" name="TaskManagementData[' + investdetails + '][Remaining_task]"></textarea></td>' +
-                    '<td>' +
-                        '<div class="time-required">' +
-                            '<input type="number" id="days_' + investdetails + '_second" placeholder="Enter days" oninput="updateTime(this)" name="TaskManagementData[' + investdetails + '][days_second]" value="0" style="border: 1px solid #000; padding: 5px; border-radius: 5px;"> Days' +
-                            '<input type="number" id="hours_' + investdetails + '_second" placeholder="Enter hours" oninput="updateTime(this)" name="TaskManagementData[' + investdetails + '][hours_second]" value="0" style="border: 1px solid #000; padding: 5px; border-radius: 5px;"> Hours' +
-                            '<input type="number" id="minutes_' + investdetails + '_second" placeholder="Enter minutes" oninput="updateTime(this)" name="TaskManagementData[' + investdetails + '][minutes_second]" value="0" style="border: 1px solid #000; padding: 5px; border-radius: 5px;"> Minutes' +
-                        '</div>' +
-                    '</td>' +
-                    '<td><textarea class="auto-resize-textarea" name="TaskManagementData[' + investdetails + '][developer_testing_details]"></textarea></td>' +
-                    '<td><textarea class="auto-resize-textarea" name="TaskManagementData[' + investdetails + '][remaining_work]"></textarea></td>' +
-                    '<td><textarea class="auto-resize-textarea" name="TaskManagementData[' + investdetails + '][remaining_work_testing]"></textarea></td>' +
 
-                    '<td><select name="TaskManagementData[' + investdetails + '][validation_team_name]">' +
-                        '<option value="">-- Select --</option>' +
-                        '<option value="Configured">Work In Progress</option>' +
-                        '<option value="Not Completed">Not Completed</option>' +
-                        '<option value="Completed">Completed</option>' +
-                    '</select></td>' +
-                    '<td><textarea class="auto-resize-textarea" name="TaskManagementData[' + investdetails + '][validation_team_remark]"></textarea></td>' +
-                    '<td><textarea class="auto-resize-textarea" name="TaskManagementData[' + investdetails + '][configuration_update_validation_team]"></textarea></td>' +
-                    '<td><textarea class="auto-resize-textarea" name="TaskManagementData[' + investdetails + '][revalidation_remark]"></textarea></td>' +
-                    '<td><textarea class="auto-resize-textarea" name="TaskManagementData[' + investdetails + '][revalidation_remark_team]"></textarea></td>' +
-                    '<td><textarea class="auto-resize-textarea" name="TaskManagementData['+ investdetails +'][task_date_time]"></textarea></td>'+ 
-                    '<td><select name="TaskManagementData[' + investdetails + '][final_status]">' +
-                        '<option value="">-- Select --</option>' +
-                        '<option value="Configured">Work In Progress</option>' +
-                        '<option value="Not Completed">Not Completed</option>' +
-                        '<option value="Completed">Completed</option>' +
-                    '</select></td>' +
-                    '<td><div class="new-date-data-field"><div class="group-input input-date"> <div class="calenderauditee"><input id="date_' + investdetails + '_activity_config_final_date" type="text" name="TaskManagementData[' + investdetails + '][activity_config_final_date]" placeholder="DD-MMM-YYYY" /> <input type="date" name="TaskManagementData[' + investdetails + '][activity_config_final_date]" min="{{ \Carbon\Carbon::now()->format("Y-m-d") }}" value="" id="date_' + investdetails + '_activity_config_final_date" class="hide-input show_date" style="position: absolute; top: 0; left: 0; opacity: 0;" oninput="handleDateInput(this, \'date_' + investdetails + '_activity_config_final_date\')" /> </div> </div></div></td>' +
-                    '<td><textarea class="auto-resize-textarea" name="TaskManagementData[' + investdetails + '][seniour_management_remark]"></textarea></td>' +
-                    '<td><button class="removeRowBtn">Remove</button></td>' +
-                    '</tr>';
-                investdetails++; // Increment the row number here
-                return html;
-            }
-
-            var tableBody = $('#task_Management_Table tbody');
-            var rowCount = tableBody.children('tr').length;
-            var newRow = generateTableRow(rowCount + 1);
-            tableBody.append(newRow);
-
-            // Initialize auto-resize for newly added textareas
-            const newTextareas = newRow.querySelectorAll('.auto-resize-textarea');
-            newTextareas.forEach(textarea => {
-                textarea.addEventListener('input', function() {
-                    this.style.height = 'auto'; // Reset the height
-                    this.style.height = (this.scrollHeight) + 'px'; // Set the height to the scroll height
-                });
-
-                // Trigger the input event to adjust the height initially (if there's content)
-                textarea.dispatchEvent(new Event('input'));
-            });
-        });
-
-        $(document).on('click', '.removeRowBtn', function() {
-            $(this).closest('tr').remove();
-        });
-    });
-</script>
+                                <script>
+                                    $(document).ready(function () {
+                                        let investdetails = 1;
+                                
+                                        // Manually embed user data inside script
+                                        let usersList = [
+                                            @foreach ($users as $user)
+                                                { id: "{{ $user->id }}", name: "{{ $user->name }}" },
+                                            @endforeach
+                                        ];
+                                
+                                        function generateTableRow(serialNumber) {
+                                            let userOptions = '<option value="">-- Select Speaker --</option>';
+                                            usersList.forEach(user => {
+                                                userOptions += `<option value="${user.id}">${user.name}</option>`;
+                                            });
+                                
+                                            var html =
+                                                '<tr>' +
+                                                '<td><input disabled type="text" style="width:15px" value="' + serialNumber + '"></td>' +
+                                                '<td><textarea class="auto-resize-textarea" name="TaskManagementData[' + investdetails + '][activity1_task]"></textarea></td>' +
+                                                '<td><select name="TaskManagementData[' + investdetails + '][validation_team_name]">' +
+                                                '<option value="">-- Select --</option>' +
+                                                '<option value="GLP">GLP</option>' +
+                                                '<option value="GMP">GMP</option>' +
+                                                '<option value="GCP">GCP</option>' +
+                                                '<option value="GEP">GEP</option>' +
+                                                '<option value="GDP">GDP</option>' +
+                                                '<option value="Others">Others</option>' +
+                                                '</select></td>' +
+                                
+                                                '<td><input type="datetime-local" name="TaskManagementData[' + investdetails + '][testing_completed_by_developer_on]" class="datetimepicker"></td>' +
+                                
+                                                // Speaker dropdown instead of Work in Progress Detail
+                                                '<td><select name="TaskManagementData[' + investdetails + '][work_in_progress_detail]">' +
+                                                userOptions +
+                                                '</select></td>' +
+                                
+                                                '<td><input type="file" name="TaskManagementData[' + investdetails + '][developer_testing_details]" ></td>' +
+                                                '<td><textarea class="auto-resize-textarea" name="TaskManagementData[' + investdetails + '][remaining_work]"></textarea></td>' +
+                                
+                                                '<td><button class="removeRowBtn">Remove</button></td>' +
+                                                '</tr>';
+                                            investdetails++; // Increment row count
+                                            return html;
+                                        }
+                                
+                                        $('#task_manamegemnt_grid').click(function (e) {
+                                            var tableBody = $('#task_Management_Table tbody');
+                                            var rowCount = tableBody.children('tr').length;
+                                            var newRow = generateTableRow(rowCount + 1);
+                                            tableBody.append(newRow);
+                                        });
+                                
+                                        $(document).on('click', '.removeRowBtn', function () {
+                                            $(this).closest('tr').remove();
+                                        });
+                                    });
+                                </script>
 
                                 <script>
                                     function updateTime(element) {
@@ -1208,38 +951,8 @@ width: 340px;
                                 </div>
 
                             </div>
-
-                            {{-- <div class="group-input">
-                                <label for="qa-eval-comments">Final Comments</label>
-                                <div >
-                                    <textarea name="final_comments">{{$data->final_comments}}</textarea>
-                                    @component('frontend.forms.language-model')
-                                    @endcomponent
-                                </div> --}}
-                            {{-- <div class="col-lg-12">
-                                <div class="group-input">
-                                    <label for="others">Supporting document</label>
-                                    <div><small class="text-primary">Please Attach all relevant or supporting
-                                            documents</small></div>
-                                    <div class="file-attachment-field">
-                                        <div class="file-attachment-list" id="in_attachment"></div>
-                                        <div class="add-btn">
-                                            <div>Add</div>
-                                            <input type="file" id="myfile" name="in_attachment[]"
-                                                oninput="addMultipleFiles(this, 'in_attachment')" multiple>
-
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div> --}}
-
-                            <div class="col-lg-12">
-                                <div class="group-input">
-                                    <label for="others">Supporting documents</label>
-                                    <div><small class="text-primary">Please Attach all relevant or supporting documents</small></div>
-                                    {{-- <input type="file" id="myfile" name="Initial_Attachment" {{ $data->stage == 0 || $data->stage == 8 ? "disabled" : "" }}
-                                        value="{{ $data->Initial_Attachment }}"> --}}
+                            <div class="group-input">
+                            <label for="file-attachment-field">Supporting Documents </label>
                                         <div class="file-attachment-field">
                                             <div class="file-attachment-list" id="in_attachment">
                                                 @if ($attachment->in_attachment)
@@ -1277,232 +990,6 @@ width: 340px;
                     </div>
                                 </div>
 
-                    {{-- <div id="CCForm2" class="inner-block cctabcontent">
-                        <div class="inner-block-content">
-                            <div class="row">
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="acknowledge_by">Acknowledge By</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="acknowledge_on">Acknowledge On</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="ack_comments">Acknowledge Comment</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="HOD_Review_Complete_By">HOD Review Complete By</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="HOD_Review_Complete_On">HOD Review Complete On</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="Comments">HOD Review Complete Comment</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="QQQA_Review_Complete_By">CFT Review Not Required By</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="QQQA_Review_Complete_On">CFT Review Not Required On</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="Comments">CFT Review Not Required Comment</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="QQQA_Review_Complete_By">QA/CQA Review Complete By</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="QQQA_Review_Complete_On">QA/CQA Review Complete On</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="Comments">QA/CQA Review Complete Comment</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-
-
-
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="QQQA_Review_Complete_By">CFT Review Complete By</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="QQQA_Review_Complete_On">CFT Review Complete On</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="Comments">CFT Review Complete Comment</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="QQQA_Review_Complete_By">Approved By</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="QQQA_Review_Complete_On">Approved On</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="Comments">Approved Comment</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="submitted_by">Submit By</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="submitted_on">Submit On</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="Comments">Submit Comment</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="HOD_Final_Review_Complete_By">HOD Final Review Complete By</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="HOD_Final_Review_Complete_On">HOD Final Review Complete On</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="Comments">HOD Final Review Complete Comment</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="Final_QA_Review_Complete_By">Final QA/CQA Review Complete By</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="Final_QA_Review_Complete_On">Final QA/CQA Review Complete On</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="Comments">Final QA/CQA Review Complete Comment</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="evaluation_complete_by">QAH/CQAH Closure By</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="evaluation_complete_on">QAH/CQAH Closure On</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="evalution_Closure_comment">QAH/CQAH Closure Comment</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="Cancelled By">Cancel By</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="Cancelled On">Cancel On</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="Comments">Cancel Comment</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="button-block">
-                                {{-- <button type="submit" class="saveButton">Save</button> --}}
-                                {{-- <button type="button" class="backButton" onclick="previousStep()">Back</button> --}}
-                                {{-- <button type="submit">Submit</button> --}}
-                                {{-- <button type="button"> <a href="{{ url('rcms/qms-dashboard') }}" class="text-white">
-                                        Exit </a> </button>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>  --}}
             </form>
 
         </div>

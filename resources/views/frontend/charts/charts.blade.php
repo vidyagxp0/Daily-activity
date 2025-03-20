@@ -892,6 +892,42 @@
     </div>
   </div>
 </div>
+<h2>Task Management Chart</h2>
+<canvas id="taskChart"></canvas>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+      fetch('/api/taskmanagementchart')
+      .then(response => response.json())
+            .then(data => {
+                if (data.data === "ok") {
+                    const ctx = document.getElementById('taskChart').getContext('2d');
+                    new Chart(ctx, {
+                        type: 'bar',  // Graph type (bar, pie, line)
+                        data: {
+                            labels: data.body.labels, // X-axis labels
+                            datasets: [{
+                                label: 'Work In Progress Detail Count',
+                                data: data.body.series, // Y-axis data
+                                backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                                borderColor: 'rgba(75, 192, 192, 1)',
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            scales: {
+                                y: { beginAtZero: true }
+                            }
+                        }
+                    });
+                } else {
+                    console.error("Error: ", data.message);
+                }
+            })
+            .catch(error => console.error("Fetch Error: ", error));
+    });
+</script>
 
 {{--Global Change Control graph starts--}}
 <div class="sub-head">

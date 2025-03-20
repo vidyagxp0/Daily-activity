@@ -74,13 +74,25 @@ class TaskManagementController extends Controller
         $taskmanagement->save();
 
         $TaskManagementUpdate = $taskmanagement->id;
-        if (! empty($request->TaskManagementData)) {
-            $summaryShow = TaskManagementGrid::where(['task_management_id' => $TaskManagementUpdate, 'identifier' => 'Task Management Data'])->firstOrNew();
-            $summaryShow->task_management_id = $TaskManagementUpdate;
-            $summaryShow->identifier = 'Task Management Data';
-            $summaryShow->data = $request->TaskManagementData;
-            $summaryShow->save();
+
+        $externalTrainingData = $request->input('TaskManagementData', []);
+
+        foreach ($externalTrainingData as $index => $training) {
+            if ($request->hasFile("TaskManagementData.$index.developer_testing_details")) {
+                $file = $request->file("TaskManagementData.$index.developer_testing_details");
+                $name = $TaskManagementUpdate . '_developer_testing_details_' . $index . '.' . $file->getClientOriginalExtension();
+                $file->move(public_path('upload/developer_testing_details'), $name);
+                $externalTrainingData[$index]['developer_testing_details'] = 'upload/developer_testing_details/' . $name;
+            }
         }
+        if (! empty($request->TaskManagementData)) {
+            $summaryShow = TaskManagementGrid::where(['task_management_id' => $TaskManagementUpdate, 'identifier' => 'TaskManagementData'])->firstOrNew();
+            $summaryShow->task_management_id = $TaskManagementUpdate;
+            $summaryShow->identifier = 'TaskManagementData';
+            $summaryShow->data = $externalTrainingData;
+            $summaryShow->save();
+
+        }    
 
         if (! empty($taskmanagement->record)) {
             $history = new TaskManagementAuditTrail;
@@ -182,13 +194,25 @@ class TaskManagementController extends Controller
         $taskmanagement->update();
 
         $TaskManagementUpdate = $taskmanagement->id;
-        if (! empty($request->TaskManagementData)) {
-            $summaryShow = TaskManagementGrid::where(['task_management_id' => $TaskManagementUpdate, 'identifier' => 'Task Management Data'])->firstOrNew();
-            $summaryShow->task_management_id = $TaskManagementUpdate;
-            $summaryShow->identifier = 'Task Management Data';
-            $summaryShow->data = $request->TaskManagementData;
-            $summaryShow->save();
+        $externalTrainingData = $request->input('TaskManagementData', []);
+
+        foreach ($externalTrainingData as $index => $training) {
+            if ($request->hasFile("TaskManagementData.$index.developer_testing_details")) {
+                $file = $request->file("TaskManagementData.$index.developer_testing_details");
+                $name = $TaskManagementUpdate . '_developer_testing_details_' . $index . '.' . $file->getClientOriginalExtension();
+                $file->move(public_path('upload/developer_testing_details'), $name);
+                $externalTrainingData[$index]['developer_testing_details'] = 'upload/developer_testing_details/' . $name;
+            }
         }
+        if (! empty($request->TaskManagementData)) {
+            $summaryShow = TaskManagementGrid::where(['task_management_id' => $TaskManagementUpdate, 'identifier' => 'TaskManagementData'])->firstOrNew();
+            $summaryShow->task_management_id = $TaskManagementUpdate;
+            $summaryShow->identifier = 'TaskManagementData';
+            $summaryShow->data = $externalTrainingData;
+            $summaryShow->save();
+
+        }    
+       
 
         toastr()->success('Record is Update Successfully');
 
@@ -205,7 +229,7 @@ class TaskManagementController extends Controller
         
         $TaskGrid = TaskManagementGrid::find($id);
 
-        $TaskGridData = TaskManagementGrid::where(['task_management_id' => $id, 'identifier' => 'Task Management Data'])->first();
+        $TaskGridData = TaskManagementGrid::where(['task_management_id' => $id, 'identifier' => 'TaskManagementData'])->first();
 
         $record_number = ((RecordNumber::first()->value('counter')) + 1);
         $record_number = str_pad($record_number, 6, '0', STR_PAD_LEFT);

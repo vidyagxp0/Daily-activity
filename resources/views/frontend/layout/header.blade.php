@@ -524,22 +524,22 @@
                 <div>
                     <a href="#" class="{{ Request::is('/') ? 'active' : '' }}"><i class="fa-solid fa-braille"></i></a>
                 </div>
-                <div>
+                {{-- <div>
                     <a href="/dashboard" class="{{ Request::is('dashboard') ? 'active' : '' }}">Dashboard</a>
                 </div>
                 <div>
                     <a href="/TMS" class="{{ Request::is('TMS') ? 'active' : '' }}">TMS Dashboard</a>
-                </div>
+                </div> --}}
                 <div>
                     <a href="/rcms/qms-dashboard" class="{{ Request::is('rcms/qms-dashboard') ? 'active' : '' }}">QMS-Dashboard</a>
                 </div>
-                <div>
+                {{-- <div>
                     <a href="/rcms/lims-dashboard" class="{{ Request::is('rcms/lims-dashboard') ? 'active' : '' }}">LIMS-Dashboard</a>
-                </div>
+                </div> --}}
                 <div>
-                    <a href="/Limsanalyticsdashboard" class="{{ Request::is('Limsanalyticsdashboard') ? 'active' : '' }}">LIMS Analytics</a>
+                    <a href="/Limsanalyticsdashboard" class="{{ Request::is('Limsanalyticsdashboard') ? 'active' : '' }}">Dashboard</a>
                 </div>
-                <div>
+                {{-- <div>
                     <a href="/rcms/qms-record-analytics" class="{{ Request::is('rcms/qms-record-analytics') ? 'active' : '' }}">QMS-Record Analytics</a>
                 </div>
                 <div>
@@ -574,8 +574,8 @@
                     </div>
                     <div>
                         <a class="btn-transparent bg-transparent text-black vidhyagxpacademy" data-bs-toggle="modal" data-bs-target="#log-sop-modal-New" title="Logs">VidyaGxP Academy</a>
-                    </div>
-                @endif
+                    </div> --}}
+                {{-- @endif --}}
             </div>
         </div>
     </div>

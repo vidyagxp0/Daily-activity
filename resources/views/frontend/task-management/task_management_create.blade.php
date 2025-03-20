@@ -26,25 +26,7 @@
         display: none;
     }
     </style>
-    <style>
-        .table-responsive::-webkit-scrollbar {
-            height: 20px;
-        }
-        #change-control-fields .inner-block .group-input table thead th {
-            background: #6495f8;
-            /* background: #00a5c1; */
-            color: white;
-        }
-        button {
-            border: 0;
-            background: #6495f8;
-            /* background: #00a5c1; */
-            color: white;
-            border: 2px solid black;
-            transition: all 0.3s linear;
-            border-radius: 5px;
-        }
-    </style>
+    
 
     <style>
         .time-required {
@@ -64,7 +46,7 @@
     <div class="form-field-head">
         <div class="division-bar">
             <strong>Site Division/Project</strong> :
-            {{ "India" }} / Task Management
+            {{ "India" }} / Presentation
             {{-- KSA / Root Cause Analysis   --}}
             {{-- EHS-North America --}}
         </div>
@@ -167,7 +149,7 @@
                                 <div class="col-12 mb-4">
                                     <div class="group-input">
                                         <label for="agenda">
-                                            Task Management
+                                          Presentation
                                             <button type="button" name="agenda"
                                                 id="task_manamegemnt_grid">+</button>
                                         </label>
@@ -176,28 +158,12 @@
         <thead>
             <tr style="text-align: center; vertical-align: middle; padding: 20px;">
                 <th>Row #</th>
-                <th>Repo Name / Instance Name</th>
-                <th>Developer Name</th>
-                <th>Customer Name</th>
-                <th>Activities</th>
-                <th>Start Date</th>
-                <th>TCD task Completion Date</th>
-                <th>Time Required</th>
-                <th>Work in Progress Details</th>
-                <th>Remaining Activity / Task</th>
-                <th>Time Required for Remaining Activity / Task</th>
-                <th>Testing Completed by Developer</th>
-                <th>Developer Testing Details</th>
-                <th>Remaining Work</th>
-                <th>Remaining Work Testing</th>
-                <th>Validation Team Name</th>
-                <th>Validation Team Remark</th>
-                <th>Configuration update as per Validation Team</th>
-                <th>Revalidation Team Name</th>
-                <th>Revalidation Remark</th>
-                <th>Final Status</th>
-                <th>Completion Date</th>
-                <th>Reviewer Remarks</th>
+                <th>Topic</th>
+                <th>Category</th>
+                <th>Date</th>
+                <th>Speaker</th>
+                <th>Attachments</th>
+                <th> Remarks </th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -206,150 +172,48 @@
                 <td>
                     <input disabled type="text" name="TaskManagementData[0][serial]" value="1">
                 </td>
-                <td>
-                    <select id="" placeholder="Select..." name="TaskManagementData[0][repo_name]">
-                        <option value="">-- Select --</option>
-                        <option value="agio_pre_prod">Agio_pre_prod</option>
-                        <option value="annuh-pharma">Annuh-Pharma</option>
-                        <option value="environmentallab">Environmentlab</option>
-                        <option value="invoice-management">Invoice-Management</option>
-                        <option value="lims-laravel">Lims-laravel</option>
-                        <option value="Medicef-main">Medicef-Main</option>
-                    </select>
-                </td>
-                <td>
-                    <select id="" placeholder="Select..." name="TaskManagementData[0][module_process]">
-                        <option value="">-- Select --</option>
-                        <option value="adtiyarajput">Aditya Rajput</option>
-                        <option value="adtiyapatel">Aditya Patel</option>
-                        <option value="AkashMishra">Akash Mishra</option>
-                        <option value="Ashishverma">Ashish Verma</option>
-                        <option value="Farhankhan">Farhan Khan</option>
-                        <option value="Gauravpandit">Gaurav Pandit</option>
-                        <option value="gauravmeena">Gaurav Meena</option>
-                        <option value="Harsh_Sardiya">Harsh Sardiya</option>
-                        <option value="Harsh_chhari">Harsh Chhari</option>
-                        <option value="KuldeepPatel">Kuldeep Patel</option>
-                        <option value="Lavesh Jain">Lavesh Jain</option>
-                        <option value="Leeladharkurmi">Leeladhar Kurmi</option>
-                        <option value="ManishMalviya">Manish Malviya</option>
-                        <option value="Mayankrathore">Mayank Rathore</option>
-                        <option value="monikachaurasiya">Monika Chaurasiya</option>
-                        <option value="NavneetChoudhary">Navneet Choudhary</option>
-                        <option value="Nickshaychouhan">Nickshay Chouhan</option>
-                        <option value="nilesh_birla">Nilesh Birla</option>
-                        <option value="Pankajchohan">Pankaj Chohan</option>
-                        <option value="Pankajjat">Pankaj Jat</option>
-                        <option value="ParmodKumar">Parmod Kumar</option>
-                        <option value="Prabhjotbhatia">Prabhjot Bhatia</option>
-                        <option value="Rajendrarajput">Rajendra Rajput</option>
-                        <option value="Rahulawarkar">Rahul Awarkar</option>
-                        <option value="Rupeshpatil">Rupesh Patil</option>
-                        <option value="SauravKumar">Saurav Kumar</option>
-                        <option value="Shivampatel">Shivam Patel</option>
-                        <option value="Shreyadwivedi">Shreya Dwivedi</option>
-                        <option value="Shrutidwivedi">Shruti Dwivedi</option>
-                        <option value="Shubhammeena">Shubham Meena</option>
-                        <option value="Snehabaldeva">Sneha Baldeva</option>
-                        <option value="SunilPatel">Sunil Patel</option>
-                        <option value="Swapnilpatil">Swapnil Patil</option>
-                        <option value="Tushalpatel">Tushal Patel</option>
-                        <option value="VaibhavAwarkar">Vaibhav Awarkar</option>
-                    </select>
-                </td>
-                <td>
-                    <select id="" placeholder="Select..." name="TaskManagementData[0][activity_task]">
-                        <option value="">-- Select --</option>
-                        <option value="agio">Agio</option>
-                        <option value="annuh">Annuh Pharma</option>
-                        <option value="environmental">Environmental</option>
-                        <option value="invoice">Invoice</option>
-                        <option value="lims">Lims</option>
-                        <option value="Medicef">Medicef</option>
-                    </select>
-                </td>
+               
                 <td>
                     <textarea class="auto-resize-textarea" name="TaskManagementData[0][activity1_task]"></textarea>
                 </td>
-                <td>
-                    <input type="datetime-local" name="TaskManagementData[0][task_date_time]" class="datetimepicker">
-                </td>
-                <td>
-                    <input type="datetime-local" name="TaskManagementData[0][testing_completed_by_developer_on]" class="datetimepicker">
-                </td>
-                <td>
-                    <div class="time-required">
-                        <input type="number" id="days" placeholder="Enter days" name="TaskManagementData[0][days]" value="0" oninput="updateTime()" style="border: 1px solid #000; padding: 5px; border-radius: 5px;"> Days
-                        <input type="number" id="hours" placeholder="Enter hours" name="TaskManagementData[0][hours]" value="0" oninput="updateTime()" style="border: 1px solid #000; padding: 5px; border-radius: 5px;"> Hours
-                        <input type="number" id="minutes" placeholder="Enter minutes" name="TaskManagementData[0][minutes]" value="0" oninput="updateTime()" style="border: 1px solid #000; padding: 5px; border-radius: 5px;"> Minutes
-                    </div>
-                </td>
-                <td>
-                    <textarea class="auto-resize-textarea" name="TaskManagementData[0][work_in_progress_detail]"></textarea>
-                </td>
-                <td>
-                    <textarea class="auto-resize-textarea" name="TaskManagementData[0][Remaining_task]"></textarea>
-                </td>
-                <td>
-                    <div class="time-required">
-                        <input type="number" id="days_second" placeholder="Enter days" name="TaskManagementData[0][days_second]" value="0" oninput="updateTime()" style="border: 1px solid #000; padding: 5px; border-radius: 5px;"> Days
-                        <input type="number" id="hours_second" placeholder="Enter hours" name="TaskManagementData[0][hours_second]" value="0" oninput="updateTime()" style="border: 1px solid #000; padding: 5px; border-radius: 5px;"> Hours
-                        <input type="number" id="minutes_second" placeholder="Enter minutes" name="TaskManagementData[0][minutes_second]" value="0" oninput="updateTime()" style="border: 1px solid #000; padding: 5px; border-radius: 5px;"> Minutes
-                    </div>
-                </td>
-                <td>
-                    <textarea class="auto-resize-textarea" name="TaskManagementData[0][developer_testing_details]"></textarea>
-                </td>
-                <td>
-                    <textarea class="auto-resize-textarea" name="TaskManagementData[0][remaining_work]"></textarea>
-                </td>
-                <td>
-                    <textarea class="auto-resize-textarea" name="TaskManagementData[0][remaining_work_testing]"></textarea>
-                </td>
+
                 <td>
                     <select id="" placeholder="Select..." name="TaskManagementData[0][validation_team_name]">
                         <option value="">-- Select --</option>
-                        <option value="Configured">Work In Progress</option>
-                        <option value="Not Completed">Not Completed</option>
-                        <option value="Completed">Completed</option>
+                        <option value="GLP">GLP</option>
+                        <option value="GMP">GMP</option>
+                        <option value="GCP">GCP</option>
+                        <option value="GDP">GDP</option>
+                        <option value="GEP">GEP</option>
+                        <option value="Others">Others</option>
                     </select>
                 </td>
+
                 <td>
-                    <textarea class="auto-resize-textarea" name="TaskManagementData[0][validation_team_remark]"></textarea>
+                    <input type="datetime-local" name="TaskManagementData[0][testing_completed_by_developer_on]" class="datetimepicker">
                 </td>
+               
                 <td>
-                    <textarea class="auto-resize-textarea" name="TaskManagementData[0][configuration_update_validation_team]"></textarea>
-                </td>
-                <td>
-                    <textarea class="auto-resize-textarea" name="TaskManagementData[0][revalidation_remark]"></textarea>
-                </td>
-                <td>
-                    <textarea class="auto-resize-textarea" name="TaskManagementData[0][revalidation_remark_team]"></textarea>
-                </td>
-                <td>
-                    <textarea class="auto-resize-textarea" name="TaskManagementData[0][task_date_time]"></textarea>
-                </td>
-                <td>
-                    <select name="TaskManagementData[0][final_status]" readonly>
-                        <option value="">-- Select --</option>
-                        <option value="Configured">Work In Progress</option>
-                        <option value="Not Completed">Not Completed</option>
-                        <option value="Completed">Completed</option>
+                    <select name="TaskManagementData[0][work_in_progress_detail]" class="form-control">
+                        <option value="">-- Select Speaker --</option>
+                        @foreach ($users as $user)
+                            <option value="{{ $user->id }}" @if(old('TaskManagementData.0.work_in_progress_detail') == $user->id) selected @endif>
+                                {{ $user->name }}
+                            </option>
+                        @endforeach
                     </select>
                 </td>
+                
+                 
                 <td>
-                    <div class="new-date-data-field">
-                        <div class="group-input input-date">
-                            <div class="calenderauditee">
-                                <input id="date_0_activity_config_final_date" type="text" name="TaskManagementData[0][activity_config_final_date]" placeholder="DD-MMM-YYYY" />
-                                <input type="date" name="TaskManagementData[0][activity_config_final_date]" min="{{ \Carbon\Carbon::now()->format('Y-m-d') }}" value="" id="date_0_activity_config_final_date" class="hide-input show_date" style="position: absolute; top: 0; left: 0; opacity: 0;" oninput="handleDateInput(this, 'date_0_activity_config_final_date')" />
-                            </div>
-                        </div>
-                    </div>
+                    <input type="file" name="TaskManagementData[0][developer_testing_details]" >
                 </td>
+
                 <td>
-                    <textarea class="auto-resize-textarea" name="TaskManagementData[0][seniour_management_remark]"></textarea>
+                    <textarea class="auto-resize-textarea" name="TaskManagementData[0][remaining_work]"></textarea>
                 </td>
+
+               
                 <td><button type="button" class="removeRowBtn">Remove</button></td>
             </tr>
         </tbody>
@@ -370,140 +234,65 @@
                                 </script>
 
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         let investdetails = 1;
-        $('#task_manamegemnt_grid').click(function(e) {
-            function generateTableRow(serialNumber) {
-                var html =
-                    '<tr>' +
-                    '<td><input disabled type="text" style="width:15px" value="' + serialNumber + '"></td>' +
-                    '<td><select name="TaskManagementData[' + investdetails + '][repo_name]">' +
-                        '<option value="">-- Select --</option>' +
-                        '<option value="agio_pre_prod">Agio_pre_prod</option>' +
-                        '<option value="annuh-pharma">Annuh-Pharma</option>' +
-                        '<option value="environmentallab">Environmentlab</option>' +
-                        '<option value="invoice-management">invoice-management</option>' +
-                        '<option value="lims-laravel">Lims-laravel</option>' +
-                        '<option value="Medicef-main">Medicef-Main</option>' +
-                    '</select></td>' +
-                    '<td><select name="TaskManagementData[' + investdetails + '][module_process]">' +
-                        '<option value="">-- Select --</option>' +
-                        '<option value="adtiyarajput">Aditya Rajput</option>' +
-                        '<option value="adtiyapatel">Aditya Patel</option>' +
-                        '<option value="AkashMishra">Akash Mishra</option>' +
-                        '<option value="Ashishverma">Ashish Verma</option>' +
-                        '<option value="Farhankhan">Farhan Khan</option>' +
-                        '<option value="Gauravpandit">Gaurav Pandit</option>' +
-                        '<option value="gauravmeena">Gaurav Meena</option>' +
-                        '<option value="Harsh_Sardiya">Harsh_Sardiya</option>' +
-                        '<option value="Harsh_chhari">Harsh Chhari</option>' +
-                        '<option value="KuldeepPatel">Kuldeep Patel</option>' +
-                        '<option value="Lavesh Jain">Lavesh Jain</option>' +
-                        '<option value="Leeladharkurmi">Leeladhar Kurmi</option>' +
-                        '<option value="ManishMalviya">Manish Malviya</option>' +
-                        '<option value="Mayankrathore">Mayank Rathore</option>' +
-                        '<option value="monikachaurasiya">Monika Chaurasiya</option>' +
-                        '<option value="NavneetChoudhary">Navneet Choudhary</option>' +
-                        '<option value="Nickshaychouhan">Nickshay Chouhan</option>' +
-                        '<option value="nilesh_birla">Nilesh Birla</option>' +
-                        '<option value="Pankajchohan">Pankaj Chohan</option>' +
-                        '<option value="Pankajjat">Pankaj Jat</option>' +
-                        '<option value="ParmodKumar">Parmod Kumar</option>' +
-                        '<option value="Prabhjotbhatia">Prabhjot Bhatia</option>' +
-                        '<option value="Rajendrarajput">Rajendra Rajput</option>' +
-                        '<option value="Rahulawarkar">Rahul Awarkar</option>' +
-                        '<option value="Rupeshpatil">Rupesh Patil</option>' +
-                        '<option value="SauravKumar">Saurav Kumar</option>' +
-                        '<option value="Shivampatel">Shivam Patel</option>' +
-                        '<option value="Shreyadwivedi">Shreya Dwivedi</option>' +
-                        '<option value="Shrutidwivedi">Shruti Dwivedi</option>' +
-                        '<option value="Shubhammeena">Shubham Meena</option>' +
-                        '<option value="Snehabaldeva">Sneha Baldeva</option>' +
-                        '<option value="SunilPatel">Sunil Patel</option>' +
-                        '<option value="Swapnilpatil">Swapnil Patil</option>' +
-                        '<option value="Tushalpatel">Tushal Patel</option>' +
-                        '<option value="VaibhavAwarkar">Vaibhav Awarkar</option>' +
-                    '</select></td>' +
-                    '<td><select name="TaskManagementData[' + investdetails + '][activity_task]">' +
-                        '<option value="">-- Select --</option>' +
-                        '<option value="agio">Agio</option>' +
-                        '<option value="annuh">Annuh Pharma</option>' +
-                        '<option value="environmental">Environmental</option>' +
-                        '<option value="invoice">Invoice</option>' +
-                        '<option value="lims">Lims</option>' +
-                        '<option value="Medicef">Medicef</option>' +
-                    '</select></td>' +
-                    '<td><textarea class="auto-resize-textarea" name="TaskManagementData[' + investdetails + '][activity1_task]"></textarea></td>' +
-                    '<td><input type="datetime-local" name="TaskManagementData[' + investdetails + '][task_date_time]" class="datetimepicker"></td>' +
-                    '<td><input type="datetime-local" name="TaskManagementData[' + investdetails + '][testing_completed_by_developer_on]" class="datetimepicker"></td>' +
-                    '<td>' +
-                        '<div class="time-required">' +
-                            '<input type="number" id="days_' + investdetails + '" placeholder="Enter days" oninput="updateTime(this)" name="TaskManagementData[' + investdetails + '][days]" value="0" style="border: 1px solid #000; padding: 5px; border-radius: 5px;"> Days' +
-                            '<input type="number" id="hours_' + investdetails + '" placeholder="Enter hours" oninput="updateTime(this)" name="TaskManagementData[' + investdetails + '][hours]" value="0" style="border: 1px solid #000; padding: 5px; border-radius: 5px;"> Hours' +
-                            '<input type="number" id="minutes_' + investdetails + '" placeholder="Enter minutes" oninput="updateTime(this)" name="TaskManagementData[' + investdetails + '][minutes]" value="0" style="border: 1px solid #000; padding: 5px; border-radius: 5px;"> Minutes' +
-                        '</div>' +
-                    '</td>' +
-                    '<td><textarea class="auto-resize-textarea" name="TaskManagementData[' + investdetails + '][work_in_progress_detail]"></textarea></td>' +
-                    '<td><textarea class="auto-resize-textarea" name="TaskManagementData[' + investdetails + '][Remaining_task]"></textarea></td>' +
-                    '<td>' +
-                        '<div class="time-required">' +
-                            '<input type="number" id="days_' + investdetails + '_second" placeholder="Enter days" oninput="updateTime(this)" name="TaskManagementData[' + investdetails + '][days_second]" value="0" style="border: 1px solid #000; padding: 5px; border-radius: 5px;"> Days' +
-                            '<input type="number" id="hours_' + investdetails + '_second" placeholder="Enter hours" oninput="updateTime(this)" name="TaskManagementData[' + investdetails + '][hours_second]" value="0" style="border: 1px solid #000; padding: 5px; border-radius: 5px;"> Hours' +
-                            '<input type="number" id="minutes_' + investdetails + '_second" placeholder="Enter minutes" oninput="updateTime(this)" name="TaskManagementData[' + investdetails + '][minutes_second]" value="0" style="border: 1px solid #000; padding: 5px; border-radius: 5px;"> Minutes' +
-                        '</div>' +
-                    '</td>' +
-                    '<td><textarea class="auto-resize-textarea" name="TaskManagementData[' + investdetails + '][developer_testing_details]"></textarea></td>' +
-                    '<td><textarea class="auto-resize-textarea" name="TaskManagementData[' + investdetails + '][remaining_work]"></textarea></td>' +
-                    '<td><textarea class="auto-resize-textarea" name="TaskManagementData[' + investdetails + '][remaining_work_testing]"></textarea></td>' +
 
-                    '<td><select name="TaskManagementData[' + investdetails + '][validation_team_name]">' +
-                        '<option value="">-- Select --</option>' +
-                        '<option value="Configured">Work In Progress</option>' +
-                        '<option value="Not Completed">Not Completed</option>' +
-                        '<option value="Completed">Completed</option>' +
-                    '</select></td>' +
-                    '<td><textarea class="auto-resize-textarea" name="TaskManagementData[' + investdetails + '][validation_team_remark]"></textarea></td>' +
-                    '<td><textarea class="auto-resize-textarea" name="TaskManagementData[' + investdetails + '][configuration_update_validation_team]"></textarea></td>' +
-                    '<td><textarea class="auto-resize-textarea" name="TaskManagementData[' + investdetails + '][revalidation_remark]"></textarea></td>' +
-                    '<td><textarea class="auto-resize-textarea" name="TaskManagementData[' + investdetails + '][revalidation_remark_team]"></textarea></td>' +
-                    '<td><textarea class="auto-resize-textarea" name="TaskManagementData['+ investdetails +'][task_date_time]"></textarea></td>'+ 
-                    '<td><select name="TaskManagementData[' + investdetails + '][final_status]">' +
-                        '<option value="">-- Select --</option>' +
-                        '<option value="Configured">Work In Progress</option>' +
-                        '<option value="Not Completed">Not Completed</option>' +
-                        '<option value="Completed">Completed</option>' +
-                    '</select></td>' +
-                    '<td><div class="new-date-data-field"><div class="group-input input-date"> <div class="calenderauditee"><input id="date_' + investdetails + '_activity_config_final_date" type="text" name="TaskManagementData[' + investdetails + '][activity_config_final_date]" placeholder="DD-MMM-YYYY" /> <input type="date" name="TaskManagementData[' + investdetails + '][activity_config_final_date]" min="{{ \Carbon\Carbon::now()->format("Y-m-d") }}" value="" id="date_' + investdetails + '_activity_config_final_date" class="hide-input show_date" style="position: absolute; top: 0; left: 0; opacity: 0;" oninput="handleDateInput(this, \'date_' + investdetails + '_activity_config_final_date\')" /> </div> </div></div></td>' +
-                    '<td><textarea class="auto-resize-textarea" name="TaskManagementData[' + investdetails + '][seniour_management_remark]"></textarea></td>' +
-                    '<td><button class="removeRowBtn">Remove</button></td>' +
-                    '</tr>';
-                investdetails++; // Increment the row number here
-                return html;
-            }
+        // Manually embed user data inside script
+        let usersList = [
+            @foreach ($users as $user)
+                { id: "{{ $user->id }}", name: "{{ $user->name }}" },
+            @endforeach
+        ];
 
+        function generateTableRow(serialNumber) {
+            let userOptions = '<option value="">-- Select Speaker --</option>';
+            usersList.forEach(user => {
+                userOptions += `<option value="${user.id}">${user.name}</option>`;
+            });
+
+            var html =
+                '<tr>' +
+                '<td><input disabled type="text" style="width:15px" value="' + serialNumber + '"></td>' +
+                '<td><textarea class="auto-resize-textarea" name="TaskManagementData[' + investdetails + '][activity1_task]"></textarea></td>' +
+                '<td><select name="TaskManagementData[' + investdetails + '][validation_team_name]">' +
+                '<option value="">-- Select --</option>' +
+                '<option value="GLP">GLP</option>' +
+                '<option value="GMP">GMP</option>' +
+                '<option value="GCP">GCP</option>' +
+                '<option value="GEP">GEP</option>' +
+                '<option value="GDP">GDP</option>' +
+                '<option value="Others">Others</option>' +
+                '</select></td>' +
+
+                '<td><input type="datetime-local" name="TaskManagementData[' + investdetails + '][testing_completed_by_developer_on]" class="datetimepicker"></td>' +
+
+                // Speaker dropdown instead of Work in Progress Detail
+                '<td><select name="TaskManagementData[' + investdetails + '][work_in_progress_detail]">' +
+                userOptions +
+                '</select></td>' +
+
+                '<td><input type="file" name="TaskManagementData[' + investdetails + '][developer_testing_details]" ></td>' +
+                '<td><textarea class="auto-resize-textarea" name="TaskManagementData[' + investdetails + '][remaining_work]"></textarea></td>' +
+
+                '<td><button class="removeRowBtn">Remove</button></td>' +
+                '</tr>';
+            investdetails++; // Increment row count
+            return html;
+        }
+
+        $('#task_manamegemnt_grid').click(function (e) {
             var tableBody = $('#task_Management_Table tbody');
             var rowCount = tableBody.children('tr').length;
             var newRow = generateTableRow(rowCount + 1);
             tableBody.append(newRow);
-
-            // Initialize auto-resize for newly added textareas
-            const newTextareas = newRow.querySelectorAll('.auto-resize-textarea');
-            newTextareas.forEach(textarea => {
-                textarea.addEventListener('input', function() {
-                    this.style.height = 'auto'; // Reset the height
-                    this.style.height = (this.scrollHeight) + 'px'; // Set the height to the scroll height
-                });
-
-                // Trigger the input event to adjust the height initially (if there's content)
-                textarea.dispatchEvent(new Event('input'));
-            });
         });
 
-        $(document).on('click', '.removeRowBtn', function() {
+        $(document).on('click', '.removeRowBtn', function () {
             $(this).closest('tr').remove();
         });
     });
 </script>
+
 
                                 <script>
                                     function updateTime(element) {
@@ -591,232 +380,7 @@
 
                                 </div>
 
-                    <!-- <div id="CCForm3" class="inner-block cctabcontent">
-                        <div class="inner-block-content">
-                            <div class="row">
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="acknowledge_by">Acknowledge By</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="acknowledge_on">Acknowledge On</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="ack_comments">Acknowledge Comment</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="HOD_Review_Complete_By">HOD Review Complete By</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="HOD_Review_Complete_On">HOD Review Complete On</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="Comments">HOD Review Complete Comment</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="QQQA_Review_Complete_By">CFT Review Not Required By</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="QQQA_Review_Complete_On">CFT Review Not Required On</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="Comments">CFT Review Not Required Comment</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="QQQA_Review_Complete_By">QA/CQA Review Complete By</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="QQQA_Review_Complete_On">QA/CQA Review Complete On</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="Comments">QA/CQA Review Complete Comment</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-
-
-
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="QQQA_Review_Complete_By">CFT Review Complete By</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="QQQA_Review_Complete_On">CFT Review Complete On</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="Comments">CFT Review Complete Comment</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="QQQA_Review_Complete_By">Approved By</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="QQQA_Review_Complete_On">Approved On</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="Comments">Approved Comment</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="submitted_by">Submit By</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="submitted_on">Submit On</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="Comments">Submit Comment</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="HOD_Final_Review_Complete_By">HOD Final Review Complete By</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="HOD_Final_Review_Complete_On">HOD Final Review Complete On</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="Comments">HOD Final Review Complete Comment</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="Final_QA_Review_Complete_By">Final QA/CQA Review Complete By</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="Final_QA_Review_Complete_On">Final QA/CQA Review Complete On</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="Comments">Final QA/CQA Review Complete Comment</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="evaluation_complete_by">QAH/CQAH Closure By</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="evaluation_complete_on">QAH/CQAH Closure On</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="evalution_Closure_comment">QAH/CQAH Closure Comment</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="Cancelled By">Cancel By</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="Cancelled On">Cancel On</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-4">
-                                    <div class="group-input">
-                                        <label for="Comments">Cancel Comment</label>
-                                        <div class="static"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="button-block">
-                                {{-- <button type="submit" class="saveButton">Save</button> --}}
-                                <button type="button" class="backButton" onclick="previousStep()">Back</button>
-                                {{-- <button type="submit">Submit</button> --}}
-                                <button type="button"> <a href="{{ url('rcms/qms-dashboard') }}" class="text-white">
-                                        Exit </a> </button>
-                            </div>
-                        </div>
-                    </div> -->
-
-                </div>
+                    </div>
             </form>
 
         </div>

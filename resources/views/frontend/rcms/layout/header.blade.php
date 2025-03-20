@@ -206,9 +206,9 @@
                                 <img src="{{ asset('user/images/vidhyagxp.png') }}" alt="Vidyagxp Logo" 
                                      style="width: 100px; height: auto; pointer-events: none; scale: 1.3">
                             </div>
-                            <div style="    margin-left: -17px;" class="logo">
+                            {{-- <div style="    margin-left: -17px;" class="logo">
                                 <img src="https://ipc.gov.in/images/new_logo.png" alt="..." class="w-100 h-100" style="scale: 1.3; pointer-events: none;"> 
-                           </div>
+                           </div> --}}
                             {{-- <div class="logo">
                                 <img src="{{ asset('user/images/vidhyagxp.png') }}" alt="Medicef Pharma Logo"
                                      style="width: 100px; height: auto; pointer-events: none; margin-top: 9px;">
@@ -484,15 +484,7 @@
                             <a href="{{ url('rcms/form-division') }}"> <button class="button_theme1">Create
                                     Record</button> </a>
                         </div>
-                        <div class="create">
-                            <a href="{{ url('/holidays') }}"> <button class="button_theme1">Create
-                                    Holiday</button> </a>
-                        </div>
-                        <div class="create">
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#weekendModal">
-                                    Weekend Day
-                                </button>
-                            </div>
+                       
                     </div>
                 </div>
             </div>
@@ -628,22 +620,22 @@
                         <div>
                             <a href="#" class="{{ Request::is('/') ? 'active' : '' }}"><i class="fa-solid fa-braille"></i></a>
                         </div>
-                        <div>
+                        {{-- <div>
                             <a href="/dashboard" class="{{ Request::is('dashboard') ? 'active' : '' }}">Dashboard</a>
                         </div>
                         <div>
                             <a href="/TMS" class="{{ Request::is('TMS') ? 'active' : '' }}">TMS-Dashboard</a>
-                        </div>
+                        </div> --}}
                         <div>
                             <a href="/rcms/qms-dashboard" class="{{ Request::is('rcms/qms-dashboard') ? 'active' : '' }}">QMS-Dashboard</a>
                         </div>
-                        <div>
+                        {{-- <div>
                             <a href="/rcms/lims-dashboard" class="{{ Request::is('rcms/lims-dashboard') ? 'active' : '' }}">LIMS-Dashboard</a>
-                        </div>
+                        </div> --}}
                         <div>
-                            <a href="/Limsanalyticsdashboard" class="{{ Request::is('Limsanalyticsdashboard') ? 'active' : '' }}">LIMS Analytics</a>
+                            <a href="/Limsanalyticsdashboard" class="{{ Request::is('Limsanalyticsdashboard') ? 'active' : '' }}">Dashboard</a>
                         </div>
-                        <div>
+                        {{-- <div>
                             <a href="/rcms/qms-record-analytics" class="{{ Request::is('rcms/qms-record-analytics') ? 'active' : '' }}">QMS-Record Analytics</a>
                         </div>
                         <div>
@@ -651,34 +643,34 @@
                         </div>
                         <div>
                             <a href="/rcms/Compliance_dashboard" class="{{ Request::is('rcms/Compliance_dashboard') ? 'active' : '' }}">Compliance Dashboard</a>
-                        </div>
+                        </div> --}}
                         @if (Auth::user())
                             @if (Helpers::checkRoles(3) || Helpers::checkRoles(1) || Helpers::checkRoles(2))
-                                <div>
+                                {{-- <div>
                                     <a href="/mydms" class="{{ Request::is('mydms') ? 'active' : '' }}">My DMS</a>
-                                </div>
+                                </div> --}}
                             @endif
                             @if (Helpers::checkRoles(3))
-                                <div>
+                                {{-- <div>
                                     <a href="{{ route('documents.index') }}" class="{{ Request::is('documents') ? 'active' : '' }}">Documents</a>
-                                </div>
+                                </div> --}}
                             @endif
                             @if (Helpers::checkRoles(1) || Helpers::checkRoles(2) || Helpers::checkRoles(4))
-                                <div>
+                                {{-- <div>
                                     <a href="{{ url('mytaskdata') }}" class="{{ Request::is('mytaskdata') ? 'active' : '' }}">My Tasks</a>
-                                </div>
+                                </div> --}}
                             @endif
                             @if (Helpers::checkRoles(1) || Helpers::checkRoles(2) || Helpers::checkRoles(4))
-                                <div>
+                                {{-- <div>
                                     <a href="{{ url('myactivity') }}" class="{{ Request::is('myactivity') ? 'active' : '' }}">My Activity</a>
-                                </div>
+                                </div> --}}
                             @endif
-                            <div>
+                            {{-- <div>
                                 <a href="/rcms/login-logout-session" class="{{ Request::is('rcms/login-logout-session') ? 'active' : '' }}">Login Activity</a>
-                            </div>
-                            <div>
+                            </div> --}}
+                            {{-- <div>
                                 <a class="btn-transparent bg-transparent text-black vidhyagxpacademy" data-bs-toggle="modal" data-bs-target="#log-sop-modal-New" title="Logs">VidyaGxP Academy</a>
-                            </div>
+                            </div> --}}
                         @endif
                     </div>
                 </div>
